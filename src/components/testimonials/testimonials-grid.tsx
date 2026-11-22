@@ -13,10 +13,10 @@ type Testimonial = {
   role: string;
   company: string;
   content: string;
-  projectType: string;
-  date: string;
+  project_type: string;
+  created_at: string;
   url?: string;
-  avatarUrl?: string;
+  avatar_url?: string;
 };
 
 type FilterOption = { value: string; label: string };
@@ -55,7 +55,7 @@ export function TestimonialsGrid({
     activeFilter === "all"
       ? testimonials
       : testimonials.filter(
-          (testimonial) => typeMap[activeFilter] === testimonial.projectType,
+          (testimonial) => typeMap[activeFilter] === testimonial.project_type,
         );
 
   return (
@@ -104,9 +104,9 @@ export function TestimonialsGrid({
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center overflow-hidden">
-                      {testimonial.avatarUrl ? (
+                      {testimonial.avatar_url ? (
                         <img
-                          src={testimonial.avatarUrl}
+                          src={testimonial.avatar_url}
                           alt=""
                           className="w-full h-full object-cover"
                         />
@@ -130,7 +130,7 @@ export function TestimonialsGrid({
                   </p>
                   <div className="flex items-center justify-between pt-4 border-t border-border/40">
                     <p className="text-xs text-muted-foreground">
-                      {new Date(testimonial.date).toLocaleDateString(undefined, {
+                      {new Date(testimonial.created_at).toLocaleDateString(undefined, {
                         year: "numeric",
                         month: "long",
                       })}

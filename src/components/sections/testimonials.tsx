@@ -1,16 +1,25 @@
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
-import { featuredTestimonials } from "@/data/testimonials";
+import { supabase } from "@/lib/supabase/server";
 import { getDictionary, t } from "@/i18n/dictionary";
 
 type TestimonialsSectionProps = {
   locale: "es" | "en";
 };
 
-export function TestimonialsSection({ locale }: TestimonialsSectionProps) {
+export default async function TestimonialsSection({
+  locale,
+}: TestimonialsSectionProps) {
   const dict = getDictionary(locale);
 
-  if (featuredTestimonials.length === 0) return null;
+  const { data: testimonials, error } = await supabase
+    .from("testimonials")
+    .select("*")
+    .eq("featured", true)
+    .eq("language", locale)
+    .order("created_at", { ascending: false });
+
+  if (error || !testimonials?.length) return null;
 
   return (
     <section className="px-4 py-24 lg:py-32 border-t border-border/60">
@@ -25,15 +34,19 @@ export function TestimonialsSection({ locale }: TestimonialsSectionProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredTestimonials.map((testimonial) => (
+          {testimonials.map((testimonial) => (
             <Card key={testimonial.id} className="p-6">
               <div className="text-xl text-foreground font-medium italic mb-4">
                 "{testimonial.content}"
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center overflow-hidden">
-                  {testimonial.avatarUrl ? (
-                    <img src={testimonial.avatarUrl} alt="" className="w-full h-full object-cover" />
+                  {testimonial.avatar_url ? (
+                    <img
+                      src={testimonial.avatar_url}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
                   ) : (
                     <span className="text-sm font-medium">
                       {testimonial.name.charAt(0)}

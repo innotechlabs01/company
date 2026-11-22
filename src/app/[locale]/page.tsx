@@ -4,7 +4,7 @@ import { Methodology } from "@/components/sections/methodology";
 import { Collaboration } from "@/components/sections/collaboration";
 import { Technologies } from "@/components/sections/technologies";
 import { Projects } from "@/components/sections/projects";
-import { TestimonialsSection } from "@/components/sections/testimonials";
+import TestimonialsSection from "@/components/sections/testimonials";
 import { About } from "@/components/sections/about";
 import { CTASection } from "@/components/sections/cta";
 import type { Locale } from "@/i18n/dictionary";
