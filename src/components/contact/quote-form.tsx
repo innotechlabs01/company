@@ -14,15 +14,19 @@ import { getDictionary, t } from "@/i18n/dictionary";
 import { cn } from "@/lib/utils";
 
 const quoteSchema = z.object({
-  fullName: z.string().min(2, "El nombre es requerido."),
-  email: z.string().email("Correo inválido."),
+  fullName: z.string().min(2, t_dict_es("El nombre es requerido.")),
+  email: z.string().email(t_dict_es("Correo inválido.")),
   company: z.string().optional(),
-  projectType: z.string().min(1, "Selecciona un tipo de proyecto."),
+  projectType: z.string().min(1, t_dict_es("Selecciona un tipo de proyecto.")),
   budget: z.string().optional(),
-  timeline: z.string().min(1, "Selecciona un tiempo estimado."),
-  description: z.string().min(10, "La descripción es muy corta."),
-  contactMethod: z.string().min(1, "Selecciona un medio de contacto."),
+  timeline: z.string().min(1, t_dict_es("Selecciona un tiempo estimado.")),
+  description: z.string().min(10, t_dict_es("La descripción es muy corta.")),
+  contactMethod: z.string().min(1, t_dict_es("Selecciona un medio de contacto.")),
 });
+
+function t_dict_es(es: string) {
+  return es;
+}
 
 type QuoteFormValues = z.infer<typeof quoteSchema>;
 
@@ -30,37 +34,37 @@ type QuoteFormProps = {
   locale: "es" | "en";
 };
 
-const projectTypes: Array<{ value: string; labelEs: string; labelEn: string }> = [
-  { value: "website", labelEs: "Página web", labelEn: "Website" },
-  { value: "landing", labelEs: "Landing page", labelEn: "Landing page" },
-  { value: "webApp", labelEs: "Aplicación web", labelEn: "Web application" },
-  { value: "mobileApp", labelEs: "Aplicación móvil", labelEn: "Mobile application" },
-  { value: "customSoftware", labelEs: "Software a medida", labelEn: "Custom software" },
-  { value: "inhouse", labelEs: "Proyecto In-house", labelEn: "In-house project" },
-  { value: "longTerm", labelEs: "Proyecto de largo plazo", labelEn: "Long-term project" },
-  { value: "consulting", labelEs: "Consultoría", labelEn: "Consulting" },
-  { value: "other", labelEs: "Otro", labelEn: "Other" },
+const projectTypes: Array<{ value: string }> = [
+  { value: "website" },
+  { value: "landing" },
+  { value: "webApp" },
+  { value: "mobileApp" },
+  { value: "customSoftware" },
+  { value: "inhouse" },
+  { value: "longTerm" },
+  { value: "consulting" },
+  { value: "other" },
 ];
 
-const contactMethods: Array<{ value: string; labelEs: string; labelEn: string }> = [
-  { value: "whatsapp", labelEs: "WhatsApp", labelEn: "WhatsApp" },
-  { value: "email", labelEs: "Correo electrónico", labelEn: "Email" },
-  { value: "both", labelEs: "Ambos", labelEn: "Both" },
+const contactMethods: Array<{ value: string }> = [
+  { value: "whatsapp" },
+  { value: "email" },
+  { value: "both" },
 ];
 
-const budgetOptions: Array<{ value: string; labelEs: string; labelEn: string }> = [
-  { value: "menos-5k", labelEs: "Menos de $5.000 USD", labelEn: "Less than $5,000 USD" },
-  { value: "5k-20k", labelEs: "$5.000 – $20.000 USD", labelEn: "$5,000 – $20,000 USD" },
-  { value: "20k-50k", labelEs: "$20.000 – $50.000 USD", labelEn: "$20,000 – $50,000 USD" },
-  { value: "mas-50k", labelEs: "Más de $50.000 USD", labelEn: "More than $50,000 USD" },
+const budgetOptions: Array<{ value: string }> = [
+  { value: "menos-5k" },
+  { value: "5k-20k" },
+  { value: "20k-50k" },
+  { value: "mas-50k" },
 ];
 
-const timelineOptions: Array<{ value: string; labelEs: string; labelEn: string }> = [
-  { value: "1-mes", labelEs: "1 mes", labelEn: "1 month" },
-  { value: "3-meses", labelEs: "3 meses", labelEn: "3 months" },
-  { value: "6-meses", labelEs: "6 meses", labelEn: "6 months" },
-  { value: "12-meses", labelEs: "12 meses o más", labelEn: "12 months or more" },
-  { value: "en-curso", labelEs: "En curso / continuo", labelEn: "Ongoing / continuous" },
+const timelineOptions: Array<{ value: string }> = [
+  { value: "1-mes" },
+  { value: "3-meses" },
+  { value: "6-meses" },
+  { value: "12-meses" },
+  { value: "en-curso" },
 ];
 
 export function QuoteForm({ locale }: QuoteFormProps) {
@@ -79,18 +83,13 @@ export function QuoteForm({ locale }: QuoteFormProps) {
 
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const label = (options: Array<{ value: string; labelEs: string; labelEn: string }>, value: string) => {
-    const found = options.find((o) => o.value === value);
-    return found ? (locale === "en" ? found.labelEn : found.labelEs) : value;
-  };
-
   const onSubmit = async (data: QuoteFormValues) => {
     try {
       await sendQuoteRequest(data);
       reset();
       setSubmitStatus("success");
       setTimeout(() => setSubmitStatus("idle"), 5000);
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
       setTimeout(() => setSubmitStatus("idle"), 5000);
     }
@@ -151,12 +150,12 @@ export function QuoteForm({ locale }: QuoteFormProps) {
         <Label>{t(dict, "contact.form.projectType", "Tipo de proyecto")}</Label>
         <Select {...register("projectType")}>
           <SelectTrigger>
-            <SelectValue placeholder="Selecciona..." />
+            <SelectValue placeholder={t(dict, "contact.form.projectType", "Selecciona...")} />
           </SelectTrigger>
           <SelectContent>
             {projectTypes.map((p) => (
               <SelectItem key={p.value} value={p.value}>
-                {label(projectTypes, p.value)}
+                {t(dict, `contact.projectTypes.${p.value}`, p.value)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -171,13 +170,15 @@ export function QuoteForm({ locale }: QuoteFormProps) {
           <Label>{t(dict, "contact.form.budget", "Presupuesto estimado")}</Label>
           <Select {...register("budget")}>
             <SelectTrigger>
-              <SelectValue placeholder="Opcional" />
+              <SelectValue placeholder={t(dict, "contact.form.budget", "Opcional")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">Opcional</SelectItem>
+              <SelectItem value="">
+                {t(dict, "contact.form.budget", "Opcional")}
+              </SelectItem>
               {budgetOptions.map((b) => (
                 <SelectItem key={b.value} value={b.value}>
-                  {label(budgetOptions, b.value)}
+                  {t(dict, `contact.budget.${b.value}`, b.value)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -187,12 +188,12 @@ export function QuoteForm({ locale }: QuoteFormProps) {
           <Label>{t(dict, "contact.form.timeline", "Tiempo estimado de ejecución")}</Label>
           <Select {...register("timeline")}>
             <SelectTrigger>
-              <SelectValue placeholder="Selecciona..." />
+              <SelectValue placeholder={t(dict, "contact.form.timeline", "Selecciona...")} />
             </SelectTrigger>
             <SelectContent>
-              {timelineOptions.map((t) => (
-                <SelectItem key={t.value} value={t.value}>
-                  {label(timelineOptions, t.value)}
+              {timelineOptions.map((tl) => (
+                <SelectItem key={tl.value} value={tl.value}>
+                  {t(dict, `contact.timeline.${tl.value}`, tl.value)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -220,12 +221,12 @@ export function QuoteForm({ locale }: QuoteFormProps) {
         <Label>{t(dict, "contact.form.contactMethod", "Medio de contacto preferido")}</Label>
         <Select {...register("contactMethod")} defaultValue="both">
           <SelectTrigger>
-            <SelectValue placeholder="Selecciona..." />
+            <SelectValue placeholder={t(dict, "contact.form.contactMethod", "Selecciona...")} />
           </SelectTrigger>
           <SelectContent>
             {contactMethods.map((m) => (
               <SelectItem key={m.value} value={m.value}>
-                {label(contactMethods, m.value)}
+                {t(dict, `contact.contactMethods.${m.value}`, m.value)}
               </SelectItem>
             ))}
           </SelectContent>

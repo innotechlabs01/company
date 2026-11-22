@@ -87,7 +87,14 @@
           "Estrategia de implementación"
         ]
       }
-    ]
+    ],
+    "names": {
+      "web": "Desarrollo Web",
+      "customSoftware": "Software a Medida",
+      "mobileApp": "Aplicaciones Móviles",
+      "inhouse": "Proyectos In-house",
+      "consulting": "Consultoría Tecnológica"
+    }
   },
   "methodology": {
     "title": "De la idea a una solución funcional.",
@@ -203,7 +210,11 @@
     "subtitle": "Opiniones reales de quienes han trabajado conmigo y los resultados de sus proyectos.",
     "seeAll": "Conoce todas las experiencias",
     "ctaTitle": "Construyamos algo que también pueda contar su historia.",
-    "ctaButton": "Hablemos de tu proyecto"
+    "ctaButton": "Hablemos de tu proyecto",
+    "filter": "Filtrar",
+    "noTestimonials": "No hay testimonios disponibles.",
+    "addFirst": "Agregá tus primeros testimonios desde el panel de administración.",
+    "noTestimonialsForFilter": "No hay testimonios para este filtro."
   },
   "about": {
     "title": "Detrás de cada solución, hay una visión.",
@@ -263,7 +274,23 @@
       "whatsapp": "WhatsApp",
       "email": "Correo electrónico",
       "both": "Ambos"
-    }
+    },
+    "budget": {
+      "menos-5k": "Menos de $5.000 USD",
+      "5k-20k": "$5.000 – $20.000 USD",
+      "20k-50k": "$20.000 – $50.000 USD",
+      "mas-50k": "Más de $50.000 USD"
+    },
+    "timeline": {
+      "1-mes": "1 mes",
+      "3-meses": "3 meses",
+      "6-meses": "6 meses",
+      "12-meses": "12 meses o más",
+      "en-curso": "En curso / continuo"
+    },
+    "description": "Cuéntame qué quieres construir. Respondo generalmente en menos de 24 horas hábiles.",
+    "writeDirectly": "Escríbeme directamente",
+    "requestQuote": "Solicita una cotización"
   },
   "testimonialsPage": {
     "heroTitle": "Experiencias que construyen confianza.",
@@ -282,52 +309,5 @@
     "ctaTitle": "Construyamos algo que también pueda contar su historia.",
     "ctaButton": "Hablemos de tu proyecto"
   },
-  "demoNotice": "Contenido de demostración. No representa clientes reales.",
-  "grooming": {
-    "meta": {
-      "title": "Patitas Felices · Peluquería Canina y Felina",
-      "description": "Baños, cortes de raza, uñas y mimos con mucho cariño para perros y gatos. Peluqueros certificados, productos naturales y ambiente sin estrés. Reserva tu cita hoy.",
-      "keywords": "peluquería canina, spa para mascotas, baño de perros, grooming, mascotas"
-    },
-    "hero": {
-      "eyebrow": "Cuidado con mucho cariño",
-      "title": "Tu mejor amigo merece el mejor cuidado",
-      "subtitle": "Baños, cortes de raza, uñas y mimos con mucho cariño para perros y gatos. Shampoos naturales, peluqueros certificados y un ambiente sin estrés.",
-      "ctaBook": "Reservar cita",
-      "ctaServices": "Ver servicios",
-      "ratingLabel": "+500 mimos entregados · valoración promedio",
-      "bathLabel": "Baño relajante",
-      "skipLink": "Saltar al contenido"
-    },
-    "services": {
-      "eyebrow": "Mimos para cada patita",
-      "title": "Todo lo que tu mascota necesita",
-      "subtitle": "Servicios de peluquería canina y felina con productos naturales y mucho cariño.",
-      "book": "Reservar"
-    },
-    "testimonials": {
-      "eyebrow": "Lo que dicen las familias",
-      "title": "Historias con cola"
-    },
-    "booking": {
-      "eyebrow": "Reserva su cita",
-      "title": "Déjanos mimar a tu mejor amigo",
-      "subtitle": "Elige el servicio, la fecha y cuéntanos todo sobre su mascota. Nos contactamos a la brevedad para confirmar.",
-      "errors": {
-        "required": "Campo requerido",
-        "email": "Ingresa un correo válido"
-      },
-      "submit": "Reservar cita",
-      "newBooking": "Reservar otra cita",
-      "success": {
-        "title": "¡Cita reservada!",
-        "message": "Te escribiremos por correo para confirmar la hora y atender a {petName}."
-      }
-    },
-    "footer": {
-      "name": "Patitas Felices",
-      "tagline": "Peluquería y spa para perros y gatos",
-      "demo": "Demo content. No representa clientes reales."
-    }
-  }
+  "demoNotice": "Contenido de demostración. No representa clientes reales."
 }

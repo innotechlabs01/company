@@ -1,33 +1,43 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Send, Mail } from "lucide-react";
 import { useState } from "react";
 import { getDictionary, t } from "@/i18n/dictionary";
+import { cn } from "@/lib/utils";
 
 type FooterProps = {
   locale: "es" | "en";
 };
 
-const navItems: Array<{ key: string; labelEs: string; href: string }> = [
-  { key: "home", labelEs: "Inicio", href: "/" },
-  { key: "services", labelEs: "Servicios", href: "/servicios" },
-  { key: "projects", labelEs: "Proyectos", href: "/proyectos" },
-  { key: "testimonials", labelEs: "Testimonios", href: "/testimonios" },
-  { key: "about", labelEs: "Sobre mí", href: "/sobre-mi" },
-  { key: "contact", labelEs: "Contacto", href: "/contacto" },
+const navItems: Array<{ key: string; href: string }> = [
+  { key: "home", href: "/" },
+  { key: "services", href: "/servicios" },
+  { key: "projects", href: "/proyectos" },
+  { key: "testimonials", href: "/testimonios" },
+  { key: "about", href: "/sobre-mi" },
+  { key: "contact", href: "/contacto" },
+];
+
+const footerServices = [
+  { key: "web", href: "/servicios" },
+  { key: "customSoftware", href: "/software-a-medida" },
+  { key: "mobileApp", href: "/aplicaciones-moviles" },
+  { key: "inhouse", href: "/proyectos-inhouse" },
+  { key: "consulting", href: "/consultoria" },
 ];
 
 export function Footer({ locale }: FooterProps) {
   const dict = getDictionary(locale);
   const [languageOpen, setLanguageOpen] = useState(false);
 
-  const whatsappUrl = `https://wa.me/573128386640?text=${encodeURIComponent(
-    t(dict, "whatsapp.message", "Hola Anthony, estoy interesado en conocer más sobre tus servicios. Me gustaría conversar sobre un proyecto."),
-  )}`;
+  const whatsappMessage =
+    locale === "es"
+      ? "Hola Anthony, estoy interesado en conocer más sobre tus servicios. Me gustaría conversar sobre un proyecto."
+      : "Hi Anthony, I'm interested in learning more about your services. I'd like to discuss a project.";
+  const whatsappUrl = `https://wa.me/573128386640?text=${encodeURIComponent(whatsappMessage)}`;
 
-  const handleLanguageChange = (nextLocale: string) => {
+  const handleLanguageChange = (nextLocale: string) => () => {
     const p = typeof window !== "undefined" ? window.location.pathname : "";
     const withoutLocale = p.replace(`/${locale}`, "") || "/";
     window.location.href = `/${nextLocale}${withoutLocale}`;
@@ -55,7 +65,7 @@ export function Footer({ locale }: FooterProps) {
               {navItems.map((item) => (
                 <li key={item.key}>
                   <Link href={`/${locale}${item.href}`} className="hover:text-foreground transition-colors">
-                    {item.labelEs}
+                    {t(dict, `nav.${item.key}`, item.key)}
                   </Link>
                 </li>
               ))}
@@ -66,31 +76,13 @@ export function Footer({ locale }: FooterProps) {
               {t(dict, "footer.services", "Servicios")}
             </h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href={`/${locale}/servicios`} className="hover:text-foreground transition-colors">
-                  Desarrollo Web
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/software-a-medida`} className="hover:text-foreground transition-colors">
-                  Software a Medida
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/aplicaciones-moviles`} className="hover:text-foreground transition-colors">
-                  Aplicaciones Móviles
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/proyectos-inhouse`} className="hover:text-foreground transition-colors">
-                  Proyectos In-house
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${locale}/consultoria`} className="hover:text-foreground transition-colors">
-                  Consultoría Tecnológica
-                </Link>
-              </li>
+              {footerServices.map((s) => (
+                <li key={s.key}>
+                  <Link href={`/${locale}${s.href}`} className="hover:text-foreground transition-colors">
+                    {t(dict, `services.names.${s.key}`, s.key)}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
@@ -136,17 +128,17 @@ export function Footer({ locale }: FooterProps) {
                     <button
                       key={option}
                       onClick={() => {
-                        handleLanguageChange(option);
+                        handleLanguageChange(option)();
                         setLanguageOpen(false);
                       }}
-                      className={cnLanguage(
+                      className={cn(
                         "flex w-full items-center rounded-md px-3 py-2 text-sm transition-colors",
                         option === locale
                           ? "bg-primary text-primary-foreground"
                           : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
                       )}
                     >
-                      {option.toUpperCase()}
+                      {t(dict, `localeSwitcher.${option}`, option.toUpperCase())}
                     </button>
                   ))}
                 </div>
@@ -157,11 +149,4 @@ export function Footer({ locale }: FooterProps) {
       </div>
     </footer>
   );
-}
-
-function cnLanguage(
-  base: string,
-  conditional: string,
-): string {
-  return `${base} ${conditional}`;
 }

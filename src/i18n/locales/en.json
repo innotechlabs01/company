@@ -87,7 +87,14 @@
           "Implementation strategy"
         ]
       }
-    ]
+    ],
+    "names": {
+      "web": "Web Development",
+      "customSoftware": "Custom Software Development",
+      "mobileApp": "Mobile Applications",
+      "inhouse": "In-house Projects",
+      "consulting": "Technology Consulting"
+    }
   },
   "methodology": {
     "title": "From idea to working solution.",
@@ -203,7 +210,11 @@
     "subtitle": "Real opinions from those who have worked with me and the results of their projects.",
     "seeAll": "See all experiences",
     "ctaTitle": "Let's build something that can also tell its story.",
-    "ctaButton": "Let's talk about your project"
+    "ctaButton": "Let's talk about your project",
+    "filter": "Filter",
+    "noTestimonials": "No testimonials available.",
+    "addFirst": "Add your first testimonials from the admin panel.",
+    "noTestimonialsForFilter": "No testimonials for this filter."
   },
   "about": {
     "title": "Behind every solution, there is a vision.",
@@ -263,7 +274,23 @@
       "whatsapp": "WhatsApp",
       "email": "Email",
       "both": "Both"
-    }
+    },
+    "budget": {
+      "menos-5k": "Less than $5,000 USD",
+      "5k-20k": "$5,000 – $20,000 USD",
+      "20k-50k": "$20,000 – $50,000 USD",
+      "mas-50k": "More than $50,000 USD"
+    },
+    "timeline": {
+      "1-mes": "1 month",
+      "3-meses": "3 months",
+      "6-meses": "6 months",
+      "12-meses": "12 months or more",
+      "en-curso": "Ongoing / continuous"
+    },
+    "description": "Tell me what you want to build. I usually respond within 24 business hours.",
+    "writeDirectly": "Write me directly",
+    "requestQuote": "Request a quote"
   },
   "testimonialsPage": {
     "heroTitle": "Experiences that build trust.",
@@ -282,52 +309,5 @@
     "ctaTitle": "Let's build something that can also tell its story.",
     "ctaButton": "Let's talk about your project"
   },
-  "demoNotice": "Demo content. Does not represent real clients.",
-  "grooming": {
-    "meta": {
-      "title": "Happy Paws · Dog & Cat Grooming",
-      "description": "Baths, breed cuts, nail trims, and lots of love for dogs and cats. Certified groomers, natural products, and a stress-free environment. Book your appointment today.",
-      "keywords": "dog grooming, cat grooming, pet spa, dog bath, grooming salon"
-    },
-    "hero": {
-      "eyebrow": "Care with lots of love",
-      "title": "Your best friend deserves the best care",
-      "subtitle": "Baths, breed cuts, nail trims, and lots of love for dogs and cats. Natural shampoos, certified groomers, and a stress-free environment.",
-      "ctaBook": "Book appointment",
-      "ctaServices": "See services",
-      "ratingLabel": "+500 cuddles delivered · average rating",
-      "bathLabel": "Relaxing bath",
-      "skipLink": "Skip to content"
-    },
-    "services": {
-      "eyebrow": "Pampering for every paw",
-      "title": "Everything your pet needs",
-      "subtitle": "Dog and cat grooming services with natural products and lots of love.",
-      "book": "Book"
-    },
-    "testimonials": {
-      "eyebrow": "What families say",
-      "title": "Tail-wagging stories"
-    },
-    "booking": {
-      "eyebrow": "Book your appointment",
-      "title": "Let us pamper your best friend",
-      "subtitle": "Choose the service, the date, and tell us everything about your pet. We will contact you shortly to confirm.",
-      "errors": {
-        "required": "Required field",
-        "email": "Enter a valid email"
-      },
-      "submit": "Book appointment",
-      "newBooking": "Book another appointment",
-      "success": {
-        "title": "Appointment booked!",
-        "message": "We will email you shortly to confirm the time and take care of {petName}."
-      }
-    },
-    "footer": {
-      "name": "Happy Paws",
-      "tagline": "Dog and cat grooming and spa",
-      "demo": "Demo content. Does not represent real clients."
-    }
-  }
+  "demoNotice": "Demo content. Does not represent real clients."
 }

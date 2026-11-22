@@ -1,5 +1,8 @@
 import type { Locale } from "@/i18n/dictionary";
-import GroomingShell from "./grooming-shell";
+import type { Metadata } from "next";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { LangSetter } from "@/components/layout/lang-setter";
 
 const SITE_NAME = "Anthony Rivera";
 const SITE_URL = "https://anthonyrivera.dev";
@@ -21,10 +24,9 @@ export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
-}) {
+}): Promise<Metadata> {
   const { locale } = (await params) as { locale: Locale };
   const m = metaByLocale[locale] || metaByLocale.es;
-  const otherLocale = locale === "es" ? "en" : "es";
 
   return {
     title: m.title,
@@ -68,5 +70,12 @@ export default async function LocaleLayout({
 }: LocaleLayoutProps) {
   const { locale } = (await params) as { locale: Locale };
 
-  return <GroomingShell locale={locale}>{children}</GroomingShell>;
+  return (
+    <div className="flex flex-col min-h-[100dvh]" data-lang={locale}>
+      <LangSetter locale={locale} />
+      <Header locale={locale} />
+      <main className="flex-1">{children}</main>
+      <Footer locale={locale} />
+    </div>
+  );
 }

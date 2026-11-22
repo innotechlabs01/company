@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X, Send } from "lucide-react";
+import { Menu, Send } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -12,35 +12,21 @@ type HeaderProps = {
   locale: "es" | "en";
 };
 
-const navItems: Array<{ key: string; labelEs: string; labelEn: string }> = [
-  { key: "home", labelEs: "Inicio", labelEn: "Home" },
-  { key: "services", labelEs: "Servicios", labelEn: "Services" },
-  { key: "projects", labelEs: "Proyectos", labelEn: "Projects" },
-  { key: "testimonials", labelEs: "Testimonios", labelEn: "Testimonials" },
-  { key: "about", labelEs: "Sobre mí", labelEn: "About me" },
-  { key: "contact", labelEs: "Contacto", labelEn: "Contact" },
+const navItems: Array<{ key: string; href: string }> = [
+  { key: "home", href: "/" },
+  { key: "services", href: "/servicios" },
+  { key: "projects", href: "/proyectos" },
+  { key: "testimonials", href: "/testimonios" },
+  { key: "about", href: "/sobre-mi" },
+  { key: "contact", href: "/contacto" },
 ];
-
-const pathByKey: Record<string, string> = {
-  home: "/",
-  services: "/servicios",
-  projects: "/proyectos",
-  testimonials: "/testimonios",
-  about: "/sobre-mi",
-  contact: "/contacto",
-};
 
 export function Header({ locale }: HeaderProps) {
   const dict = getDictionary(locale);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const label = (key: string) => {
-    const item = navItems.find((i) => i.key === key);
-    return item ? (locale === "en" ? item.labelEn : item.labelEs) : key;
-  };
-
   const hrefFor = (key: string) => {
-    const base = pathByKey[key] || "/";
+    const base = navItems.find((i) => i.key === key)?.href || "/";
     return key === "home" ? `/${locale}` : `/${locale}${base}`;
   };
 
@@ -50,7 +36,7 @@ export function Header({ locale }: HeaderProps) {
     return p === href;
   };
 
-  const handleLanguageChange = (nextLocale: string) => {
+  const handleLanguageChange = (nextLocale: string) => () => {
     const p = typeof window !== "undefined" ? window.location.pathname : "";
     const withoutLocale = p.replace(`/${locale}`, "") || "/";
     window.location.href = `/${nextLocale}${withoutLocale}`;
@@ -65,32 +51,37 @@ export function Header({ locale }: HeaderProps) {
               <span className="text-xl font-bold tracking-tight">Anthony Rivera</span>
             </Link>
 
-            <div className="hidden lg:flex items-center gap-1">
-              {navItems.map((item) => (
+            <div className="hidden lg:flex items-center gap-8">
+              <nav className="flex items-center gap-8 text-sm">
+                {navItems.map((item) => (
+                  <a
+                    key={item.key}
+                    href={hrefFor(item.key)}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {t(dict, `nav.${item.key}`, item.key)}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="flex items-center gap-4">
                 <a
-                  key={item.key}
-                  href={hrefFor(item.key)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  href={hrefFor("contact")}
+                  className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={t(dict, "nav.contact", "Contacto")}
                 >
-                  {label(item.key)}
+                  <Send className="h-4 w-4" aria-hidden="true" />
                 </a>
-              ))}
-              <a
-                href={hrefFor("contact")}
-                className="ml-4 flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
-                aria-label={label("contact")}
-              >
-                <Send className="h-4 w-4" aria-hidden="true" />
-              </a>
+                <Button asChild>
+                  <a href={hrefFor("contact")}>
+                    {t(dict, "nav.cta", "Hablemos de tu proyecto")}
+                  </a>
+                </Button>
+              </div>
             </div>
 
             <div className="flex items-center gap-2">
-              <LanguageSwitcher locale={locale} onChange={handleLanguageChange} />
-              <Button asChild>
-                <a href={hrefFor("contact")}>
-                  {t(dict, "nav.cta", "Hablemos de tu proyecto")}
-                </a>
-              </Button>
+              <LanguageSwitcher locale={locale} dict={dict} onChange={handleLanguageChange} />
             </div>
 
             <button
@@ -110,7 +101,7 @@ export function Header({ locale }: HeaderProps) {
         </DialogTrigger>
         <DialogContent className="p-6 lg:p-8">
           <DialogHeader>
-            <DialogDescription className="text-lg font-semibold">Menú</DialogDescription>
+            <DialogDescription className="text-lg font-semibold">{t(dict, "nav.contact", "Menú")}</DialogDescription>
           </DialogHeader>
           <div className="mt-6 space-y-4">
             {navItems.map((item) => {
@@ -127,7 +118,7 @@ export function Header({ locale }: HeaderProps) {
                       : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
                   )}
                 >
-                  {label(item.key)}
+                  {t(dict, `nav.${item.key}`, item.key)}
                 </a>
               );
             })}
@@ -148,28 +139,32 @@ export function Header({ locale }: HeaderProps) {
   );
 }
 
+type Dictionary = Record<string, unknown>;
+
 function LanguageSwitcher({
   locale,
+  dict,
   onChange,
 }: {
   locale: "es" | "en";
-  onChange: (nextLocale: string) => void;
+  dict: Dictionary;
+  onChange: (nextLocale: string) => () => void;
 }) {
   const options = [
-    { value: "es", label: "Español" },
-    { value: "en", label: "English" },
+    { value: "es", labelKey: "localeSwitcher.es" },
+    { value: "en", labelKey: "localeSwitcher.en" },
   ];
 
   return (
     <div className="relative inline-block text-sm">
       <Button variant="outline" size="sm" className="flex items-center gap-2 px-2">
-        {options.find((o) => o.value === locale)?.label || locale}
+        {t(dict, (options.find((o) => o.value === locale)?.labelKey) ?? "localeSwitcher.es", locale)}
       </Button>
       <div className="absolute right-0 mt-1 w-24 rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-lg">
         {options.map((option) => (
           <button
             key={option.value}
-            onClick={() => onChange(option.value as "es" | "en")}
+            onClick={() => onChange(option.value as "es" | "en")()}
             className={cn(
               "flex w-full items-center rounded-md px-3 py-2 text-sm transition-colors",
               option.value === locale
@@ -177,7 +172,7 @@ function LanguageSwitcher({
                 : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
             )}
           >
-            {option.label}
+            {t(dict, option.labelKey, option.value)}
           </button>
         ))}
       </div>

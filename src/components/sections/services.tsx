@@ -1,6 +1,15 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code, Layers, Smartphone, Building2, GitBranch, Headset } from "lucide-react";
+import {
+  Code,
+  Layers,
+  Smartphone,
+  Building2,
+  GitBranch,
+  Headset,
+} from "lucide-react";
 import { getDictionary, t } from "@/i18n/dictionary";
+import { motion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 
 type ServicesProps = {
   locale: "es" | "en";
@@ -21,8 +30,16 @@ const serviceIcons: Record<string, React.ElementType> = {
   "Technology Consulting": Headset,
 };
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+const reducedFadeUp = { hidden: { opacity: 1 }, show: { opacity: 1 } };
+
 export function Services({ locale }: ServicesProps) {
   const dict = getDictionary(locale);
+  const reduced = useReducedMotion();
+  const variants = reduced ? reducedFadeUp : fadeUp;
   const items = t(dict, "services.items", []) as Array<{
     name: string;
     description: string;
@@ -30,43 +47,58 @@ export function Services({ locale }: ServicesProps) {
   }>;
 
   return (
-    <section className="px-4 py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        <div className="text-center mb-16 lg:mb-20">
-          <h2 className="display-lg mb-4 tracking-tight text-foreground">
+    <section className="px-4 py-32 lg:py-40" id="servicios">
+      <div className="mx-auto container-x">
+        <div className="text-center lg:max-w-2xl mx-auto mb-24">
+          <motion.h2
+            variants={variants}
+            initial="hidden"
+            animate="show"
+            className="display-lg mb-6 tracking-tight text-foreground"
+          >
             {t(dict, "services.title", "Soluciones digitales para cada etapa de tu negocio.")}
-          </h2>
-          <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p
+            variants={variants}
+            initial="hidden"
+            animate="show"
+            className="body-lg text-muted-foreground max-w-xl mx-auto leading-relaxed"
+          >
             Soluciones diseñadas para acompañar el crecimiento de tu negocio en
             cada etapa.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          variants={variants}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {items.map((item, index) => {
             const Icon = serviceIcons[item.name] || Code;
             return (
               <Card
                 key={index}
-                className="group hover:border-primary/50 transition-colors cursor-default"
+                className="border border-border bg-card hover:shadow-sm transition-colors group"
               >
                 <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-md bg-secondary flex items-center justify-center text-secondary-foreground group-hover:bg-primary group-hover:text-white transition-colors">
                       <Icon className="h-5 w-5" />
                     </div>
                     <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       {index + 1}
                     </span>
                   </div>
-                  <CardTitle className="mb-2">{item.name}</CardTitle>
+                  <CardTitle className="text-lg mb-3">{item.name}</CardTitle>
                   <CardDescription>{item.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <ul className="space-y-1 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-sm text-muted-foreground leading-relaxed">
                     {item.subitems.map((sub, si) => (
                       <li key={si} className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-primary/50"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary/50" />
                         {sub}
                       </li>
                     ))}
@@ -75,7 +107,7 @@ export function Services({ locale }: ServicesProps) {
               </Card>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
