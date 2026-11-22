@@ -13,19 +13,19 @@ type FooterProps = {
 
 const navItems: Array<{ key: string; href: string }> = [
   { key: "home", href: "/" },
-  { key: "services", href: "/servicios" },
-  { key: "projects", href: "/proyectos" },
+  { key: "services", href: "#servicios" },
+  { key: "projects", href: "#proyectos" },
   { key: "testimonials", href: "/testimonios" },
-  { key: "about", href: "/sobre-mi" },
+  { key: "about", href: "#sobre-mi" },
   { key: "contact", href: "/contacto" },
 ];
 
 const footerServices = [
-  { key: "web", href: "/servicios" },
-  { key: "customSoftware", href: "/software-a-medida" },
-  { key: "mobileApp", href: "/aplicaciones-moviles" },
-  { key: "inhouse", href: "/proyectos-inhouse" },
-  { key: "consulting", href: "/consultoria" },
+  { key: "web", href: "#servicios" },
+  { key: "customSoftware", href: "#servicios" },
+  { key: "mobileApp", href: "#servicios" },
+  { key: "inhouse", href: "#servicios" },
+  { key: "consulting", href: "#servicios" },
 ];
 
 export function Footer({ locale }: FooterProps) {
@@ -125,7 +125,7 @@ export function Footer({ locale }: FooterProps) {
                 {locale.toUpperCase()}
               </button>
               {languageOpen && (
-                <div className="absolute bottom-full left-0 mb-2 w-24 rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-lg z-10">
+                <div className="absolute top-full left-0 mt-1 w-24 rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-lg z-10">
                   {["es", "en"].map((option) => (
                     <button
                       key={option}

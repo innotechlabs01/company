@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { ExternalLink } from "lucide-react";
 import { getDictionary, t } from "@/i18n/dictionary";
 import { projects } from "@/data/projects";
+import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 
 type ProjectsProps = {
   locale: "es" | "en";
@@ -34,23 +35,21 @@ export function Projects({ locale }: ProjectsProps) {
               key={project.id}
               className="border border-border bg-card overflow-hidden group"
             >
-              {project.image && (
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                  {project.demo && (
-                    <span className="absolute bottom-2 left-2 z-10 inline-flex items-center gap-1 px-2 py-1 rounded-md border border-white/20 bg-black/50 text-[10px] text-white">
-                      {t(dict, "projects.demo", "Contenido de demostración")}
-                    </span>
-                  )}
-                </div>
-              )}
+              <div className="relative h-48 overflow-hidden">
+                <ImagePlaceholder
+                  width={400}
+                  height={200}
+                  label={project.name}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  variant="landscape"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                {project.demo && (
+                  <span className="absolute bottom-2 left-2 z-10 inline-flex items-center gap-1 px-2 py-1 rounded-md border border-white/20 bg-black/50 text-[10px] text-white">
+                    {t(dict, "projects.demo", "Contenido de demostración")}
+                  </span>
+                )}
+              </div>
               <CardHeader className="pt-5">
                 <CardTitle className="text-base font-semibold">{project.name}</CardTitle>
                 <CardDescription className="text-xs text-muted-foreground line-clamp-2 mt-2">

@@ -15,10 +15,10 @@ type HeaderProps = {
 
 const navItems: Array<{ key: string; href: string }> = [
   { key: "home", href: "/" },
-  { key: "services", href: "/servicios" },
-  { key: "projects", href: "/proyectos" },
+  { key: "services", href: "#servicios" },
+  { key: "projects", href: "#proyectos" },
   { key: "testimonials", href: "/testimonios" },
-  { key: "about", href: "/sobre-mi" },
+  { key: "about", href: "#sobre-mi" },
   { key: "contact", href: "/contacto" },
 ];
 
@@ -30,6 +30,14 @@ export function Header({ locale }: HeaderProps) {
 
   const hrefFor = (key: string) => {
     const base = navItems.find((i) => i.key === key)?.href || "/";
+    // Si es ruta absoluta (empieza con / y no es #), agregar locale
+    if (base.startsWith("/") && !base.startsWith("#")) {
+      return `/${locale}${base}`;
+    }
+    // Si es ancla, agregar locale + ancla
+    if (base.startsWith("#")) {
+      return `/${locale}${base}`;
+    }
     return key === "home" ? `/${locale}` : `/${locale}${base}`;
   };
 
@@ -161,7 +169,7 @@ function LanguageSwitcher({
       <Button variant="outline" size="sm" className="flex items-center gap-2 px-2">
         {t(dict, (options.find((o) => o.value === locale)?.labelKey) ?? "localeSwitcher.es", locale)}
       </Button>
-      <div className="absolute right-0 mt-1 w-24 rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-lg">
+      <div className="absolute top-full right-0 mt-1 w-24 rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-lg">
         {options.map((option) => (
           <button
             key={option.value}

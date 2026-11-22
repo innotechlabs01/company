@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { ImagePlaceholder } from "@/components/ui/image-placeholder";
 import { getDictionary, t } from "@/i18n/dictionary";
 
 type AboutProps = {
@@ -15,14 +16,12 @@ export function About({ locale }: AboutProps) {
           <div className="order-last lg:order-first">
             <div className="relative">
               <Card className="overflow-hidden border border-border bg-card">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1272e8e0ea?q=80&w=800&auto=format&fit=crop"
-                  alt="Anthony Rivera"
-                  width={800}
-                  height={800}
-                  className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                  loading="lazy"
-                  decoding="async"
+                <ImagePlaceholder
+                  width={400}
+                  height={400}
+                  label="Anthony Rivera"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  variant="portrait"
                 />
               </Card>
             </div>
