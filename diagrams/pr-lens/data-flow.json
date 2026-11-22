@@ -1,0 +1,51 @@
+{
+  "schema": "pr-lens/v1",
+  "title": "Anthony Rivera — Data Flow: Cotización y Testimonios",
+  "description": "Flujo de datos del formulario de cotización (Resend) y del sistema de testimonios (Supabase).",
+  "author": "Anthony Rivera",
+  "created": "2026-11-22",
+  "view": "data-flow",
+  "theme": "dark",
+  "camera": { "azimuth": 45, "elevation": 30 },
+  "layers": [
+    { "id": "client", "label": "Cliente (Navegador)", "color": "#ffffff", "z": 0 },
+    { "id": "api", "label": "API / Server Actions", "color": "#0ea5e9", "z": 1 },
+    { "id": "external", "label": "Servicios externos", "color": "#e5e5e5", "z": 2 },
+    { "id": "storage", "label": "Almacenamiento", "color": "#f4f4f5", "z": 3 }
+  ],
+  "nodes": [
+    { "id": "user", "label": "Usuario", "layer": "client", "shape": "person", "pos": [0, 0, 0] },
+    { "id": "form", "label": "QuoteForm (React Hook Form + Zod)", "layer": "client", "shape": "box", "pos": [0, 3, 0] },
+    { "id": "send-quote", "label": "sendQuoteRequest (Server Action)", "layer": "api", "shape": "box", "pos": [0, 6, 0] },
+    { "id": "resend", "label": "Resend API", "layer": "external", "shape": "cylinder", "pos": [4, 6, 0] },
+    { "id": "anthony-email", "label": "anthonyrivera51@icloud.com", "layer": "external", "shape": "envelope", "pos": [4, 8, 0] },
+    { "id": "client-email", "label": "Email de confirmación al cliente", "layer": "external", "shape": "envelope", "pos": [4, 10, 0] },
+    { "id": "supabase", "label": "Supabase (tabla testimonials)", "layer": "storage", "shape": "cylinder", "pos": [0, 13, 0] },
+    { "id": "testimonials-page", "label": "Página /testimonios", "layer": "client", "shape": "box", "pos": [0, 16, 0] },
+    { "id": "whatsapp", "label": "WhatsApp wa.me/573128386640", "layer": "external", "shape": "box", "pos": [-4, 6, 0] },
+    { "id": "mailto", "label": "mailto:anthonyrivera51@icloud.com", "layer": "external", "shape": "envelope", "pos": [-4, 8, 0] }
+  ],
+  "edges": [
+    { "from": "user", "to": "form", "label": "rellena formulario" },
+    { "from": "form", "to": "send-quote", "label": "envía (POST)" },
+    { "from": "send-quote", "to": "resend", "label": "email de notificación" },
+    { "from": "resend", "to": "anthony-email", "label": "entrega" },
+    { "from": "send-quote", "to": "resend", "label": "email de confirmación" },
+    { "from": "resend", "to": "client-email", "label": "entrega" },
+    { "from": "form", "to": "whatsapp", "label": "alternativa: WhatsApp" },
+    { "from": "form", "to": "mailto", "label": "alternativa: Email" },
+    { "from": "supabase", "to": "testimonials-page", "label": "consulta filtrada por idioma" },
+    { "from": "testimonials-page", "to": "supabase", "label": "filtro por tipo de proyecto" }
+  ],
+  "groups": [
+    { "id": "quote", "label": "Flujo de Cotización", "nodes": ["user", "form", "send-quote", "resend", "anthony-email", "client-email", "whatsapp", "mailto"] },
+    { "id": "testimonials-flow", "label": "Flujo de Testimonios", "nodes": ["supabase", "testimonials-page"] }
+  ],
+  "notes": [
+    { "text": "Validación: Zod schema con campos requeridos (nombre, email, tipo de proyecto, tiempo, descripción, medio de contacto)" },
+    { "text": "Estados: idle / submitting / success / error con prevención de doble envío" },
+    { "text": "Resend: email de notificación a Anthony + email de confirmación al cliente" },
+    { "text": "Supabase: cliente condicional (null si no hay credenciales), estado vacío elegante" },
+    { "text": "i18n: todos los textos del formulario validados y traducidos (es / en)" }
+  ]
+}
