@@ -1,7 +1,5 @@
 import type { Locale } from "@/i18n/dictionary";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
-import { LangSetter } from "@/components/layout/lang-setter";
+import GroomingShell from "./grooming-shell";
 
 const SITE_NAME = "Anthony Rivera";
 const SITE_URL = "https://anthonyrivera.dev";
@@ -70,12 +68,5 @@ export default async function LocaleLayout({
 }: LocaleLayoutProps) {
   const { locale } = (await params) as { locale: Locale };
 
-  return (
-    <div className="flex flex-col min-h-[100dvh]" data-lang={locale}>
-      <LangSetter locale={locale} />
-      <Header locale={locale} />
-      <main className="flex-1">{children}</main>
-      <Footer locale={locale} />
-    </div>
-  );
+  return <GroomingShell locale={locale}>{children}</GroomingShell>;
 }
