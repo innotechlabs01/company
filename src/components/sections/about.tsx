@@ -28,14 +28,14 @@ export function About({ locale }: AboutProps) {
             </div>
           </div>
           <div>
-            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-6">
+            <h2 className="display-lg mb-6 tracking-tight text-foreground">
               {t(dict, "about.title", "Detrás de cada solución, hay una visión.")}
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="body-lg text-muted-foreground mb-6">
               {t(dict, "about.intro", "Soy Anthony Rivera, desarrollador de software enfocado en transformar necesidades de negocio en soluciones tecnológicas funcionales, escalables y sostenibles.")}
             </p>
             {t(dict, "about.body", "Me interesa construir productos que resuelvan problemas reales, combinando arquitectura de software, desarrollo, diseño de experiencias y visión de negocio.\n\nTrabajo con emprendedores y empresas en proyectos de diferentes dimensiones, desde desarrollos puntuales hasta plataformas tecnológicas y productos de largo recorrido.").split("\n\n").map((paragraph, index) => (
-              <p key={index} className="text-lg text-muted-foreground leading-relaxed mb-6">
+              <p key={index} className="body-lg text-muted-foreground leading-relaxed mb-6">
                 {paragraph}
               </p>
             ))}

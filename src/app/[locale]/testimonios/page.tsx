@@ -43,6 +43,30 @@ export default async function TestimonialsPage({
   const { locale } = await params;
   const dict = getDictionary(locale);
 
+  if (!supabase) {
+    return (
+      <>
+        <section className="px-4 py-16 lg:py-24">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6">
+              {t(dict, "testimonialsPage.heroTitle", "Experiencias que construyen confianza.")}
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              {t(dict, "testimonialsPage.heroSubtitle", "Cada proyecto representa una oportunidad para crear algo significativo. Conoce las experiencias de quienes han trabajado conmigo y los resultados de sus proyectos.")}
+            </p>
+          </div>
+        </section>
+        <section className="px-4 pb-24 lg:pb-32">
+          <div className="mx-auto max-w-7xl">
+            <div className="text-center py-12 text-muted-foreground">
+              Configura Supabase para ver los testimonios.
+            </div>
+          </div>
+        </section>
+      </>
+    );
+  }
+
   const { data: testimonials, error } = await supabase
     .from("testimonials")
     .select("*")
@@ -103,7 +127,7 @@ export default async function TestimonialsPage({
     <>
       <section className="px-4 py-16 lg:py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6">
+          <h1 className="display-xl mb-6 tracking-tight text-foreground">
             {t(dict, "testimonialsPage.heroTitle", "Experiencias que construyen confianza.")}
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed">

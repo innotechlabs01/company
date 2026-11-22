@@ -16,10 +16,10 @@ export function Methodology({ locale }: MethodologyProps) {
     <section className="px-4 py-24 lg:py-32 bg-muted/30">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-16 lg:mb-20">
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-4">
+          <h2 className="display-lg mb-4 tracking-tight text-foreground">
             {t(dict, "methodology.title", "De la idea a una solución funcional.")}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             Un proceso claro y transparente desde el primer contacto hasta el
             despliegue y más allá.
           </p>

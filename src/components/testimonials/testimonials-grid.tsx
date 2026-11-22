@@ -64,10 +64,10 @@ export function TestimonialsGrid({
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col lg:flex-row justify-between items-end mb-10 gap-4">
             <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">
+              <h2 className="display-lg mb-2 tracking-tight text-foreground">
                 {featuredTitle}
               </h2>
-              <p className="text-sm text-muted-foreground">
+              <p className="body-lg text-sm text-muted-foreground">
                 {featuredSubtitle}
               </p>
             </div>
@@ -162,7 +162,7 @@ export function TestimonialsGrid({
 
       <section className="px-4 py-24 lg:py-32 border-t border-border/60">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-6">
+          <h2 className="display-lg mb-6 tracking-tight text-foreground">
             {ctaTitle}
           </h2>
           <Link

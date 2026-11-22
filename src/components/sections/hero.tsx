@@ -13,13 +13,13 @@ export function Hero({ locale }: HeroProps) {
     <section className="relative px-4 py-20 lg:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl">
         <div className="text-center lg:max-w-3xl mx-auto">
-          <span className="inline-block px-3 py-1 mb-6 rounded-full border border-border bg-background text-xs font-medium text-muted-foreground tracking-wide uppercase">
+          <span className="inline-block px-3 py-1 mb-6 rounded-full border border-border bg-background text-xs font-medium text-muted-foreground tracking-wide uppercase font-mono">
             {t(dict, "hero.eyebrow", "Desarrollo de software · Soluciones digitales · Tecnología")}
           </span>
-          <h1 className="text-4xl lg:text-6xl font-bold tracking-tight text-foreground leading-tight mb-6">
+          <h1 className="display-xl mb-6 tracking-tight text-foreground">
             {t(dict, "hero.title", "Transformo ideas en soluciones digitales que generan resultados.")}
           </h1>
-          <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-10 max-w-2xl mx-auto">
+          <p className="body-lg text-muted-foreground mb-10 max-w-2xl mx-auto">
             {t(dict, "hero.subtitle", "Diseño y desarrollo experiencias digitales, plataformas y sistemas a medida para emprendedores y empresas que buscan construir, escalar y transformar sus negocios mediante tecnología.")}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

@@ -16,10 +16,10 @@ export function Technologies({ locale }: TechnologiesProps) {
     <section className="px-4 py-24 lg:py-32 border-t border-border/60">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-16 lg:mb-20">
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-4">
+          <h2 className="display-lg mb-4 tracking-tight text-foreground">
             {t(dict, "technologies.title", "Tecnologías y capacidades.")}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             {t(dict, "technologies.note", "Tecnologías destacadas aplicadas en proyectos reales. Sin listados interminables de logos.")}
           </p>
         </div>

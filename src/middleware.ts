@@ -39,10 +39,22 @@ export function middleware(request: NextRequest) {
     const detected = detectLocale(acceptLanguage);
     const url = request.nextUrl.clone();
     url.pathname = `/${detected}${pathname === "/" ? "" : pathname}`;
-    return NextResponse.redirect(url);
+    const response = NextResponse.redirect(url);
+    response.cookies.set("locale", detected, {
+      path: "/",
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+    });
+    return response;
   }
 
-  return;
+  // Locale already in path: ensure cookie is set for the root layout
+  const locale = pathname.split("/")[1] as Locale;
+  const response = NextResponse.next();
+  response.cookies.set("locale", locale, {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 365,
+  });
+  return response;
 }
 
 export const config = {

@@ -28,10 +28,10 @@ export function Collaboration({ locale }: CollaborationProps) {
     <section className="px-4 py-24 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-16 lg:mb-20">
-          <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-4">
+          <h2 className="display-lg mb-4 tracking-tight text-foreground">
             {t(dict, "collaboration.title", "Diferentes formas de trabajar contigo.")}
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="body-lg text-muted-foreground max-w-2xl mx-auto">
             {t(dict, "collaboration.intro", "Me adapto al modelo de contratación que mejor se ajuste a tu negocio.")}
           </p>
         </div>

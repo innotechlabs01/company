@@ -16,10 +16,10 @@ export function CTASection({ locale }: CTASectionProps) {
   return (
     <section className="px-4 py-24 lg:py-32 bg-primary">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+        <h2 className="display-lg mb-4 tracking-tight text-white">
           {t(dict, "cta.title", "¿Tienes una idea o un proyecto en mente?")}
         </h2>
-        <p className="text-primary-foreground/90 text-lg leading-relaxed mb-10">
+        <p className="body-lg text-primary-foreground/90 leading-relaxed mb-10">
           {t(dict, "cta.description", "Cuéntame qué quieres construir. Podemos conversar sobre tus necesidades y encontrar la mejor manera de llevarlo a cabo.")}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
