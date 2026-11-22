@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, Send } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTrigger } from "@/components/ui/dialog";
@@ -24,6 +25,8 @@ const navItems: Array<{ key: string; href: string }> = [
 export function Header({ locale }: HeaderProps) {
   const dict = getDictionary(locale);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const hrefFor = (key: string) => {
     const base = navItems.find((i) => i.key === key)?.href || "/";
@@ -31,15 +34,13 @@ export function Header({ locale }: HeaderProps) {
   };
 
   const isActive = (href: string) => {
-    const p = typeof window !== "undefined" ? window.location.pathname : "";
-    if (href === `/${locale}`) return p === `/${locale}` || p === `/`;
-    return p === href;
+    if (href === `/${locale}`) return pathname === `/${locale}` || pathname === `/`;
+    return pathname === href;
   };
 
   const handleLanguageChange = (nextLocale: string) => () => {
-    const p = typeof window !== "undefined" ? window.location.pathname : "";
-    const withoutLocale = p.replace(`/${locale}`, "") || "/";
-    window.location.href = `/${nextLocale}${withoutLocale}`;
+    const withoutLocale = pathname.replace(`/${locale}`, "") || "/";
+    router.push(`/${nextLocale}${withoutLocale}`);
   };
 
   return (

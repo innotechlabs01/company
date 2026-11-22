@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { Send, Mail } from "lucide-react";
 import { useState } from "react";
 import { getDictionary, t } from "@/i18n/dictionary";
@@ -30,6 +31,8 @@ const footerServices = [
 export function Footer({ locale }: FooterProps) {
   const dict = getDictionary(locale);
   const [languageOpen, setLanguageOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const whatsappMessage =
     locale === "es"
@@ -38,9 +41,8 @@ export function Footer({ locale }: FooterProps) {
   const whatsappUrl = `https://wa.me/573128386640?text=${encodeURIComponent(whatsappMessage)}`;
 
   const handleLanguageChange = (nextLocale: string) => () => {
-    const p = typeof window !== "undefined" ? window.location.pathname : "";
-    const withoutLocale = p.replace(`/${locale}`, "") || "/";
-    window.location.href = `/${nextLocale}${withoutLocale}`;
+    const withoutLocale = pathname.replace(`/${locale}`, "") || "/";
+    router.push(`/${nextLocale}${withoutLocale}`);
   };
 
   return (
