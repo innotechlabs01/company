@@ -66,7 +66,7 @@ export function Services({ locale }: ServicesProps) {
                   <ul className="space-y-1 text-sm text-muted-foreground">
                     {item.subitems.map((sub, si) => (
                       <li key={si} className="flex items-center gap-2">
-                        <span className="w-[6px] h-[6px] rounded-full bg-primary/50"></span>
+                        <span className="w-2 h-2 rounded-full bg-primary/50"></span>
                         {sub}
                       </li>
                     ))}

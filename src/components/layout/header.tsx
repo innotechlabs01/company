@@ -78,9 +78,9 @@ export function Header({ locale }: HeaderProps) {
               <a
                 href={hrefFor("contact")}
                 className="ml-4 flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                aria-label={label("contact")}
               >
                 <Send className="h-4 w-4" aria-hidden="true" />
-                <span className="sr-only">{label("contact")}</span>
               </a>
             </div>
 
@@ -94,7 +94,7 @@ export function Header({ locale }: HeaderProps) {
             </div>
 
             <button
-              className="lg:hidden -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="lg:hidden -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-muted-foreground"
               aria-label="Abrir menú"
               onClick={() => setMobileOpen(true)}
             >

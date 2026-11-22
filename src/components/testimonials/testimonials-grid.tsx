@@ -96,7 +96,12 @@ export function TestimonialsGrid({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.length > 0 ? (
+            {!testimonials?.length ? (
+              <div className="col-span-3 text-center py-20 text-muted-foreground">
+                <p className="text-sm font-medium mb-2">No hay testimonios disponibles.</p>
+                <p className="text-xs">Agregá tus primeros testimonios desde el panel de administración.</p>
+              </div>
+            ) : filtered.length > 0 ? (
               filtered.map((testimonial) => (
                 <Card
                   key={testimonial.id}

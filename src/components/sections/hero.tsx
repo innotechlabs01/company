@@ -36,10 +36,10 @@ export function Hero({ locale }: HeroProps) {
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative w-full h-full">
               <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-primary/10 border border-primary/20 blur-md"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-primary/5 border border-primary/10 blur-sm"
               ></div>
               <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-primary"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-primary"
               ></div>
               {[1, 2, 3, 4, 5, 6].map((i) => {
                 const angle = (i * 60) * (Math.PI / 180);
@@ -48,9 +48,9 @@ export function Hero({ locale }: HeroProps) {
                 return (
                   <div
                     key={i}
-                    className="absolute top-1/2 left-1/2 w-3 h-3 rounded-full bg-accent shadow-[0_0_10px_rgba(14,165,233,0.6)]"
+                    className="absolute top-1/2 left-1/2 w-2 h-2 rounded-full bg-accent"
                     style={{
-                      transform: `translate(calc(-50% + ${x * 110}px), calc(-50% + ${y * 110}px))`,
+                      transform: `translate(calc(-50% + ${x * 100}px), calc(-50% + ${y * 100}px))`,
                     }}
                   />
                 );
@@ -59,13 +59,16 @@ export function Hero({ locale }: HeroProps) {
                 className="absolute inset-0 w-full h-full"
                 width="600"
                 height="400"
+                stroke="currentColor"
+                strokeOpacity="0.1"
+                strokeWidth="1"
               >
-                <line x1="300" y1="200" x2="426" y2="293" stroke="#0ea5e9" strokeOpacity="0.15" strokeWidth="1" />
-                <line x1="300" y1="200" x2="326" y2="293" stroke="#0ea5e9" strokeOpacity="0.15" strokeWidth="1" />
-                <line x1="300" y1="200" x2="174" y2="293" stroke="#0ea5e9" strokeOpacity="0.15" strokeWidth="1" />
-                <line x1="300" y1="200" x2="426" y2="107" stroke="#0ea5e9" strokeOpacity="0.15" strokeWidth="1" />
-                <line x1="300" y1="200" x2="326" y2="107" stroke="#0ea5e9" strokeOpacity="0.15" strokeWidth="1" />
-                <line x1="300" y1="200" x2="174" y2="107" stroke="#0ea5e9" strokeOpacity="0.15" strokeWidth="1" />
+                <line x1="300" y1="200" x2="426" y2="293" />
+                <line x1="300" y1="200" x2="326" y2="293" />
+                <line x1="300" y1="200" x2="174" y2="293" />
+                <line x1="300" y1="200" x2="426" y2="107" />
+                <line x1="300" y1="200" x2="326" y2="107" />
+                <line x1="300" y1="200" x2="174" y2="107" />
               </svg>
             </div>
           </div>

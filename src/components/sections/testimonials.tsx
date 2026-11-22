@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { supabase } from "@/lib/supabase/server";
@@ -7,19 +10,63 @@ type TestimonialsSectionProps = {
   locale: "es" | "en";
 };
 
-export default async function TestimonialsSection({
+export default function TestimonialsSection({
   locale,
 }: TestimonialsSectionProps) {
   const dict = getDictionary(locale);
+  const [testimonials, setTestimonials] = useState<Array<any>>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
-  const { data: testimonials, error } = await supabase
-    .from("testimonials")
-    .select("*")
-    .eq("featured", true)
-    .eq("language", locale)
-    .order("created_at", { ascending: false });
+  useEffect(() => {
+    let cancelled = false;
+    supabase
+      .from("testimonials")
+      .select("*")
+      .eq("featured", true)
+      .eq("language", locale)
+      .order("created_at", { ascending: false })
+      .then(({ data, error: supabaseError }) => {
+        if (cancelled) return;
+        if (supabaseError) {
+          setError(supabaseError);
+          setIsLoading(false);
+          return;
+        }
+        setTestimonials(data || []);
+        setIsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [locale, supabase]);
 
-  if (error || !testimonials?.length) return null;
+  if (isLoading) {
+    return (
+      <section className="px-4 py-24 lg:py-32 border-t border-border/60">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center mb-16 lg:mb-20">
+            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-4">
+              {t(dict, "testimonials.title", "Las experiencias hablan por sí solas.")}
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <Card key={i} className="p-6">
+                <div className="h-8 bg-muted rounded w-3/4 mb-4 animate-pulse" />
+                <div className="h-4 bg-muted rounded w-1/2 mb-2 animate-pulse" />
+                <div className="h-4 bg-muted rounded w-1/3 animate-pulse" />
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error || !testimonials?.length) {
+    return null;
+  }
 
   return (
     <section className="px-4 py-24 lg:py-32 border-t border-border/60">
