@@ -31,32 +31,61 @@
       {
         "name": "Desarrollo Web",
         "description": "Sitios corporativos, landing pages, e-commerce, portales y aplicaciones web modernas y optimizadas.",
-        "subitems": ["Sitios corporativos", "Landing pages", "E-commerce", "Portales y aplicaciones web"]
+        "subitems": [
+          "Sitios corporativos",
+          "Landing pages",
+          "E-commerce",
+          "Portales y aplicaciones web"
+        ]
       },
       {
         "name": "Desarrollo de Software a Medida",
         "description": "Sistemas empresariales, ERP y CRM, automatización de procesos e integraciones de servicios diseñados a tu medida.",
-        "subitems": ["Sistemas empresariales", "ERP y CRM", "Automatización de procesos", "Integraciones de servicios"]
+        "subitems": [
+          "Sistemas empresariales",
+          "ERP y CRM",
+          "Automatización de procesos",
+          "Integraciones de servicios"
+        ]
       },
       {
         "name": "Aplicaciones Móviles",
         "description": "Aplicaciones iOS y Android, experiencias multiplataforma y soluciones móviles conectadas a servicios backend.",
-        "subitems": ["Aplicaciones iOS y Android", "Aplicaciones multiplataforma", "Experiencias móviles conectadas a backend"]
+        "subitems": [
+          "Aplicaciones iOS y Android",
+          "Aplicaciones multiplataforma",
+          "Experiencias móviles conectadas a backend"
+        ]
       },
       {
         "name": "Proyectos In-house",
         "description": "Desarrollo de equipos y productos internos, evolución de plataformas existentes, arquitectura de software y acompañamiento técnico.",
-        "subitems": ["Desarrollo de equipos y productos internos", "Evolución de plataformas existentes", "Arquitectura de software", "Acompañamiento técnico"]
+        "subitems": [
+          "Desarrollo de equipos y productos internos",
+          "Evolución de plataformas existentes",
+          "Arquitectura de software",
+          "Acompañamiento técnico"
+        ]
       },
       {
         "name": "Proyectos de Largo Plazo",
         "description": "Desarrollo por fases, evolución continua, mantenimiento y escalabilidad para plataformas tecnológicas de largo recorrido.",
-        "subitems": ["Desarrollo por fases", "Evolución continua", "Mantenimiento", "Escalabilidad y nuevas funcionalidades"]
+        "subitems": [
+          "Desarrollo por fases",
+          "Evolución continua",
+          "Mantenimiento",
+          "Escalabilidad y nuevas funcionalidades"
+        ]
       },
       {
         "name": "Consultoría Tecnológica",
         "description": "Evaluación técnica, selección de tecnologías, diseño de arquitectura y estrategia de implementación para tu negocio.",
-        "subitems": ["Evaluación técnica", "Selección de tecnologías", "Diseño de arquitectura", "Estrategia de implementación"]
+        "subitems": [
+          "Evaluación técnica",
+          "Selección de tecnologías",
+          "Diseño de arquitectura",
+          "Estrategia de implementación"
+        ]
       }
     ]
   },
@@ -109,31 +138,56 @@
     "categories": [
       {
         "name": "Frontend",
-        "items": ["React", "Next.js", "TypeScript"]
+        "items": [
+          "React",
+          "Next.js",
+          "TypeScript"
+        ]
       },
       {
         "name": "Backend",
-        "items": ["Node.js", "NestJS", "Go"]
+        "items": [
+          "Node.js",
+          "NestJS",
+          "Go"
+        ]
       },
       {
         "name": "Mobile",
-        "items": ["React Native"]
+        "items": [
+          "React Native"
+        ]
       },
       {
         "name": "Bases de datos",
-        "items": ["PostgreSQL", "Supabase"]
+        "items": [
+          "PostgreSQL",
+          "Supabase"
+        ]
       },
       {
         "name": "Cloud & DevOps",
-        "items": ["Docker", "Terraform", "GCP", "AWS"]
+        "items": [
+          "Docker",
+          "Terraform",
+          "GCP",
+          "AWS"
+        ]
       },
       {
         "name": "Arquitectura de software",
-        "items": ["Diseño de sistemas", "Modernización"]
+        "items": [
+          "Diseño de sistemas",
+          "Modernización"
+        ]
       },
       {
         "name": "Integraciones y automatización",
-        "items": ["APIs", "Webhooks", "Automatización de procesos"]
+        "items": [
+          "APIs",
+          "Webhooks",
+          "Automatización de procesos"
+        ]
       }
     ],
     "note": "Tecnologías destacadas aplicadas en proyectos reales. Sin listados interminables de logos."
@@ -228,5 +282,52 @@
     "ctaTitle": "Construyamos algo que también pueda contar su historia.",
     "ctaButton": "Hablemos de tu proyecto"
   },
-  "demoNotice": "Contenido de demostración. No representa clientes reales."
+  "demoNotice": "Contenido de demostración. No representa clientes reales.",
+  "grooming": {
+    "meta": {
+      "title": "Patitas Felices · Peluquería Canina y Felina",
+      "description": "Baños, cortes de raza, uñas y mimos con mucho cariño para perros y gatos. Peluqueros certificados, productos naturales y ambiente sin estrés. Reserva tu cita hoy.",
+      "keywords": "peluquería canina, spa para mascotas, baño de perros, grooming, mascotas"
+    },
+    "hero": {
+      "eyebrow": "Cuidado con mucho cariño",
+      "title": "Tu mejor amigo merece el mejor cuidado",
+      "subtitle": "Baños, cortes de raza, uñas y mimos con mucho cariño para perros y gatos. Shampoos naturales, peluqueros certificados y un ambiente sin estrés.",
+      "ctaBook": "Reservar cita",
+      "ctaServices": "Ver servicios",
+      "ratingLabel": "+500 mimos entregados · valoración promedio",
+      "bathLabel": "Baño relajante",
+      "skipLink": "Saltar al contenido"
+    },
+    "services": {
+      "eyebrow": "Mimos para cada patita",
+      "title": "Todo lo que tu mascota necesita",
+      "subtitle": "Servicios de peluquería canina y felina con productos naturales y mucho cariño.",
+      "book": "Reservar"
+    },
+    "testimonials": {
+      "eyebrow": "Lo que dicen las familias",
+      "title": "Historias con cola"
+    },
+    "booking": {
+      "eyebrow": "Reserva su cita",
+      "title": "Déjanos mimar a tu mejor amigo",
+      "subtitle": "Elige el servicio, la fecha y cuéntanos todo sobre su mascota. Nos contactamos a la brevedad para confirmar.",
+      "errors": {
+        "required": "Campo requerido",
+        "email": "Ingresa un correo válido"
+      },
+      "submit": "Reservar cita",
+      "newBooking": "Reservar otra cita",
+      "success": {
+        "title": "¡Cita reservada!",
+        "message": "Te escribiremos por correo para confirmar la hora y atender a {petName}."
+      }
+    },
+    "footer": {
+      "name": "Patitas Felices",
+      "tagline": "Peluquería y spa para perros y gatos",
+      "demo": "Demo content. No representa clientes reales."
+    }
+  }
 }

@@ -31,32 +31,61 @@
       {
         "name": "Web Development",
         "description": "Corporate websites, landing pages, e-commerce, portals, and modern web applications optimized for performance.",
-        "subitems": ["Corporate websites", "Landing pages", "E-commerce", "Portals and web applications"]
+        "subitems": [
+          "Corporate websites",
+          "Landing pages",
+          "E-commerce",
+          "Portals and web applications"
+        ]
       },
       {
         "name": "Custom Software Development",
         "description": "Enterprise systems, ERP and CRM, process automation, and service integrations designed to your measure.",
-        "subitems": ["Enterprise systems", "ERP and CRM", "Process automation", "Service integrations"]
+        "subitems": [
+          "Enterprise systems",
+          "ERP and CRM",
+          "Process automation",
+          "Service integrations"
+        ]
       },
       {
         "name": "Mobile Applications",
         "description": "iOS and Android applications, cross-platform experiences, and mobile solutions connected to backend services.",
-        "subitems": ["iOS and Android applications", "Cross-platform applications", "Mobile experiences connected to backend"]
+        "subitems": [
+          "iOS and Android applications",
+          "Cross-platform applications",
+          "Mobile experiences connected to backend"
+        ]
       },
       {
         "name": "In-house Projects",
         "description": "Development of teams and internal products, evolution of existing platforms, software architecture, and technical accompaniment.",
-        "subitems": ["Internal team and product development", "Evolution of existing platforms", "Software architecture", "Technical accompaniment"]
+        "subitems": [
+          "Internal team and product development",
+          "Evolution of existing platforms",
+          "Software architecture",
+          "Technical accompaniment"
+        ]
       },
       {
         "name": "Long-term Projects",
         "description": "Phased development, continuous evolution, maintenance, and scalability for long-term technology platforms.",
-        "subitems": ["Phased development", "Continuous evolution", "Maintenance", "Scalability and new features"]
+        "subitems": [
+          "Phased development",
+          "Continuous evolution",
+          "Maintenance",
+          "Scalability and new features"
+        ]
       },
       {
         "name": "Technology Consulting",
         "description": "Technical evaluation, technology selection, software architecture design, and implementation strategy for your business.",
-        "subitems": ["Technical evaluation", "Technology selection", "Software architecture design", "Implementation strategy"]
+        "subitems": [
+          "Technical evaluation",
+          "Technology selection",
+          "Software architecture design",
+          "Implementation strategy"
+        ]
       }
     ]
   },
@@ -109,31 +138,56 @@
     "categories": [
       {
         "name": "Frontend",
-        "items": ["React", "Next.js", "TypeScript"]
+        "items": [
+          "React",
+          "Next.js",
+          "TypeScript"
+        ]
       },
       {
         "name": "Backend",
-        "items": ["Node.js", "NestJS", "Go"]
+        "items": [
+          "Node.js",
+          "NestJS",
+          "Go"
+        ]
       },
       {
         "name": "Mobile",
-        "items": ["React Native"]
+        "items": [
+          "React Native"
+        ]
       },
       {
         "name": "Databases",
-        "items": ["PostgreSQL", "Supabase"]
+        "items": [
+          "PostgreSQL",
+          "Supabase"
+        ]
       },
       {
         "name": "Cloud & DevOps",
-        "items": ["Docker", "Terraform", "GCP", "AWS"]
+        "items": [
+          "Docker",
+          "Terraform",
+          "GCP",
+          "AWS"
+        ]
       },
       {
         "name": "Software architecture",
-        "items": ["System design", "Modernization"]
+        "items": [
+          "System design",
+          "Modernization"
+        ]
       },
       {
         "name": "Integrations and automation",
-        "items": ["APIs", "Webhooks", "Process automation"]
+        "items": [
+          "APIs",
+          "Webhooks",
+          "Process automation"
+        ]
       }
     ],
     "note": "Technologies applied in real projects. No endless logo lists."
@@ -228,5 +282,52 @@
     "ctaTitle": "Let's build something that can also tell its story.",
     "ctaButton": "Let's talk about your project"
   },
-  "demoNotice": "Demo content. Does not represent real clients."
+  "demoNotice": "Demo content. Does not represent real clients.",
+  "grooming": {
+    "meta": {
+      "title": "Happy Paws · Dog & Cat Grooming",
+      "description": "Baths, breed cuts, nail trims, and lots of love for dogs and cats. Certified groomers, natural products, and a stress-free environment. Book your appointment today.",
+      "keywords": "dog grooming, cat grooming, pet spa, dog bath, grooming salon"
+    },
+    "hero": {
+      "eyebrow": "Care with lots of love",
+      "title": "Your best friend deserves the best care",
+      "subtitle": "Baths, breed cuts, nail trims, and lots of love for dogs and cats. Natural shampoos, certified groomers, and a stress-free environment.",
+      "ctaBook": "Book appointment",
+      "ctaServices": "See services",
+      "ratingLabel": "+500 cuddles delivered · average rating",
+      "bathLabel": "Relaxing bath",
+      "skipLink": "Skip to content"
+    },
+    "services": {
+      "eyebrow": "Pampering for every paw",
+      "title": "Everything your pet needs",
+      "subtitle": "Dog and cat grooming services with natural products and lots of love.",
+      "book": "Book"
+    },
+    "testimonials": {
+      "eyebrow": "What families say",
+      "title": "Tail-wagging stories"
+    },
+    "booking": {
+      "eyebrow": "Book your appointment",
+      "title": "Let us pamper your best friend",
+      "subtitle": "Choose the service, the date, and tell us everything about your pet. We will contact you shortly to confirm.",
+      "errors": {
+        "required": "Required field",
+        "email": "Enter a valid email"
+      },
+      "submit": "Book appointment",
+      "newBooking": "Book another appointment",
+      "success": {
+        "title": "Appointment booked!",
+        "message": "We will email you shortly to confirm the time and take care of {petName}."
+      }
+    },
+    "footer": {
+      "name": "Happy Paws",
+      "tagline": "Dog and cat grooming and spa",
+      "demo": "Demo content. Does not represent real clients."
+    }
+  }
 }
