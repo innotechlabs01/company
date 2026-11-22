@@ -1,0 +1,232 @@
+{
+  "meta": {
+    "title": "Anthony Rivera — Desarrollo de software a medida",
+    "description": "Transformo ideas en soluciones digitales que generan resultados. Desarrollo web, aplicaciones móviles, software empresarial y consultoría tecnológica.",
+    "keywords": "Anthony Rivera, desarrollo de software, desarrollo web, aplicaciones móviles, consultoría tecnológica, software a medida"
+  },
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "projects": "Proyectos",
+    "testimonials": "Testimonios",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "cta": "Hablemos de tu proyecto"
+  },
+  "localeSwitcher": {
+    "label": "Cambiar idioma",
+    "es": "Español",
+    "en": "Inglés"
+  },
+  "hero": {
+    "eyebrow": "Desarrollo de software · Soluciones digitales · Tecnología",
+    "title": "Transformo ideas en soluciones digitales que generan resultados.",
+    "subtitle": "Diseño y desarrollo experiencias digitales, plataformas y sistemas a medida para emprendedores y empresas que buscan construir, escalar y transformar sus negocios mediante tecnología.",
+    "ctaPrimary": "Hablemos de tu proyecto",
+    "ctaSecondary": "Explorar mi trabajo"
+  },
+  "services": {
+    "title": "Soluciones digitales para cada etapa de tu negocio.",
+    "items": [
+      {
+        "name": "Desarrollo Web",
+        "description": "Sitios corporativos, landing pages, e-commerce, portales y aplicaciones web modernas y optimizadas.",
+        "subitems": ["Sitios corporativos", "Landing pages", "E-commerce", "Portales y aplicaciones web"]
+      },
+      {
+        "name": "Desarrollo de Software a Medida",
+        "description": "Sistemas empresariales, ERP y CRM, automatización de procesos e integraciones de servicios diseñados a tu medida.",
+        "subitems": ["Sistemas empresariales", "ERP y CRM", "Automatización de procesos", "Integraciones de servicios"]
+      },
+      {
+        "name": "Aplicaciones Móviles",
+        "description": "Aplicaciones iOS y Android, experiencias multiplataforma y soluciones móviles conectadas a servicios backend.",
+        "subitems": ["Aplicaciones iOS y Android", "Aplicaciones multiplataforma", "Experiencias móviles conectadas a backend"]
+      },
+      {
+        "name": "Proyectos In-house",
+        "description": "Desarrollo de equipos y productos internos, evolución de plataformas existentes, arquitectura de software y acompañamiento técnico.",
+        "subitems": ["Desarrollo de equipos y productos internos", "Evolución de plataformas existentes", "Arquitectura de software", "Acompañamiento técnico"]
+      },
+      {
+        "name": "Proyectos de Largo Plazo",
+        "description": "Desarrollo por fases, evolución continua, mantenimiento y escalabilidad para plataformas tecnológicas de largo recorrido.",
+        "subitems": ["Desarrollo por fases", "Evolución continua", "Mantenimiento", "Escalabilidad y nuevas funcionalidades"]
+      },
+      {
+        "name": "Consultoría Tecnológica",
+        "description": "Evaluación técnica, selección de tecnologías, diseño de arquitectura y estrategia de implementación para tu negocio.",
+        "subitems": ["Evaluación técnica", "Selección de tecnologías", "Diseño de arquitectura", "Estrategia de implementación"]
+      }
+    ]
+  },
+  "methodology": {
+    "title": "De la idea a una solución funcional.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Descubrimiento",
+        "description": "Entender el negocio, sus necesidades, objetivos y problemas."
+      },
+      {
+        "number": "02",
+        "title": "Estrategia y planificación",
+        "description": "Definir alcance, arquitectura, tecnologías, prioridades y fases."
+      },
+      {
+        "number": "03",
+        "title": "Diseño y desarrollo",
+        "description": "Construir una solución funcional con enfoque en calidad, experiencia y mantenibilidad."
+      },
+      {
+        "number": "04",
+        "title": "Evolución y acompañamiento",
+        "description": "Validar, desplegar, optimizar y continuar mejorando el producto."
+      }
+    ]
+  },
+  "collaboration": {
+    "title": "Diferentes formas de trabajar contigo.",
+    "intro": "Me adapto al modelo de contratación que mejor se ajuste a tu negocio.",
+    "items": [
+      {
+        "name": "Proyectos por alcance",
+        "description": "Para quienes necesitan una página web, aplicación o solución con objetivos y entregables definidos."
+      },
+      {
+        "name": "Proyectos In-house",
+        "description": "Para empresas que necesitan incorporar capacidad de desarrollo y acompañamiento tecnológico a sus operaciones."
+      },
+      {
+        "name": "Proyectos de largo plazo",
+        "description": "Para organizaciones que necesitan construir, evolucionar y mantener plataformas tecnológicas durante varios meses o de manera continua."
+      }
+    ],
+    "cta": "Cuéntame qué necesitas"
+  },
+  "technologies": {
+    "title": "Tecnologías y capacidades.",
+    "categories": [
+      {
+        "name": "Frontend",
+        "items": ["React", "Next.js", "TypeScript"]
+      },
+      {
+        "name": "Backend",
+        "items": ["Node.js", "NestJS", "Go"]
+      },
+      {
+        "name": "Mobile",
+        "items": ["React Native"]
+      },
+      {
+        "name": "Bases de datos",
+        "items": ["PostgreSQL", "Supabase"]
+      },
+      {
+        "name": "Cloud & DevOps",
+        "items": ["Docker", "Terraform", "GCP", "AWS"]
+      },
+      {
+        "name": "Arquitectura de software",
+        "items": ["Diseño de sistemas", "Modernización"]
+      },
+      {
+        "name": "Integraciones y automatización",
+        "items": ["APIs", "Webhooks", "Automatización de procesos"]
+      }
+    ],
+    "note": "Tecnologías destacadas aplicadas en proyectos reales. Sin listados interminables de logos."
+  },
+  "projects": {
+    "title": "Proyectos destacados",
+    "subtitle": "Selección de trabajos realizados. Contenido de demostración hasta que se agreguen proyectos reales.",
+    "demo": "Contenido de demostración",
+    "viewProject": "Ver proyecto"
+  },
+  "testimonials": {
+    "title": "Las experiencias hablan por sí solas.",
+    "subtitle": "Opiniones reales de quienes han trabajado conmigo y los resultados de sus proyectos.",
+    "seeAll": "Conoce todas las experiencias",
+    "ctaTitle": "Construyamos algo que también pueda contar su historia.",
+    "ctaButton": "Hablemos de tu proyecto"
+  },
+  "about": {
+    "title": "Detrás de cada solución, hay una visión.",
+    "intro": "Soy Anthony Rivera, desarrollador de software enfocado en transformar necesidades de negocio en soluciones tecnológicas funcionales, escalables y sostenibles.",
+    "body": "Me interesa construir productos que resuelvan problemas reales, combinando arquitectura de software, desarrollo, diseño de experiencias y visión de negocio.\n\nTrabajo con emprendedores y empresas en proyectos de diferentes dimensiones, desde desarrollos puntuales hasta plataformas tecnológicas y productos de largo recorrido."
+  },
+  "cta": {
+    "title": "¿Tienes una idea o un proyecto en mente?",
+    "description": "Cuéntame qué quieres construir. Podemos conversar sobre tus necesidades y encontrar la mejor manera de llevarlo a cabo.",
+    "whatsapp": "Contactar por WhatsApp",
+    "email": "Enviar un correo"
+  },
+  "footer": {
+    "name": "Anthony Rivera",
+    "nav": "Navegación",
+    "services": "Servicios",
+    "testimonials": "Testimonios",
+    "contact": "Contacto",
+    "language": "Idioma",
+    "rights": "Derechos reservados."
+  },
+  "whatsapp": {
+    "message": "Hola Anthony, estoy interesado en conocer más sobre tus servicios. Me gustaría conversar sobre un proyecto.",
+    "button": "WhatsApp"
+  },
+  "contact": {
+    "title": "Contacto",
+    "whatsappMessage": "Hola Anthony, estoy interesado en conocer más sobre tus servicios. Me gustaría conversar sobre un proyecto.",
+    "emailLabel": "Correo electrónico",
+    "form": {
+      "title": "Solicitud de cotización",
+      "fullName": "Nombre completo",
+      "email": "Correo electrónico",
+      "company": "Empresa",
+      "projectType": "Tipo de proyecto",
+      "budget": "Presupuesto estimado",
+      "timeline": "Tiempo estimado de ejecución",
+      "description": "Descripción del proyecto",
+      "contactMethod": "Medio de contacto preferido",
+      "submit": "Enviar solicitud",
+      "sending": "Enviando...",
+      "success": "Mensaje enviado. Gracias por contactarme, te responderé a la brevedad.",
+      "error": "Hubo un error al enviar el mensaje. Inténtalo de nuevo."
+    },
+    "projectTypes": {
+      "website": "Página web",
+      "landing": "Landing page",
+      "webApp": "Aplicación web",
+      "mobileApp": "Aplicación móvil",
+      "customSoftware": "Software a medida",
+      "inhouse": "Proyecto In-house",
+      "longTerm": "Proyecto de largo plazo",
+      "consulting": "Consultoría",
+      "other": "Otro"
+    },
+    "contactMethods": {
+      "whatsapp": "WhatsApp",
+      "email": "Correo electrónico",
+      "both": "Ambos"
+    }
+  },
+  "testimonialsPage": {
+    "heroTitle": "Experiencias que construyen confianza.",
+    "heroSubtitle": "Cada proyecto representa una oportunidad para crear algo significativo. Conoce las experiencias de quienes han trabajado conmigo y los resultados de sus proyectos.",
+    "filters": {
+      "all": "Todos",
+      "web": "Desarrollo web",
+      "apps": "Aplicaciones",
+      "enterprise": "Software empresarial",
+      "inhouse": "Proyectos In-house",
+      "consulting": "Consultoría",
+      "other": "Otros proyectos"
+    },
+    "featured": "Destacados",
+    "featuredSubtitle": "Testimonios destacados que también aparecen en la página de inicio.",
+    "ctaTitle": "Construyamos algo que también pueda contar su historia.",
+    "ctaButton": "Hablemos de tu proyecto"
+  },
+  "demoNotice": "Contenido de demostración. No representa clientes reales."
+}

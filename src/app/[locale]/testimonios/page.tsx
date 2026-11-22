@@ -1,0 +1,84 @@
+import { testimonials, featuredTestimonials } from "@/data/testimonials";
+import { getDictionary, t } from "@/i18n/dictionary";
+import { TestimonialsGrid } from "@/components/testimonials/testimonials-grid";
+import Link from "next/link";
+import { Metadata } from "next";
+import type { Locale } from "@/i18n/dictionary";
+
+const testimoniosMeta: Record<Locale, { title: string; description: string }> = {
+  es: {
+    title: "Testimonios — Anthony Rivera",
+    description:
+      "Experiencias reales de clientes que han trabajado conmigo. Conoce los resultados de sus proyectos y construye confianza.",
+  },
+  en: {
+    title: "Testimonials — Anthony Rivera",
+    description:
+      "Real experiences from clients who have worked with me. Meet the results of their projects and build trust.",
+  },
+};
+
+export const generateStaticParams = () => {
+  return [{ locale: "es" }, { locale: "en" }];
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = (await params) as { locale: Locale };
+  const m = testimoniosMeta[locale] || testimoniosMeta.es;
+  return {
+    title: m.title,
+    description: m.description,
+  };
+}
+
+export default async function TestimonialsPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const dict = getDictionary(locale);
+
+  const filters = [
+    { value: "all", label: t(dict, "testimonialsPage.filters.all", "Todos") },
+    { value: "web", label: t(dict, "testimonialsPage.filters.web", "Desarrollo web") },
+    { value: "apps", label: t(dict, "testimonialsPage.filters.apps", "Aplicaciones") },
+    { value: "enterprise", label: t(dict, "testimonialsPage.filters.enterprise", "Software empresarial") },
+    { value: "inhouse", label: t(dict, "testimonialsPage.filters.inhouse", "Proyectos In-house") },
+    { value: "consulting", label: t(dict, "testimonialsPage.filters.consulting", "Consultoría") },
+    { value: "other", label: t(dict, "testimonialsPage.filters.other", "Otros proyectos") },
+  ];
+
+  return (
+    <>
+      <section className="px-4 py-16 lg:py-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <h1 className="text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-6">
+            {t(dict, "testimonialsPage.heroTitle", "Experiencias que construyen confianza.")}
+          </h1>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            {t(dict, "testimonialsPage.heroSubtitle", "Cada proyecto representa una oportunidad para crear algo significativo. Conoce las experiencias de quienes han trabajado conmigo y los resultados de sus proyectos.")}
+          </p>
+        </div>
+      </section>
+
+      <section className="px-4 pb-24 lg:pb-32">
+        <div className="mx-auto max-w-7xl">
+          <TestimonialsGrid
+            testimonials={featuredTestimonials}
+            locale={locale}
+            filters={filters}
+            ctaTitle={t(dict, "testimonialsPage.ctaTitle", "Construyamos algo que también pueda contar su historia.")}
+            ctaButton={t(dict, "testimonialsPage.ctaButton", "Hablemos de tu proyecto")}
+            featuredTitle={t(dict, "testimonialsPage.featured", "Destacados")}
+            featuredSubtitle={t(dict, "testimonialsPage.featuredSubtitle", "Testimonios destacados que también aparecen en la página de inicio.")}
+          />
+        </div>
+      </section>
+    </>
+  );
+}
