@@ -60,7 +60,7 @@ export function Projects({ locale }: ProjectsProps) {
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-2 py-1 rounded border border-border/60 bg-background text-[10px] font-medium text-muted-foreground"
+                      className="px-2 py-1 rounded border border-border/60 bg-background text-xs font-medium text-muted-foreground"
                     >
                       {tech}
                     </span>

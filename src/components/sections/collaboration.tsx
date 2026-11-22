@@ -40,9 +40,12 @@ export function Collaboration({ locale }: CollaborationProps) {
           {items.map((item, index) => {
             const Icon = collaborationIcons[item.name] || FileText;
             return (
-              <Card key={index}>
+              <Card
+                key={index}
+                className="group hover:border-primary/50 transition-colors cursor-default"
+              >
                 <CardHeader>
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors mb-4">
                     <Icon className="h-5 w-5" />
                   </div>
                   <CardTitle>{item.name}</CardTitle>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
@@ -10,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { sendQuoteRequest } from "@/app/actions/send-quote";
 import { getDictionary, t } from "@/i18n/dictionary";
+import { cn } from "@/lib/utils";
 
 const quoteSchema = z.object({
   fullName: z.string().min(2, "El nombre es requerido."),
@@ -46,13 +48,27 @@ const contactMethods: Array<{ value: string; labelEs: string; labelEn: string }>
   { value: "both", labelEs: "Ambos", labelEn: "Both" },
 ];
 
+const budgetOptions: Array<{ value: string; labelEs: string; labelEn: string }> = [
+  { value: "menos-5k", labelEs: "Menos de $5.000 USD", labelEn: "Less than $5,000 USD" },
+  { value: "5k-20k", labelEs: "$5.000 – $20.000 USD", labelEn: "$5,000 – $20,000 USD" },
+  { value: "20k-50k", labelEs: "$20.000 – $50.000 USD", labelEn: "$20,000 – $50,000 USD" },
+  { value: "mas-50k", labelEs: "Más de $50.000 USD", labelEn: "More than $50,000 USD" },
+];
+
+const timelineOptions: Array<{ value: string; labelEs: string; labelEn: string }> = [
+  { value: "1-mes", labelEs: "1 mes", labelEn: "1 month" },
+  { value: "3-meses", labelEs: "3 meses", labelEn: "3 months" },
+  { value: "6-meses", labelEs: "6 meses", labelEn: "6 months" },
+  { value: "12-meses", labelEs: "12 meses o más", labelEn: "12 months or more" },
+  { value: "en-curso", labelEs: "En curso / continuo", labelEn: "Ongoing / continuous" },
+];
+
 export function QuoteForm({ locale }: QuoteFormProps) {
   const dict = getDictionary(locale);
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm<QuoteFormValues>({
     resolver: zodResolver(quoteSchema),
@@ -61,38 +77,49 @@ export function QuoteForm({ locale }: QuoteFormProps) {
     },
   });
 
-  const projectType = watch("projectType");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const label = (options: Array<{ value: string; labelEs: string; labelEn: string }>, value: string) => {
+    const found = options.find((o) => o.value === value);
+    return found ? (locale === "en" ? found.labelEn : found.labelEs) : value;
+  };
 
   const onSubmit = async (data: QuoteFormValues) => {
     try {
       await sendQuoteRequest(data);
-      setValue("fullName", "");
-      setValue("email", "");
-      setValue("company", "");
-      setValue("projectType", "");
-      setValue("budget", "");
-      setValue("timeline", "");
-      setValue("description", "");
-      setValue("contactMethod", "both");
-      alert(
-        t(dict, "contact.form.success", "Mensaje enviado. Gracias por contactarme."),
-      );
+      reset();
+      setSubmitStatus("success");
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     } catch (error) {
-      alert(
-        t(dict, "contact.form.error", "Hubo un error al enviar el mensaje."),
-      );
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus("idle"), 5000);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      {submitStatus === "success" && (
+        <div className="rounded-lg border border-border bg-background p-4">
+          <p className="text-sm text-green-600 dark:text-green-400 font-medium">
+            {t(dict, "contact.form.success", "Mensaje enviado. Gracias por contactarme.")}
+          </p>
+        </div>
+      )}
+      {submitStatus === "error" && (
+        <div className="rounded-lg border border-destructive bg-destructive/10 p-4">
+          <p className="text-sm text-destructive font-medium">
+            {t(dict, "contact.form.error", "Hubo un error al enviar el mensaje.")}
+          </p>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label>{t(dict, "contact.form.fullName", "Nombre completo")}</Label>
           <Input
             {...register("fullName")}
             placeholder="Juan Pérez"
-            className={cnInput(errors.fullName)}
+            className={cnInput(!!errors.fullName)}
           />
           {errors.fullName && (
             <p className="text-xs text-destructive">{errors.fullName.message}</p>
@@ -104,7 +131,7 @@ export function QuoteForm({ locale }: QuoteFormProps) {
             {...register("email")}
             placeholder="juan@empresa.com"
             type="email"
-            className={cnInput(errors.email)}
+            className={cnInput(!!errors.email)}
           />
           {errors.email && (
             <p className="text-xs text-destructive">{errors.email.message}</p>
@@ -129,7 +156,7 @@ export function QuoteForm({ locale }: QuoteFormProps) {
           <SelectContent>
             {projectTypes.map((p) => (
               <SelectItem key={p.value} value={p.value}>
-                {locale === "en" ? p.labelEn : p.labelEs}
+                {label(projectTypes, p.value)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -142,16 +169,17 @@ export function QuoteForm({ locale }: QuoteFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label>{t(dict, "contact.form.budget", "Presupuesto estimado")}</Label>
-          <Select {...register("budget")} defaultValue="">
+          <Select {...register("budget")}>
             <SelectTrigger>
               <SelectValue placeholder="Opcional" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="">Opcional</SelectItem>
-              <SelectItem value="menos-5k">Menos de $5.000 USD</SelectItem>
-              <SelectItem value="5k-20k">$5.000 – $20.000 USD</SelectItem>
-              <SelectItem value="20k-50k">$20.000 – $50.000 USD</SelectItem>
-              <SelectItem value="mas-50k">Más de $50.000 USD</SelectItem>
+              {budgetOptions.map((b) => (
+                <SelectItem key={b.value} value={b.value}>
+                  {label(budgetOptions, b.value)}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>
@@ -162,11 +190,11 @@ export function QuoteForm({ locale }: QuoteFormProps) {
               <SelectValue placeholder="Selecciona..." />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="1-mes">1 mes</SelectItem>
-              <SelectItem value="3-meses">3 meses</SelectItem>
-              <SelectItem value="6-meses">6 meses</SelectItem>
-              <SelectItem value="12-meses">12 meses o más</SelectItem>
-              <SelectItem value="en-curso">En curso / continuo</SelectItem>
+              {timelineOptions.map((t) => (
+                <SelectItem key={t.value} value={t.value}>
+                  {label(timelineOptions, t.value)}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
           {errors.timeline && (
@@ -181,7 +209,7 @@ export function QuoteForm({ locale }: QuoteFormProps) {
           {...register("description")}
           placeholder="Cuéntame qué quieres construir, los objetivos y cualquier detalle relevante."
           rows={5}
-          className={cnInput(errors.description)}
+          className={cnInput(!!errors.description)}
         />
         {errors.description && (
           <p className="text-xs text-destructive">{errors.description.message}</p>
@@ -197,7 +225,7 @@ export function QuoteForm({ locale }: QuoteFormProps) {
           <SelectContent>
             {contactMethods.map((m) => (
               <SelectItem key={m.value} value={m.value}>
-                {locale === "en" ? m.labelEn : m.labelEs}
+                {label(contactMethods, m.value)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -216,8 +244,9 @@ export function QuoteForm({ locale }: QuoteFormProps) {
   );
 }
 
-function cnInput(error?: any) {
-  return `rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${
-    error ? "border-destructive" : ""
-  }`;
+function cnInput(error?: boolean) {
+  return cn(
+    "rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+    error && "border-destructive",
+  );
 }

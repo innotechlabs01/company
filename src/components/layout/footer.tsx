@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Send, Mail } from "lucide-react";
+import { useState } from "react";
 import { getDictionary, t } from "@/i18n/dictionary";
 
 type FooterProps = {
@@ -20,9 +21,17 @@ const navItems: Array<{ key: string; labelEs: string; href: string }> = [
 
 export function Footer({ locale }: FooterProps) {
   const dict = getDictionary(locale);
+  const [languageOpen, setLanguageOpen] = useState(false);
+
   const whatsappUrl = `https://wa.me/573128386640?text=${encodeURIComponent(
     t(dict, "whatsapp.message", "Hola Anthony, estoy interesado en conocer más sobre tus servicios. Me gustaría conversar sobre un proyecto."),
   )}`;
+
+  const handleLanguageChange = (nextLocale: string) => {
+    const p = typeof window !== "undefined" ? window.location.pathname : "";
+    const withoutLocale = p.replace(`/${locale}`, "") || "/";
+    window.location.href = `/${nextLocale}${withoutLocale}`;
+  };
 
   return (
     <footer className="border-y border-border/60 bg-background">
@@ -37,26 +46,6 @@ export function Footer({ locale }: FooterProps) {
               negocio en soluciones tecnológicas funcionales, escalables y
               sostenibles.
             </p>
-            <div className="mt-6 flex items-center gap-4">
-              <a
-                href="https://linkedin.com/in/anthonyrivera51"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="LinkedIn"
-              >
-                <span className="sr-only">LinkedIn</span>
-              </a>
-              <a
-                href="https://github.com/anthonyrivera51"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="GitHub"
-              >
-                <span className="sr-only">GitHub</span>
-              </a>
-            </div>
           </div>
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">
@@ -132,11 +121,47 @@ export function Footer({ locale }: FooterProps) {
           </p>
           <div className="flex items-center gap-4">
             <span>{t(dict, "footer.language", "Idioma")}</span>
-            <button className="text-sm font-medium hover:text-foreground">ES</button>
-            <button className="text-sm font-medium hover:text-foreground">EN</button>
+            <div className="relative inline-block">
+              <button
+                onClick={() => setLanguageOpen(!languageOpen)}
+                className="text-sm font-medium hover:text-foreground"
+                aria-expanded={languageOpen}
+                aria-haspopup="listbox"
+              >
+                {locale.toUpperCase()}
+              </button>
+              {languageOpen && (
+                <div className="absolute bottom-full left-0 mb-2 w-24 rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-lg z-10">
+                  {["es", "en"].map((option) => (
+                    <button
+                      key={option}
+                      onClick={() => {
+                        handleLanguageChange(option);
+                        setLanguageOpen(false);
+                      }}
+                      className={cnLanguage(
+                        "flex w-full items-center rounded-md px-3 py-2 text-sm transition-colors",
+                        option === locale
+                          ? "bg-primary text-primary-foreground"
+                          : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                      )}
+                    >
+                      {option.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
     </footer>
   );
+}
+
+function cnLanguage(
+  base: string,
+  conditional: string,
+): string {
+  return `${base} ${conditional}`;
 }

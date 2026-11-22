@@ -26,7 +26,8 @@ export function Methodology({ locale }: MethodologyProps) {
         </div>
 
         <div className="relative max-w-3xl mx-auto">
-          <div className="absolute top-16 bottom-16 left-1/2 -translate-x-1/2 w-px bg-border/50 lg:hidden"></div>
+          {/* Línea vertical de conexión (solo desktop) */}
+          <div className="hidden lg:block absolute top-16 bottom-16 left-1/2 -translate-x-1/2 w-px bg-border/50"></div>
 
           <div className="space-y-16 lg:space-y-0 lg:flex lg:flex-col lg:gap-16">
             {steps.map((step, index) => {
@@ -36,7 +37,8 @@ export function Methodology({ locale }: MethodologyProps) {
                   key={step.number}
                   className="relative group lg:flex lg:items-start lg:gap-6"
                 >
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary text-white font-bold text-lg mb-4 lg:mb-0 lg:shrink-0">
+                  {/* Número del paso */}
+                  <div className="flex flex-shrink-0 items-center justify-center w-10 h-10 rounded-lg bg-primary text-white font-bold text-lg mb-4 lg:mb-0">
                     {step.number}
                   </div>
                   <div className="lg:w-full">
@@ -47,10 +49,9 @@ export function Methodology({ locale }: MethodologyProps) {
                       {step.description}
                     </p>
                   </div>
+                  {/* Conector entre pasos (solo desktop) */}
                   {!isLast && (
-                    <div
-                      className="hidden lg:block absolute -left-3 top-6 w-px h-8 bg-primary"
-                    />
+                    <div className="hidden lg:block absolute -left-3 top-4 w-px h-6 bg-primary" />
                   )}
                 </div>
               );

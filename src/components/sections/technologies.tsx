@@ -26,14 +26,17 @@ export function Technologies({ locale }: TechnologiesProps) {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {categories.map((category, index) => (
-            <Card key={index} className="p-5">
+            <Card key={index} className="p-6 hover:border-primary/50 transition-colors">
               <CardHeader>
                 <CardTitle className="text-sm font-semibold">{category.name}</CardTitle>
               </CardHeader>
-              <CardContent className="pt-3">
-                <ul className="space-y-1 text-xs text-muted-foreground leading-relaxed">
+              <CardContent className="pt-4">
+                <ul className="space-y-2 text-sm text-muted-foreground leading-relaxed">
                   {category.items.map((item, i) => (
-                    <li key={i}>{item}</li>
+                    <li key={i} className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-primary/50"></span>
+                      {item}
+                    </li>
                   ))}
                 </ul>
               </CardContent>
