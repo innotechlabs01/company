@@ -1,23 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail } from "lucide-react";
 import { getDictionary, t } from "@/i18n/dictionary";
-import { motion } from "framer-motion";
-import { useReducedMotion } from "framer-motion";
 
 type CTASectionProps = {
   locale: "es" | "en";
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-const reducedFadeUp = { hidden: { opacity: 1 }, show: { opacity: 1 } };
-
 export function CTASection({ locale }: CTASectionProps) {
   const dict = getDictionary(locale);
-  const reduced = useReducedMotion();
-  const variants = reduced ? reducedFadeUp : fadeUp;
 
   const whatsappMessage =
     locale === "es"
@@ -28,12 +18,7 @@ export function CTASection({ locale }: CTASectionProps) {
   return (
     <section className="px-4 py-32 lg:py-40" id="contacto">
       <div className="mx-auto container-x">
-        <motion.div
-          variants={variants}
-          initial="hidden"
-          animate="show"
-          className="max-w-2xl mx-auto rounded-xl border border-border bg-card p-12 lg:p-16 text-center"
-        >
+        <div className="max-w-2xl mx-auto rounded-xl border border-border bg-card p-12 lg:p-16 text-center">
           <h2 className="display-lg mb-6 tracking-tight text-foreground">
             {t(dict, "cta.title", "¿Tienes una idea o un proyecto en mente?")}
           </h2>
@@ -54,7 +39,7 @@ export function CTASection({ locale }: CTASectionProps) {
               </a>
             </Button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

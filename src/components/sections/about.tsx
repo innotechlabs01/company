@@ -1,33 +1,18 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { getDictionary, t } from "@/i18n/dictionary";
-import { motion } from "framer-motion";
-import { useReducedMotion } from "framer-motion";
 
 type AboutProps = {
   locale: "es" | "en";
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-const reducedFadeUp = { hidden: { opacity: 1 }, show: { opacity: 1 } };
-
 export function About({ locale }: AboutProps) {
   const dict = getDictionary(locale);
-  const reduced = useReducedMotion();
-  const variants = reduced ? reducedFadeUp : fadeUp;
 
   return (
     <section className="px-4 py-32 lg:py-40" id="sobre-mi">
       <div className="mx-auto container-x">
         <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-          <motion.div
-            variants={variants}
-            initial="hidden"
-            animate="show"
-            className="order-last lg:order-first"
-          >
+          <div className="order-last lg:order-first">
             <div className="relative">
               <Card className="overflow-hidden border border-border bg-card">
                 <img
@@ -41,13 +26,8 @@ export function About({ locale }: AboutProps) {
                 />
               </Card>
             </div>
-          </motion.div>
-          <motion.div
-            variants={variants}
-            initial="hidden"
-            animate="show"
-            className="space-y-8"
-          >
+          </div>
+          <div className="space-y-8">
             <h2 className="display-lg tracking-tight text-foreground">
               {t(dict, "about.title", "Detrás de cada solución, hay una visión.")}
             </h2>
@@ -59,7 +39,7 @@ export function About({ locale }: AboutProps) {
                 {paragraph}
               </p>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
