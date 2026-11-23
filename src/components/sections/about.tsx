@@ -13,18 +13,16 @@ export function About({ locale }: AboutProps) {
   return (
     <section className="px-4 py-24 lg:py-32" id="sobre-mi">
       <div className="mx-auto container-x">
-        <div className="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="order-last lg:order-first relative">
             <div className="relative">
-              <Card className="overflow-hidden border border-border bg-card">
+              <Card className="relative overflow-hidden border border-border bg-card aspect-square">
                 <div className="absolute top-4 left-4 z-10">
-                  <BrandLogo variant="monogram" mode="dark" width={32} height={32} className="bg-white/90 rounded-full p-1" alt="AR" />
+                  <BrandLogo variant="monogram" mode="dark" width={32} height={32} className="bg-background/90 backdrop-blur-sm rounded-full p-1 shadow-sm" alt="AR" />
                 </div>
                 <ImagePlaceholder
-                  width={500}
-                  height={500}
                   label="Anthony Rivera"
-                  className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-1000"
+                  className="w-full h-full grayscale-[0.3] hover:grayscale-0 transition-all duration-700"
                   variant="portrait"
                 />
               </Card>

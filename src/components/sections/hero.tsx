@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { SectionFade } from "@/components/ui/section-fade";
 import { getDictionary, t } from "@/i18n/dictionary";
@@ -32,9 +31,19 @@ export function Hero({ locale }: HeroProps) {
   return (
     <SectionFade delay={0}>
       <section
-        className="relative px-4 pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden"
+        className="relative px-4 pt-12 pb-20 sm:pt-16 sm:pb-24 lg:pt-24 lg:pb-32 overflow-hidden"
         id="inicio"
       >
+        {/* Subtle radial glow and architectural grid accent */}
+        <div
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(22,136,248,0.08),_transparent_60%)]"
+          aria-hidden="true"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(22,136,248,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(22,136,248,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
+          aria-hidden="true"
+        />
+
         {/* Decoración geométrica sutil inspirada en el monograma (solo escritorio). */}
         <div className="hidden lg:block absolute top-0 right-0 w-[700px] h-[700px] -mt-20 -mr-20 overflow-hidden pointer-events-none">
           <div className="relative w-full h-full">
@@ -50,25 +59,20 @@ export function Hero({ locale }: HeroProps) {
 
         <div className="mx-auto container-x relative">
           <div className="lg:max-w-3xl">
-            <div className="flex items-center gap-3 mb-8">
-              <BrandLogo
-                variant="monogram"
-                mode="dark"
-                width={22}
-                height={22}
-                className="shrink-0"
-                alt="Monograma AR"
-              />
-              <span className="eyebrow text-muted-foreground">
-                {t(dict, "hero.eyebrow", "Software development · Digital solutions")}
-              </span>
+            <div className="mb-6 sm:mb-8">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-muted/60 px-3.5 py-1.5 backdrop-blur-sm">
+                <span className="h-2 w-2 rounded-full bg-primary shrink-0" aria-hidden="true" />
+                <span className="eyebrow text-muted-foreground tracking-[0.12em] sm:tracking-[0.16em]">
+                  {t(dict, "hero.eyebrow", "Software development · Digital solutions")}
+                </span>
+              </div>
             </div>
 
-            <h1 className="display-xl mb-10 tracking-tight text-foreground">
+            <h1 className="display-xl mb-6 sm:mb-10 tracking-tight text-foreground">
               {highlightTitle(dict)}
             </h1>
 
-            <p className="body-lg text-muted-foreground mb-14 max-w-lg leading-relaxed">
+            <p className="body-lg text-muted-foreground mb-10 sm:mb-14 max-w-lg leading-relaxed">
               {t(
                 dict,
                 "hero.subtitle",

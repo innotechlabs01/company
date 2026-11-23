@@ -10,7 +10,11 @@ type ProjectsProps = {
   locale: "es" | "en";
 };
 
-const accentColors = ["#1688f8", "#0866c6", "#299bff"];
+const accentBorderClasses = [
+  "border-t-2 border-t-[#1688f8]",
+  "",
+  "border-t-2 border-t-[#299bff]",
+];
 
 export function Projects({ locale }: ProjectsProps) {
   const dict = getDictionary(locale);
@@ -28,28 +32,25 @@ export function Projects({ locale }: ProjectsProps) {
             </p>
           </div>
           <Link href={`/${locale}/#proyectos`} className="text-sm font-medium text-primary hover:underline transition-colors">
-            Ver todos los proyectos
+            {t(dict, "projects.viewAll", locale === "en" ? "View all projects" : "Ver todos los proyectos")}
           </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => {
-            const accent = accentColors[index % accentColors.length];
+            const accentClass = accentBorderClasses[index % accentBorderClasses.length];
             return (
               <Card
                 key={project.id}
                 className={cn(
                   "border border-border overflow-hidden hover:shadow-md transition-colors group",
-                  index % 2 === 0 ? "border-t-2 border-t-transparent" : "",
-                  index % 2 === 0 ? `border-[${accent}]` : "",
+                  accentClass,
                 )}
               >
                 <div className="relative h-60 overflow-hidden">
                   <ImagePlaceholder
-                    width={800}
-                    height={400}
-                    label={project.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    label={project.name[locale]}
+                    className="w-full h-full group-hover:scale-105 transition-transform duration-700"
                     variant="landscape"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -63,10 +64,10 @@ export function Projects({ locale }: ProjectsProps) {
                 </div>
                 <CardHeader className="pt-5 pb-2">
                   <CardTitle className="text-base font-semibold leading-tight">
-                    {project.name}
+                    {project.name[locale]}
                   </CardTitle>
                   <CardDescription className="text-xs text-muted-foreground line-clamp-2 mt-2">
-                    {project.description}
+                    {project.description[locale]}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-4 pb-6">
@@ -81,7 +82,7 @@ export function Projects({ locale }: ProjectsProps) {
                     ))}
                   </div>
                   <div className="flex items-center justify-between">
-                    <p className="text-xs text-muted-foreground">{project.type}</p>
+                    <p className="text-xs text-muted-foreground">{project.type[locale]}</p>
                     {project.url ? (
                       <a
                         href={project.url}

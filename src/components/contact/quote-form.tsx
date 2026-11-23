@@ -105,7 +105,7 @@ export function QuoteForm({ locale }: QuoteFormProps) {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {submitStatus === "success" && (
             <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
-              <p className="text-sm text-primary-foreground font-medium">
+              <p className="text-sm text-primary font-medium">
                 {t(dict, "contact.form.success", "Mensaje enviado. Gracias por contactarme.")}
               </p>
             </div>
@@ -123,7 +123,7 @@ export function QuoteForm({ locale }: QuoteFormProps) {
               <Label>{t(dict, "contact.form.fullName", "Nombre completo")}</Label>
               <Input
                 {...register("fullName")}
-                placeholder="Juan Pérez"
+                placeholder={locale === "en" ? "John Doe" : "Juan Pérez"}
                 className={cnInput(!!errors.fullName)}
               />
               {errors.fullName && (
@@ -134,7 +134,7 @@ export function QuoteForm({ locale }: QuoteFormProps) {
               <Label>{t(dict, "contact.form.email", "Correo electrónico")}</Label>
               <Input
                 {...register("email")}
-                placeholder="juan@empresa.com"
+                placeholder={locale === "en" ? "john@company.com" : "juan@empresa.com"}
                 type="email"
                 className={cnInput(!!errors.email)}
               />
@@ -148,14 +148,14 @@ export function QuoteForm({ locale }: QuoteFormProps) {
         <Label>{t(dict, "contact.form.company", "Empresa")}</Label>
         <Input
           {...register("company")}
-          placeholder="Mi empresa S.A.S. (opcional)"
+          placeholder={locale === "en" ? "My Company Inc. (optional)" : "Mi empresa S.A.S. (opcional)"}
         />
       </div>
 
       <div className="space-y-2">
         <Label>{t(dict, "contact.form.projectType", "Tipo de proyecto")}</Label>
         <Select {...register("projectType")}>
-          <SelectTrigger>
+          <SelectTrigger className="w-full overflow-hidden [&>span]:truncate">
             <SelectValue placeholder={t(dict, "contact.form.projectType", "Selecciona...")} />
           </SelectTrigger>
           <SelectContent>
@@ -171,15 +171,17 @@ export function QuoteForm({ locale }: QuoteFormProps) {
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
         <div className="space-y-2">
-          <Label>{t(dict, "contact.form.budget", "Presupuesto estimado")}</Label>
+          <Label className="md:min-h-[2.25rem] flex items-end leading-snug">
+            {t(dict, "contact.form.budget", "Presupuesto estimado")}
+          </Label>
           <Select {...register("budget")}>
-            <SelectTrigger>
+            <SelectTrigger className="w-full overflow-hidden [&>span]:truncate">
               <SelectValue placeholder={t(dict, "contact.form.budget", "Opcional")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="">
+              <SelectItem value="opcional">
                 {t(dict, "contact.form.budget", "Opcional")}
               </SelectItem>
               {budgetOptions.map((b) => (
@@ -191,9 +193,11 @@ export function QuoteForm({ locale }: QuoteFormProps) {
           </Select>
         </div>
         <div className="space-y-2">
-          <Label>{t(dict, "contact.form.timeline", "Tiempo estimado de ejecución")}</Label>
+          <Label className="md:min-h-[2.25rem] flex items-end leading-snug">
+            {t(dict, "contact.form.timeline", "Tiempo estimado de ejecución")}
+          </Label>
           <Select {...register("timeline")}>
-            <SelectTrigger>
+            <SelectTrigger className="w-full overflow-hidden [&>span]:truncate">
               <SelectValue placeholder={t(dict, "contact.form.timeline", "Selecciona...")} />
             </SelectTrigger>
             <SelectContent>

@@ -67,15 +67,17 @@ export function Footer({ locale }: FooterProps) {
   return (
     <footer className="border-t border-border/60 bg-background">
       <div className="px-4 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          <div className="col-span-1 md:col-span-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+          <div className="col-span-1 md:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2 mb-5">
               <BrandLogo variant="horizontal" mode="dark" width={120} />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Desarrollador de software enfocado en transformar necesidades de
-              negocio en soluciones tecnológicas funcionales, escalables y
-              sostenibles.
+              {t(
+                dict,
+                "about.intro",
+                "Desarrollador de software enfocado en transformar necesidades de negocio en soluciones tecnológicas funcionales, escalables y sostenibles.",
+              )}
             </p>
           </div>
           <div>
@@ -117,19 +119,22 @@ export function Footer({ locale }: FooterProps) {
               {t(dict, "footer.contact", "Contacto")}
             </h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-center gap-3">
-                <a href={whatsappUrl} className="hover:text-foreground transition-colors">
+              <li>
+                <a
+                  href={whatsappUrl}
+                  className="inline-flex items-center gap-2.5 hover:text-foreground transition-colors"
+                >
                   <Send className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  WhatsApp
+                  <span>WhatsApp</span>
                 </a>
               </li>
-              <li className="flex items-center gap-3">
+              <li>
                 <a
                   href="mailto:anthonyrivera51@icloud.com"
-                  className="hover:text-foreground transition-colors"
+                  className="inline-flex items-center gap-2.5 hover:text-foreground transition-colors break-all"
                 >
                   <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  anthonyrivera51@icloud.com
+                  <span>anthonyrivera51@icloud.com</span>
                 </a>
               </li>
             </ul>

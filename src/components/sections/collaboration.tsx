@@ -18,13 +18,13 @@ const collaborationIcons: Record<string, React.ElementType> = {
   "Long-term projects": RefreshCw,
 };
 
-const collaborationColors: Record<string, string> = {
-  "Proyectos por alcance": "#1688f8",
-  "Scope-based projects": "#1688f8",
-  "Proyectos In-house": "#0866c6",
-  "In-house projects": "#0866c6",
-  "Proyectos de largo plazo": "#299bff",
-  "Long-term projects": "#299bff",
+const collaborationIconClasses: Record<string, string> = {
+  "Proyectos por alcance": "bg-[#1688f8]/10 text-[#1688f8] group-hover:bg-[#1688f8] group-hover:text-white",
+  "Scope-based projects": "bg-[#1688f8]/10 text-[#1688f8] group-hover:bg-[#1688f8] group-hover:text-white",
+  "Proyectos In-house": "bg-[#0866c6]/10 text-[#0866c6] group-hover:bg-[#0866c6] group-hover:text-white",
+  "In-house projects": "bg-[#0866c6]/10 text-[#0866c6] group-hover:bg-[#0866c6] group-hover:text-white",
+  "Proyectos de largo plazo": "bg-[#299bff]/10 text-[#299bff] group-hover:bg-[#299bff] group-hover:text-white",
+  "Long-term projects": "bg-[#299bff]/10 text-[#299bff] group-hover:bg-[#299bff] group-hover:text-white",
 };
 
 export function Collaboration({ locale }: CollaborationProps) {
@@ -49,7 +49,9 @@ export function Collaboration({ locale }: CollaborationProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {items.map((item, index) => {
             const Icon = collaborationIcons[item.name] || FileText;
-            const accent = collaborationColors[item.name] || "#1688f8";
+            const iconClass =
+              collaborationIconClasses[item.name] ||
+              "bg-[#1688f8]/10 text-[#1688f8] group-hover:bg-[#1688f8] group-hover:text-white";
             return (
               <Card
                 key={item.name}
@@ -63,7 +65,7 @@ export function Collaboration({ locale }: CollaborationProps) {
                     <div
                       className={cn(
                         "w-10 h-10 rounded-lg flex items-center justify-center transition-colors",
-                        `bg-[${accent}]/10 text-[${accent}] group-hover:bg-[${accent}] group-hover:text-white`,
+                        iconClass,
                       )}
                     >
                       <Icon className="h-5 w-5" />

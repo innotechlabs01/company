@@ -33,13 +33,13 @@ export function CTASection({ locale }: CTASectionProps) {
             {t(dict, "cta.description", "Conversemos sobre lo que quieres construir y encontremos la mejor manera de hacerlo realidad.")}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+            <Button asChild variant="default" size="lg" className="w-full sm:w-auto shadow-md shadow-primary/20">
               <a href={whatsappUrl} className="flex items-center gap-2 w-full justify-center">
                 <MessageCircle className="h-5 w-5" />
                 {t(dict, "cta.whatsapp", "Contactar por WhatsApp")}
               </a>
             </Button>
-            <Button asChild variant="secondary" size="lg" className="w-full sm:w-auto">
+            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
               <a href="mailto:anthonyrivera51@icloud.com" className="flex items-center gap-2 w-full justify-center">
                 <Mail className="h-5 w-5" />
                 {t(dict, "cta.email", "Enviar un correo")}

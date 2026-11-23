@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
@@ -62,7 +62,7 @@ export function Header({ locale }: HeaderProps) {
 
   return (
     <>
-      <div className="sticky top-0 z-40">
+      <header className="sticky top-0 z-40">
         <div className="border-b border-border/60 bg-background/70 backdrop-blur-md supports-[backdrop-blur]:bg-background/50 transition-colors">
           <div className="flex h-13 items-center justify-between px-4 lg:px-8">
             <Link
@@ -108,14 +108,14 @@ export function Header({ locale }: HeaderProps) {
 
             <button
               className="lg:hidden -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-muted-foreground hover:text-foreground"
-              aria-label="Abrir menú"
+              aria-label={locale === "en" ? "Open menu" : "Abrir menú"}
               onClick={() => setMobileOpen(true)}
             >
               <Menu className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
       <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
         <SheetTrigger asChild>
@@ -124,10 +124,10 @@ export function Header({ locale }: HeaderProps) {
         <SheetContent side="right" className="w-full sm:w-[340px] p-6">
           <SheetHeader className="mb-6">
             <SheetTitle className="text-lg font-semibold tracking-tight">
-              {t(dict, "nav.contact", "Menú")}
+              {locale === "en" ? "Menu" : "Menú"}
             </SheetTitle>
             <SheetDescription className="text-muted-foreground text-sm">
-              Navegación y contacto
+              {locale === "en" ? "Navigation and contact" : "Navegación y contacto"}
             </SheetDescription>
           </SheetHeader>
           <div className="space-y-3">
@@ -165,10 +165,6 @@ export function Header({ locale }: HeaderProps) {
               </a>
             </Button>
           </div>
-          <SheetClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-            <X className="h-4 w-4" aria-hidden="true" />
-            <span className="sr-only">Cerrar menú</span>
-          </SheetClose>
         </SheetContent>
       </Sheet>
     </>
@@ -188,32 +184,59 @@ function LanguageSwitcher({
   onChange: (nextLocale: string) => () => void;
   className?: string;
 }) {
+  const [open, setOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   const options = [
     { value: "es", labelKey: "localeSwitcher.es" },
     { value: "en", labelKey: "localeSwitcher.en" },
   ];
 
   return (
-    <div className={cn("relative inline-block text-sm", className)}>
-      <Button variant="outline" size="sm" className="flex items-center gap-2 px-2">
+    <div ref={containerRef} className={cn("relative inline-block text-sm", className)}>
+      <Button
+        variant="outline"
+        size="sm"
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="listbox"
+        onClick={() => setOpen((prev) => !prev)}
+        className="flex items-center gap-2 px-2"
+      >
         {t(dict, (options.find((o) => o.value === locale)?.labelKey) ?? "localeSwitcher.es", locale)}
       </Button>
-      <div className="absolute top-full right-0 mt-1.5 w-24 rounded-lg border border-border bg-popover p-1 text-popover-foreground shadow-lg">
-        {options.map((option) => (
-          <button
-            key={option.value}
-            onClick={() => onChange(option.value as "es" | "en")()}
-            className={cn(
-              "flex w-full items-center rounded-md px-3 py-2 text-sm transition-colors",
-              option.value === locale
-                ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
-            )}
-          >
-            {t(dict, option.labelKey, option.value)}
-          </button>
-        ))}
-      </div>
+      {open && (
+        <div className="absolute top-full right-0 mt-1.5 w-28 rounded-lg border border-border bg-popover p-1 text-popover-foreground shadow-lg z-50">
+          {options.map((option) => (
+            <button
+              key={option.value}
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                onChange(option.value as "es" | "en")();
+              }}
+              className={cn(
+                "flex w-full items-center rounded-md px-3 py-2 text-sm transition-colors",
+                option.value === locale
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+              )}
+            >
+              {t(dict, option.labelKey, option.value)}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

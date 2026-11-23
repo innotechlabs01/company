@@ -11,7 +11,15 @@ export default function TestimonialsSection({
   locale,
 }: TestimonialsSectionProps) {
   const dict = getDictionary(locale);
-  const featured = featuredTestimonials.filter((t) => t.language === locale);
+  const featured = featuredTestimonials.filter((item) => item.language === locale);
+  const gridClass =
+    featured.length === 1
+      ? "grid grid-cols-1 max-w-xl mx-auto gap-6"
+      : featured.length === 2
+        ? "grid grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto gap-6"
+        : featured.length >= 3
+          ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          : "grid grid-cols-1 gap-6";
 
   return (
     <section className="px-4 py-24 lg:py-32 border-t border-border/60">
@@ -25,7 +33,7 @@ export default function TestimonialsSection({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className={gridClass}>
           {featured.length > 0 ? (
             featured.map((testimonial) => (
               <Card

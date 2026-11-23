@@ -6,12 +6,12 @@ import { getDictionary, t } from "@/i18n/dictionary";
 
 const contactoMeta: Record<Locale, { title: string; description: string }> = {
   es: {
-    title: "Contacto — Anthony Rivera",
+    title: "Contacto",
     description:
       "Solicita una cotización para tu proyecto de desarrollo de software. Escríbeme por WhatsApp o correo electrónico.",
   },
   en: {
-    title: "Contact — Anthony Rivera",
+    title: "Contact",
     description:
       "Request a quote for your software development project. Write me on WhatsApp or email.",
   },
@@ -52,9 +52,9 @@ export default async function ContactPage({
     <section className="px-4 py-24 lg:py-32">
       <div className="mx-auto container-x">
         <div className="text-center mb-20 lg:mb-24">
-          <h2 className="display-lg mb-6 tracking-tight text-foreground">
+          <h1 className="display-lg mb-6 tracking-tight text-foreground">
             {t(dict, "contact.title", "¿Tienes un proyecto en mente?")}
-          </h2>
+          </h1>
           <p className="body-lg text-muted-foreground leading-relaxed max-w-xl mx-auto">
             {t(dict, "contact.description", "Cuéntame qué quieres construir. Respondo generalmente en menos de 24 horas hábiles.")}
           </p>
@@ -82,7 +82,9 @@ export default async function ContactPage({
                   <Mail className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">Correo electrónico</p>
+                  <p className="font-semibold text-foreground">
+                    {t(dict, "contact.emailLabel", "Correo electrónico")}
+                  </p>
                   <a href="mailto:anthonyrivera51@icloud.com" className="text-primary hover:underline text-sm">
                     anthonyrivera51@icloud.com
                   </a>

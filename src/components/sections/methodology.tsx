@@ -20,8 +20,13 @@ export function Methodology({ locale }: MethodologyProps) {
             {t(dict, "methodology.title", "De la idea a una solución funcional.")}
           </h2>
           <p className="body-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Un proceso claro y transparente desde el primer contacto hasta el
-            despliegue y más allá.
+            {t(
+              dict,
+              "methodology.subtitle",
+              locale === "en"
+                ? "A clear and transparent process from first contact to deployment and beyond."
+                : "Un proceso claro y transparente desde el primer contacto hasta el despliegue y más allá.",
+            )}
           </p>
         </div>
 

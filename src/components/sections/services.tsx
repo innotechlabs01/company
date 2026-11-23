@@ -51,8 +51,13 @@ export function Services({ locale }: ServicesProps) {
             {t(dict, "services.title", "Soluciones digitales para cada etapa de tu negocio.")}
           </h2>
           <p className="body-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            Soluciones diseñadas para acompañar el crecimiento de tu negocio en
-            cada etapa.
+            {t(
+              dict,
+              "services.subtitle",
+              locale === "en"
+                ? "Solutions designed to support your business growth at every stage."
+                : "Soluciones diseñadas para acompañar el crecimiento de tu negocio en cada etapa.",
+            )}
           </p>
         </div>
 

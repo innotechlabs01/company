@@ -7,12 +7,12 @@ import type { Locale } from "@/i18n/dictionary";
 
 const testimoniosMeta: Record<Locale, { title: string; description: string }> = {
   es: {
-    title: "Testimonios — Anthony Rivera",
+    title: "Testimonios",
     description:
       "Experiencias reales de clientes que han trabajado conmigo. Conoce los resultados de sus proyectos y construye confianza.",
   },
   en: {
-    title: "Testimonials — Anthony Rivera",
+    title: "Testimonials",
     description:
       "Real experiences from clients who have worked with me. Meet the results of their projects and build trust.",
   },
@@ -91,7 +91,7 @@ export default async function TestimonialsPage({
         <section className="px-4 pb-24 lg:pb-32">
           <div className="mx-auto max-w-7xl">
             <div className="text-center py-12 text-muted-foreground">
-              No hay testimonios disponibles aún.
+              {t(dict, "testimonials.noTestimonials", "No hay testimonios disponibles aún.")}
             </div>
           </div>
         </section>

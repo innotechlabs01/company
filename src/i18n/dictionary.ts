@@ -27,5 +27,12 @@ export function t<T = string>(
     if (value == null || typeof value !== "object") return fallback;
     value = (value as Record<string, unknown>)[part];
   }
-  return typeof value === "string" ? (value as T) : fallback;
+  if (value === undefined || value === null) return fallback;
+  if (typeof fallback === "string") {
+    return typeof value === "string" ? (value as T) : fallback;
+  }
+  if (Array.isArray(fallback)) {
+    return Array.isArray(value) ? (value as T) : fallback;
+  }
+  return value as T;
 }
