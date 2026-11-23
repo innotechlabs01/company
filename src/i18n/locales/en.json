@@ -95,7 +95,28 @@
       "mobileApp": "Mobile Applications",
       "inhouse": "In-house Projects",
       "consulting": "Technology Consulting"
-    }
+    },
+    "problem": "Problem it solves",
+    "deliverables": "Deliverables",
+    "process": "Process",
+    "timeline": "Approximate timeline",
+    "ctaTitle": "Ready to start?",
+    "ctaTitleAlt": "Request a quote",
+    "requestQuote": "Request a quote"
+  },
+  "caseStudies": {
+    "title": "Case studies",
+    "subtitle": "From a problem to a measurable result.",
+    "problem": "Problem",
+    "solution": "Solution",
+    "result": "Result"
+  },
+  "ctaRepeated": {
+    "afterServices": "Have a project in mind?",
+    "afterServicesDesc": "Let's talk about what you want to build and define the next steps.",
+    "afterProjects": "Ready for your next project?",
+    "afterProjectsDesc": "Let's talk about what you want to build and find the best way to make it a reality.",
+    "button": "Let's talk about your project"
   },
   "methodology": {
     "title": "From idea to working solution.",

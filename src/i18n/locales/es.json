@@ -95,7 +95,28 @@
       "mobileApp": "Aplicaciones Móviles",
       "inhouse": "Proyectos In-house",
       "consulting": "Consultoría Tecnológica"
-    }
+    },
+    "problem": "Problema que resuelve",
+    "deliverables": "Entregables",
+    "process": "Proceso",
+    "timeline": "Tiempos aproximados",
+    "ctaTitle": "¿Listo para empezar?",
+    "ctaTitleAlt": "Solicitar cotización",
+    "requestQuote": "Solicitar cotización"
+  },
+  "caseStudies": {
+    "title": "Casos de estudio",
+    "subtitle": "De un problema a un resultado medible.",
+    "problem": "Problema",
+    "solution": "Solución",
+    "result": "Resultado"
+  },
+  "ctaRepeated": {
+    "afterServices": "¿Tienes un proyecto en mente?",
+    "afterServicesDesc": "Conversemos sobre lo que quieres construir y definamos los próximos pasos.",
+    "afterProjects": "¿Listo para tu próximo proyecto?",
+    "afterProjectsDesc": "Hablemos de lo que quieres construir y encontremos la mejor manera de hacerlo realidad.",
+    "button": "Hablemos de tu proyecto"
   },
   "methodology": {
     "title": "De la idea a una solución funcional.",

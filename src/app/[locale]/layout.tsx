@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { LangSetter } from "@/components/layout/lang-setter";
 import { site } from "@/config/site";
+import { FloatingWhatsApp } from "@/components/brand/floating-whatsapp";
 
 const SITE_NAME = site.name;
 
@@ -88,6 +89,7 @@ export default async function LocaleLayout({
       <Header locale={locale} />
       <main className="flex-1">{children}</main>
       <Footer locale={locale} />
+      <FloatingWhatsApp />
     </div>
   );
 }

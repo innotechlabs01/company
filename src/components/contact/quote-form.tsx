@@ -23,6 +23,7 @@ const quoteSchema = z.object({
   timeline: z.string().min(1, t_dict_es("Selecciona un tiempo estimado.")),
   description: z.string().min(10, t_dict_es("La descripción es muy corta.")),
   contactMethod: z.string().min(1, t_dict_es("Selecciona un medio de contacto.")),
+  honeypot: z.string().max(0, t_dict_es("Campo no válido.")),
 });
 
 function t_dict_es(es: string) {
@@ -85,6 +86,11 @@ export function QuoteForm({ locale }: QuoteFormProps) {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
   const onSubmit = async (data: QuoteFormValues) => {
+    // Honeypot anti-spam: si el campo oculto se llenó, no enviar.
+    if (data.honeypot) {
+      setSubmitStatus("idle");
+      return;
+    }
     try {
       await sendQuoteRequest(data);
       reset();
@@ -103,6 +109,15 @@ export function QuoteForm({ locale }: QuoteFormProps) {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Honeypot anti-spam: campo oculto para bots. */}
+          <input
+            type="text"
+            name="honeypot"
+            tabIndex={-1}
+            autoComplete="off"
+            style={{ display: "none", width: 0, height: 0, opacity: 0 }}
+            aria-hidden="true"
+          />
           {submitStatus === "success" && (
             <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
               <p className="text-sm text-primary font-medium">

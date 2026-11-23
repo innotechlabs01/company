@@ -8,6 +8,7 @@ export type Project = {
   description: LocalizedText;
   problem: LocalizedText;
   solution: LocalizedText;
+  result: LocalizedText;
   technologies: string[];
   type: LocalizedText;
   image?: string;
@@ -39,6 +40,10 @@ export const projects: Project[] = [
       es: "Software empresarial",
       en: "Enterprise software",
     },
+    result: {
+      es: "TODO: métrica de resultado (ej. reducción de tiempo de facturación en X%).",
+      en: "TODO: result metric (e.g. invoicing time reduced by X%).",
+    },
     image: "https://images.unsplash.com/photo-1460925895917-afbe65ae8364?q=80&w=800&auto=format&fit=crop",
     url: undefined,
     demo: true,
@@ -66,6 +71,10 @@ export const projects: Project[] = [
       es: "Landing page",
       en: "Landing page",
     },
+    result: {
+      es: "TODO: métrica de resultado (ej. tasa de conversión del X%).",
+      en: "TODO: result metric (e.g. conversion rate of X%).",
+    },
     image: "https://images.unsplash.com/photo-1460925895917-afbe65ae8364?q=80&w=800&auto=format&fit=crop",
     url: undefined,
     demo: true,
@@ -92,6 +101,10 @@ export const projects: Project[] = [
     type: {
       es: "Aplicación móvil",
       en: "Mobile application",
+    },
+    result: {
+      es: "TODO: métrica de resultado (ej. X citas agendadas por mes).",
+      en: "TODO: result metric (e.g. X appointments booked per month).",
     },
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=800&auto=format&fit=crop",
     url: undefined,

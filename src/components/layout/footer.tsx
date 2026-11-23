@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { Mail, Send, ExternalLink } from "lucide-react";
 import { BrandLogo } from "@/components/ui/brand-logo";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDictionary, t } from "@/i18n/dictionary";
 
@@ -139,6 +140,20 @@ export function Footer({ locale }: FooterProps) {
               </li>
             </ul>
           </div>
+        </div>
+
+        <div className="max-w-2xl mx-auto rounded-xl border border-border bg-card p-8 lg:p-12 text-center mt-12">
+          <h2 className="display-lg mb-4 tracking-tight text-foreground">
+            {t(dict, "ctaRepeated.afterServices", "¿Tienes un proyecto en mente?")}
+          </h2>
+          <p className="body-lg text-muted-foreground leading-relaxed mb-8 max-w-lg mx-auto">
+            {t(dict, "ctaRepeated.afterServicesDesc", "Conversemos sobre lo que quieres construir y definamos los próximos pasos.")}
+          </p>
+          <Button asChild size="lg" className="shadow-md shadow-primary/20">
+            <Link href={`/${locale}/contacto`}>
+              {t(dict, "ctaRepeated.button", "Hablemos de tu proyecto")}
+            </Link>
+          </Button>
         </div>
 
         <div className="border-t border-border/60 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-muted-foreground">
