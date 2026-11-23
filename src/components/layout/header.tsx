@@ -63,14 +63,14 @@ export function Header({ locale }: HeaderProps) {
   return (
     <>
       <header className="sticky top-0 z-40">
-        <div className="border-b border-border/60 bg-background/70 backdrop-blur-md supports-[backdrop-blur]:bg-background/50 transition-colors">
-          <div className="flex h-13 items-center justify-between px-4 lg:px-8">
+        <div className="border-b border-border/60 bg-background/80 backdrop-blur-md supports-[backdrop-blur]:bg-background/60 transition-colors">
+          <div className="mx-auto container-x flex h-16 items-center justify-between px-4 lg:px-8">
             <Link
               href={`/${locale}`}
-              className="flex items-center"
+              className="flex items-center shrink-0"
               title="Anthony Rivera"
             >
-              <BrandLogo variant="horizontal" mode="dark" width={132} />
+              <BrandLogo variant="horizontal" mode="auto" />
             </Link>
 
             <div className="hidden lg:flex items-center gap-7">
