@@ -16,6 +16,12 @@ export const site = {
     about: "/sobre-mi",
     contact: "/contacto",
   },
+  // TODO: reemplazar con los perfiles reales de Anthony Rivera
+  social: {
+    linkedin: "https://linkedin.com/in/anthonyrivera",
+    github: "https://github.com/anthonyrivera",
+    whatsapp: "https://wa.me/573128386640",
+  },
 } as const;
 
 export type Locale = (typeof site.locales)[number];

@@ -86,8 +86,14 @@ export default async function LocaleLayout({
   return (
     <div className="flex flex-col min-h-[100dvh]" data-lang={locale}>
       <LangSetter locale={locale} />
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none"
+      >
+        Saltar al contenido
+      </a>
       <Header locale={locale} />
-      <main className="flex-1">{children}</main>
+      <main id="main-content" className="flex-1">{children}</main>
       <Footer locale={locale} />
       <FloatingWhatsApp />
     </div>

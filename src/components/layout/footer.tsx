@@ -8,6 +8,7 @@ import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDictionary, t } from "@/i18n/dictionary";
+import { site } from "@/config/site";
 
 type FooterProps = {
   locale: "es" | "en";
@@ -34,17 +35,17 @@ const socialLinks = [
   {
     icon: ExternalLink,
     label: "LinkedIn",
-    href: "https://linkedin.com/in/anthonyrivera",
+    href: site.social.linkedin,
   },
   {
     icon: ExternalLink,
     label: "GitHub",
-    href: "https://github.com/anthonyrivera",
+    href: site.social.github,
   },
   {
     icon: Send,
     label: "WhatsApp",
-    href: "https://wa.me/573128386640",
+    href: site.social.whatsapp,
   },
 ];
 
