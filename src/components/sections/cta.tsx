@@ -1,3 +1,4 @@
+import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Mail } from "lucide-react";
 import { getDictionary, t } from "@/i18n/dictionary";
@@ -16,14 +17,20 @@ export function CTASection({ locale }: CTASectionProps) {
   const whatsappUrl = `https://wa.me/573128386640?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
-    <section className="px-4 py-32 lg:py-40" id="contacto">
+    <section className="px-4 py-24 lg:py-32" id="contacto">
       <div className="mx-auto container-x">
-        <div className="max-w-2xl mx-auto rounded-xl border border-border bg-card p-12 lg:p-16 text-center">
+        <div className="max-w-2xl mx-auto rounded-xl border border-border bg-card p-10 lg:p-16 text-center">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <BrandLogo variant="monogram" mode="dark" width={18} height={18} className="shrink-0" alt="AR" />
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+              Anthony Rivera
+            </span>
+          </div>
           <h2 className="display-lg mb-6 tracking-tight text-foreground">
-            {t(dict, "cta.title", "¿Tienes una idea o un proyecto en mente?")}
+            {t(dict, "cta.title", "Tu próximo proyecto puede comenzar aquí.")}
           </h2>
-          <p className="body-lg text-muted-foreground leading-relaxed mb-10 max-w-xl mx-auto">
-            {t(dict, "cta.description", "Cuéntame qué quieres construir. Podemos conversar sobre tus necesidades y encontrar la mejor manera de llevarlo a cabo.")}
+          <p className="body-lg text-muted-foreground leading-relaxed mb-12 max-w-xl mx-auto">
+            {t(dict, "cta.description", "Conversemos sobre lo que quieres construir y encontremos la mejor manera de hacerlo realidad.")}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">

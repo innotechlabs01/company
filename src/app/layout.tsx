@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     template: "%s · Anthony Rivera",
     default: "Anthony Rivera — Desarrollo de software a medida",
   },
+  icons: [{ url: "/favicon.svg" }],
 };
 
 export default async function RootLayout({

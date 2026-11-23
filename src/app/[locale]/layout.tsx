@@ -38,6 +38,7 @@ export async function generateMetadata({
         en: `${SITE_URL}/en`,
       },
     },
+    icons: [{ url: "/favicon.svg" }],
     openGraph: {
       title: m.title,
       description: m.description,

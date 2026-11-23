@@ -21,6 +21,7 @@
   "hero": {
     "eyebrow": "Software development · Digital solutions · Technology",
     "title": "I turn ideas into digital solutions that drive results.",
+    "titleHighlight": "digital solutions",
     "subtitle": "I design and develop digital experiences, platforms, and custom systems for entrepreneurs and companies seeking to build, scale, and transform their businesses through technology.",
     "ctaPrimary": "Let's talk about your project",
     "ctaSecondary": "Explore my work"
@@ -222,8 +223,8 @@
     "body": "I am interested in building products that solve real problems, combining software architecture, development, experience design, and business vision.\n\nI work with entrepreneurs and companies on projects of different sizes, from one-off developments to technology platforms and long-term products."
   },
   "cta": {
-    "title": "Do you have an idea or a project in mind?",
-    "description": "Tell me what you want to build. We can talk about your needs and find the best way to carry it out.",
+    "title": "Your next project can start here.",
+    "description": "Let's talk about what you want to build and find the best way to make it a reality.",
     "whatsapp": "Contact via WhatsApp",
     "email": "Send an email"
   },
@@ -309,5 +310,10 @@
     "ctaTitle": "Let's build something that can also tell its story.",
     "ctaButton": "Let's talk about your project"
   },
-  "demoNotice": "Demo content. Does not represent real clients."
+  "demoNotice": "Demo content. Does not represent real clients.",
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you're looking for does not exist. Return to the home page or contact me directly.",
+    "back": "Return home"
+  }
 }

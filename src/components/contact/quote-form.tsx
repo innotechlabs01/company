@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { sendQuoteRequest } from "@/app/actions/send-quote";
 import { getDictionary, t } from "@/i18n/dictionary";
 import { cn } from "@/lib/utils";
@@ -96,47 +97,52 @@ export function QuoteForm({ locale }: QuoteFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-      {submitStatus === "success" && (
-        <div className="rounded-lg border border-border bg-background p-4">
-          <p className="text-sm text-green-600 dark:text-green-400 font-medium">
-            {t(dict, "contact.form.success", "Mensaje enviado. Gracias por contactarme.")}
-          </p>
-        </div>
-      )}
-      {submitStatus === "error" && (
-        <div className="rounded-lg border border-destructive bg-destructive/10 p-4">
-          <p className="text-sm text-destructive font-medium">
-            {t(dict, "contact.form.error", "Hubo un error al enviar el mensaje.")}
-          </p>
-        </div>
-      )}
+    <Card className="p-8 md:p-12 border border-border">
+      <CardHeader>
+        <CardTitle className="text-lg font-semibold">{t(dict, "contact.form.title", "Solicitud de cotización")}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {submitStatus === "success" && (
+            <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+              <p className="text-sm text-primary-foreground font-medium">
+                {t(dict, "contact.form.success", "Mensaje enviado. Gracias por contactarme.")}
+              </p>
+            </div>
+          )}
+          {submitStatus === "error" && (
+            <div className="rounded-lg border border-destructive/20 bg-destructive/5 p-4">
+              <p className="text-sm text-destructive font-medium">
+                {t(dict, "contact.form.error", "Hubo un error al enviar el mensaje.")}
+              </p>
+            </div>
+          )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div className="space-y-2">
-          <Label>{t(dict, "contact.form.fullName", "Nombre completo")}</Label>
-          <Input
-            {...register("fullName")}
-            placeholder="Juan Pérez"
-            className={cnInput(!!errors.fullName)}
-          />
-          {errors.fullName && (
-            <p className="text-xs text-destructive">{errors.fullName.message}</p>
-          )}
-        </div>
-        <div className="space-y-2">
-          <Label>{t(dict, "contact.form.email", "Correo electrónico")}</Label>
-          <Input
-            {...register("email")}
-            placeholder="juan@empresa.com"
-            type="email"
-            className={cnInput(!!errors.email)}
-          />
-          {errors.email && (
-            <p className="text-xs text-destructive">{errors.email.message}</p>
-          )}
-        </div>
-      </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="space-y-2">
+              <Label>{t(dict, "contact.form.fullName", "Nombre completo")}</Label>
+              <Input
+                {...register("fullName")}
+                placeholder="Juan Pérez"
+                className={cnInput(!!errors.fullName)}
+              />
+              {errors.fullName && (
+                <p className="text-xs text-destructive">{errors.fullName.message}</p>
+              )}
+            </div>
+            <div className="space-y-2">
+              <Label>{t(dict, "contact.form.email", "Correo electrónico")}</Label>
+              <Input
+                {...register("email")}
+                placeholder="juan@empresa.com"
+                type="email"
+                className={cnInput(!!errors.email)}
+              />
+              {errors.email && (
+                <p className="text-xs text-destructive">{errors.email.message}</p>
+              )}
+            </div>
+          </div>
 
       <div className="space-y-2">
         <Label>{t(dict, "contact.form.company", "Empresa")}</Label>
@@ -242,6 +248,8 @@ export function QuoteForm({ locale }: QuoteFormProps) {
           : t(dict, "contact.form.submit", "Enviar solicitud")}
       </Button>
     </form>
+      </CardContent>
+    </Card>
   );
 }
 

@@ -21,6 +21,7 @@
   "hero": {
     "eyebrow": "Desarrollo de software · Soluciones digitales · Tecnología",
     "title": "Transformo ideas en soluciones digitales que generan resultados.",
+    "titleHighlight": "soluciones digitales",
     "subtitle": "Diseño y desarrollo experiencias digitales, plataformas y sistemas a medida para emprendedores y empresas que buscan construir, escalar y transformar sus negocios mediante tecnología.",
     "ctaPrimary": "Hablemos de tu proyecto",
     "ctaSecondary": "Explorar mi trabajo"
@@ -222,8 +223,8 @@
     "body": "Me interesa construir productos que resuelvan problemas reales, combinando arquitectura de software, desarrollo, diseño de experiencias y visión de negocio.\n\nTrabajo con emprendedores y empresas en proyectos de diferentes dimensiones, desde desarrollos puntuales hasta plataformas tecnológicas y productos de largo recorrido."
   },
   "cta": {
-    "title": "¿Tienes una idea o un proyecto en mente?",
-    "description": "Cuéntame qué quieres construir. Podemos conversar sobre tus necesidades y encontrar la mejor manera de llevarlo a cabo.",
+    "title": "Tu próximo proyecto puede comenzar aquí.",
+    "description": "Conversemos sobre lo que quieres construir y encontremos la mejor manera de hacerlo realidad.",
     "whatsapp": "Contactar por WhatsApp",
     "email": "Enviar un correo"
   },
@@ -309,5 +310,10 @@
     "ctaTitle": "Construyamos algo que también pueda contar su historia.",
     "ctaButton": "Hablemos de tu proyecto"
   },
-  "demoNotice": "Contenido de demostración. No representa clientes reales."
+  "demoNotice": "Contenido de demostración. No representa clientes reales.",
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe. Vuelve al inicio o contáctame directamente.",
+    "back": "Volver al inicio"
+  }
 }

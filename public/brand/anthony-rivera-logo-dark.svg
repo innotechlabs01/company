@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 72" fill="none">
+  <!-- Monograma AR (fondo claro: A en Deep Blue, R en Electric Blue) -->
+  <g transform="translate(10, 10) scale(0.8125)">
+    <path d="M18 58 L26 10 L36 58" stroke="#0866C6" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M22 38 L30 38" stroke="#0866C6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M36 58 L36 14" stroke="#299BFF" stroke-width="4" stroke-linecap="round"/>
+    <path d="M36 14 Q44 14 44 26 Q44 36 36 36" stroke="#299BFF" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M36 36 L46 58" stroke="#299BFF" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <!-- Nombre -->
+  <text x="72" y="35" dominant-baseline="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="23" font-weight="600" fill="#111827" letter-spacing="-0.02em">Anthony Rivera</text>
+  <!-- Descriptor -->
+  <text x="72" y="57" dominant-baseline="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="500" fill="#64748B" letter-spacing="0.22em" text-transform="uppercase">Software Developer &amp; Technology Partner</text>
+</svg>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Star } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { featuredTestimonials } from "@/data/testimonials";
 import { getDictionary, t } from "@/i18n/dictionary";
@@ -15,7 +14,7 @@ export default function TestimonialsSection({
   const featured = featuredTestimonials.filter((t) => t.language === locale);
 
   return (
-    <section className="px-4 py-32 lg:py-40 border-t border-border/60">
+    <section className="px-4 py-24 lg:py-32 border-t border-border/60">
       <div className="mx-auto container-x">
         <div className="text-center mb-20">
           <h2 className="display-lg mb-6 tracking-tight text-foreground">
@@ -26,35 +25,30 @@ export default function TestimonialsSection({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.length > 0 ? (
             featured.map((testimonial) => (
               <Card
                 key={testimonial.id}
-                className="p-8 border border-border bg-card"
+                className="p-8 border border-border hover:border-primary/40 transition-colors"
               >
-                <div className="flex items-center gap-2 mb-6">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 fill-amber-400 text-amber-400"
-                    />
-                  ))}
+                <div className="flex items-start gap-3 mb-6">
+                  <span className="text-3xl font-serif text-primary/20 leading-none">“</span>
                 </div>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  “{testimonial.content}”
+                <p className="body-lg text-muted-foreground leading-relaxed mb-8">
+                  {testimonial.content}
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden">
-                    <span className="text-xs font-medium">
+                  <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden shrink-0">
+                    <span className="text-xs font-medium text-muted-foreground">
                       {testimonial.name.charAt(0)}
                     </span>
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-foreground">
+                    <p className="text-sm font-semibold text-foreground leading-tight">
                       {testimonial.name}
                     </p>
-                    <p className="text-xs text-muted-foreground">
+                    <p className="text-xs text-muted-foreground leading-tight">
                       {testimonial.role}{testimonial.company ? ` · ${testimonial.company}` : ""}
                     </p>
                   </div>
@@ -62,7 +56,7 @@ export default function TestimonialsSection({
               </Card>
             ))
           ) : (
-            <div className="col-span-3 text-center py-20">
+            <div className="col-span-3 text-center py-24">
               <p className="text-muted-foreground text-sm">
                 {t(dict, "testimonials.seeAll", "Próximamente: experiencias de clientes")}
               </p>
@@ -73,7 +67,7 @@ export default function TestimonialsSection({
         <div className="mt-16 text-center">
           <Link
             href={`/${locale}/testimonios`}
-            className="inline-flex items-center justify-center gap-2 rounded-md border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground hover:bg-secondary transition-colors w-full lg:w-auto"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground hover:bg-muted transition-colors w-full lg:w-auto"
           >
             {t(dict, "testimonials.seeAll", "Conoce todas las experiencias")}
           </Link>

@@ -13,9 +13,9 @@ export function Technologies({ locale }: TechnologiesProps) {
   }>;
 
   return (
-    <section className="px-4 py-32 lg:py-40 border-t border-border/60" id="tecnologias">
+    <section className="px-4 py-24 lg:py-32 border-t border-border/60" id="tecnologias">
       <div className="mx-auto container-x">
-        <div className="text-center lg:max-w-2xl mx-auto mb-24">
+        <div className="text-center lg:max-w-2xl mx-auto mb-20">
           <h2 className="display-lg mb-6 tracking-tight text-foreground">
             {t(dict, "technologies.title", "Tecnologías y capacidades.")}
           </h2>
@@ -24,26 +24,28 @@ export function Technologies({ locale }: TechnologiesProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {categories.map((category, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {categories.map((category) => (
             <Card
-              key={index}
-              className="border border-border bg-card hover:shadow-sm transition-colors p-8"
+              key={category.name}
+              className="border border-border p-8 hover:shadow-md transition-colors"
             >
-              <CardHeader>
+              <CardHeader className="pb-4">
                 <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                   {category.name}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="pt-6">
-                <ul className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-2">
                   {category.items.map((item, i) => (
-                    <li key={i} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+                    <span
+                      key={i}
+                      className="px-3 py-1.5 rounded-full border border-border/60 bg-muted text-xs font-medium text-muted-foreground"
+                    >
                       {item}
-                    </li>
+                    </span>
                   ))}
-                </ul>
+                </div>
               </CardContent>
             </Card>
           ))}
