@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { LangSetter } from "@/components/layout/lang-setter";
+import { site } from "@/config/site";
 
-const SITE_NAME = "Anthony Rivera";
-const SITE_URL = "https://anthonyrivera.dev";
+const SITE_NAME = site.name;
 
 const metaByLocale: Record<Locale, { title: string; description: string }> = {
   es: {
@@ -27,35 +27,46 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = (await params) as { locale: Locale };
   const m = metaByLocale[locale] || metaByLocale.es;
+  const alternates = site.locales.reduce<Record<string, string>>((acc, l) => {
+    acc[l] = `${site.url}/${l}`;
+    return acc;
+  }, {});
 
   return {
+    metadataBase: new URL(site.url),
     title: m.title,
     description: m.description,
     alternates: {
-      canonical: `${SITE_URL}/${locale}`,
-      languages: {
-        es: `${SITE_URL}/es`,
-        en: `${SITE_URL}/en`,
-      },
+      canonical: `${site.url}/${locale}`,
+      languages: alternates,
     },
     icons: [{ url: "/favicon.svg" }],
     openGraph: {
       title: m.title,
       description: m.description,
-      url: `${SITE_URL}/${locale}`,
+      url: `${site.url}/${locale}`,
       siteName: SITE_NAME,
       locale: locale === "es" ? "es_CO" : "en_US",
       type: "website",
+      images: [
+        {
+          url: `/images/og-${locale}.jpg`,
+          width: 1200,
+          height: 630,
+          alt: SITE_NAME,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: m.title,
       description: m.description,
+      images: [`/images/og-${locale}.jpg`],
     },
     other: {
-      "hreflang-es": `${SITE_URL}/es`,
-      "hreflang-en": `${SITE_URL}/en`,
-      "hreflang-x-default": `${SITE_URL}/es`,
+      "hreflang-es": `${site.url}/es`,
+      "hreflang-en": `${site.url}/en`,
+      "hreflang-x-default": `${site.url}/es`,
     },
   };
 }

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cookies } from "next/headers";
+import { site } from "@/config/site";
+import { JsonLd } from "@/components/ui/json-ld";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: {
     template: "%s · Anthony Rivera",
     default: "Anthony Rivera — Desarrollo de software a medida",
@@ -37,6 +40,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-[100dvh] flex flex-col`}
       >
         {children}
+        <JsonLd locale={locale} />
       </body>
     </html>
   );
