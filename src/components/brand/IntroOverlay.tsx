@@ -6,7 +6,7 @@ import { BrandIntro } from "./BrandIntro";
 
 const INTRO_SEEN_KEY = "ar:intro:seen";
 
-export function IntroOverlay({ onFinish }: { onFinish: () => void }) {
+export function IntroOverlay() {
   const [visible, setVisible] = useState(
     () => sessionStorage.getItem(INTRO_SEEN_KEY) !== "1",
   );
@@ -14,14 +14,12 @@ export function IntroOverlay({ onFinish }: { onFinish: () => void }) {
   const handleSkip = useCallback(() => {
     sessionStorage.setItem(INTRO_SEEN_KEY, "1");
     setVisible(false);
-    onFinish();
-  }, [onFinish]);
+  }, []);
 
   const handleFinish = useCallback(() => {
     sessionStorage.setItem(INTRO_SEEN_KEY, "1");
     setVisible(false);
-    onFinish();
-  }, [onFinish]);
+  }, []);
 
   if (!visible) return null;
 

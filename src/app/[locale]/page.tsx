@@ -27,7 +27,7 @@ export default async function Home({
 
   return (
     <>
-      <IntroOverlay onFinish={() => {}} />
+      <IntroOverlay />
 
       <SectionFade delay={0}>
         <Hero locale={l} />
