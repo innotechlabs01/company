@@ -8,6 +8,7 @@ import TestimonialsSection from "@/components/sections/testimonials";
 import { About } from "@/components/sections/about";
 import { CTASection } from "@/components/sections/cta";
 import { SectionFade } from "@/components/ui/section-fade";
+import { IntroOverlay } from "@/components/brand/IntroOverlay";
 import type { Locale } from "@/i18n/dictionary";
 
 export const generateStaticParams = () => {
@@ -24,6 +25,7 @@ export default async function Home({
 
   return (
     <>
+      <IntroOverlay />
       <Hero locale={l} />
       <SectionFade>
         <Services locale={l} />
