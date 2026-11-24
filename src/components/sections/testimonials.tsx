@@ -22,14 +22,21 @@ export default function TestimonialsSection({
           : "grid grid-cols-1 gap-6";
 
   return (
-    <section className="px-4 py-24 lg:py-32 border-t border-border/60">
+    <section className="py-24 lg:py-28 bg-muted/35 border-y border-border/60">
       <div className="mx-auto container-x">
-        <div className="text-center mb-20">
-          <h2 className="display-lg mb-6 tracking-tight text-foreground">
+        <div className="text-center mb-16">
+          <p className="eyebrow text-primary mb-3">
+            {locale === "en" ? "Client Feedback" : "Testimonios"}
+          </p>
+          <h2 className="display-lg mb-5 tracking-tight text-foreground">
             {t(dict, "testimonials.title", "Las experiencias hablan por sí solas.")}
           </h2>
           <p className="body-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            {t(dict, "testimonials.subtitle", "Opiniones reales de quienes han trabajado conmigo y los resultados de sus proyectos.")}
+            {t(
+              dict,
+              "testimonials.subtitle",
+              "Opiniones reales de quienes han trabajado conmigo y los resultados de sus proyectos.",
+            )}
           </p>
         </div>
 
@@ -38,17 +45,21 @@ export default function TestimonialsSection({
             featured.map((testimonial) => (
               <Card
                 key={testimonial.id}
-                className="p-8 border border-border hover:border-primary/40 transition-colors"
+                className="p-7 bg-card border border-border hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between"
               >
-                <div className="flex items-start gap-3 mb-6">
-                  <span className="text-3xl font-serif text-primary/20 leading-none">“</span>
+                <div>
+                  <div className="mb-4">
+                    <span className="font-mono text-2xl font-bold text-primary/40 leading-none">
+                      &ldquo;
+                    </span>
+                  </div>
+                  <p className="body text-muted-foreground leading-relaxed mb-7">
+                    {testimonial.content}
+                  </p>
                 </div>
-                <p className="body-lg text-muted-foreground leading-relaxed mb-8">
-                  {testimonial.content}
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden shrink-0">
-                    <span className="text-xs font-medium text-muted-foreground">
+                <div className="flex items-center gap-3 pt-4 border-t border-border/60">
+                  <div className="w-9 h-9 rounded-full border border-border bg-muted flex items-center justify-center overflow-hidden shrink-0">
+                    <span className="font-mono text-xs font-semibold text-foreground">
                       {testimonial.name.charAt(0)}
                     </span>
                   </div>
@@ -56,15 +67,16 @@ export default function TestimonialsSection({
                     <p className="text-sm font-semibold text-foreground leading-tight">
                       {testimonial.name}
                     </p>
-                    <p className="text-xs text-muted-foreground leading-tight">
-                      {testimonial.role}{testimonial.company ? ` · ${testimonial.company}` : ""}
+                    <p className="text-xs text-muted-foreground leading-tight mt-0.5">
+                      {testimonial.role}
+                      {testimonial.company ? ` · ${testimonial.company}` : ""}
                     </p>
                   </div>
                 </div>
               </Card>
             ))
           ) : (
-            <div className="col-span-3 text-center py-24">
+            <div className="col-span-3 text-center py-16">
               <p className="text-muted-foreground text-sm">
                 {t(dict, "testimonials.seeAll", "Próximamente: experiencias de clientes")}
               </p>
@@ -72,10 +84,10 @@ export default function TestimonialsSection({
           )}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-12 text-center">
           <Link
             href={`/${locale}/testimonios`}
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground hover:bg-muted transition-colors w-full lg:w-auto"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground hover:border-primary/40 hover:bg-muted/60 transition-colors w-full sm:w-auto"
           >
             {t(dict, "testimonials.seeAll", "Conoce todas las experiencias")}
           </Link>

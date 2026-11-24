@@ -5,7 +5,6 @@ import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import { Mail, Send, ExternalLink } from "lucide-react";
 import { BrandLogo } from "@/components/ui/brand-logo";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDictionary, t } from "@/i18n/dictionary";
 import { site } from "@/config/site";
@@ -67,8 +66,8 @@ export function Footer({ locale }: FooterProps) {
   };
 
   return (
-    <footer className="border-t border-border/60 bg-background">
-      <div className="px-4 lg:px-8 py-12">
+    <footer className="border-t border-border/70 bg-background">
+      <div className="container-x mx-auto py-14 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           <div className="col-span-1 md:col-span-2 lg:col-span-2">
             <div className="flex items-center gap-2 mb-5">
@@ -83,7 +82,7 @@ export function Footer({ locale }: FooterProps) {
             </p>
           </div>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider mb-6">
+            <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-foreground mb-5">
               {t(dict, "footer.nav", "Navegación")}
             </h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
@@ -100,7 +99,7 @@ export function Footer({ locale }: FooterProps) {
             </ul>
           </div>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider mb-6">
+            <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-foreground mb-5">
               {t(dict, "footer.services", "Servicios")}
             </h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
@@ -117,7 +116,7 @@ export function Footer({ locale }: FooterProps) {
             </ul>
           </div>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider mb-6">
+            <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-foreground mb-5">
               {t(dict, "footer.contact", "Contacto")}
             </h3>
             <ul className="space-y-3 text-sm text-muted-foreground">
@@ -143,21 +142,7 @@ export function Footer({ locale }: FooterProps) {
           </div>
         </div>
 
-        <div className="max-w-2xl mx-auto rounded-xl border border-border bg-card p-8 lg:p-12 text-center mt-12">
-          <h2 className="display-lg mb-4 tracking-tight text-foreground">
-            {t(dict, "ctaRepeated.afterServices", "¿Tienes un proyecto en mente?")}
-          </h2>
-          <p className="body-lg text-muted-foreground leading-relaxed mb-8 max-w-lg mx-auto">
-            {t(dict, "ctaRepeated.afterServicesDesc", "Conversemos sobre lo que quieres construir y definamos los próximos pasos.")}
-          </p>
-          <Button asChild size="lg" className="shadow-md shadow-primary/20">
-            <Link href={`/${locale}/contacto`}>
-              {t(dict, "ctaRepeated.button", "Hablemos de tu proyecto")}
-            </Link>
-          </Button>
-        </div>
-
-        <div className="border-t border-border/60 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-muted-foreground">
+        <div className="border-t border-border/70 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-muted-foreground">
           <p className="leading-none">
             {t(dict, "footer.rights", "Derechos reservados.")}{" "}
             {new Date().getFullYear()} Anthony Rivera.

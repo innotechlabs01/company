@@ -14,7 +14,6 @@ import {
   Headset,
 } from "lucide-react";
 import { getDictionary, t } from "@/i18n/dictionary";
-import { cn } from "@/lib/utils";
 
 type ServicesProps = {
   locale: "es" | "en";
@@ -44,10 +43,16 @@ export function Services({ locale }: ServicesProps) {
   }>;
 
   return (
-    <section className="px-4 py-24 lg:py-32" id="servicios">
+    <section
+      className="py-24 lg:py-28 bg-muted/35 border-y border-border/60"
+      id="servicios"
+    >
       <div className="mx-auto container-x">
-        <div className="text-center lg:max-w-2xl mx-auto mb-20">
-          <h2 className="display-lg mb-6 tracking-tight text-foreground">
+        <div className="text-center lg:max-w-2xl mx-auto mb-16">
+          <p className="eyebrow text-primary mb-3">
+            {locale === "en" ? "Capabilities" : "Capacidades"}
+          </p>
+          <h2 className="display-lg mb-5 tracking-tight text-foreground">
             {t(dict, "services.title", "Soluciones digitales para cada etapa de tu negocio.")}
           </h2>
           <p className="body-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
@@ -61,40 +66,40 @@ export function Services({ locale }: ServicesProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((item, index) => {
             const Icon = serviceIcons[item.name] || Code;
-            const isFeatured = index === 0;
+            const stepNum = String(index + 1).padStart(2, "0");
             return (
               <Card
                 key={item.name}
-                className={cn(
-                  "border border-border hover:border-primary/60 hover:shadow-md transition-colors group",
-                  isFeatured ? "lg:col-span-2" : "",
-                )}
+                className="bg-card border border-border hover:border-primary/40 hover:shadow-md transition-all group flex flex-col"
               >
                 <CardHeader className="p-6 pb-4">
-                  <div className="flex items-center gap-3 mb-5">
-                    <div className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:bg-primary group-hover:text-white transition-colors">
-                      <Icon className="h-5 w-5" />
+                  <div className="flex items-center justify-between gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-lg border border-border/80 bg-muted/70 flex items-center justify-center text-foreground group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground transition-colors">
+                      <Icon className="h-5 w-5" aria-hidden="true" />
                     </div>
-                    <span className="ml-auto text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                      {index + 1}
+                    <span className="font-mono text-xs font-medium text-muted-foreground">
+                      {stepNum}
                     </span>
                   </div>
-                  <CardTitle className="text-lg font-semibold leading-tight mb-2">
+                  <CardTitle className="text-lg font-semibold leading-snug mb-2">
                     {item.name}
                   </CardTitle>
                   <CardDescription className="text-sm leading-relaxed">
                     {item.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-6 pt-0">
-                  <ul className="space-y-2">
+                <CardContent className="p-6 pt-2 mt-auto">
+                  <ul className="space-y-2 border-t border-border/60 pt-4">
                     {item.subitems.map((sub, si) => (
-                      <li key={si} className="flex items-center gap-2 text-sm text-muted-foreground leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary/50 shrink-0" />
-                        {sub}
+                      <li
+                        key={si}
+                        className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed"
+                      >
+                        <span className="mt-2 w-1.5 h-1.5 rounded-full bg-primary/70 shrink-0" />
+                        <span>{sub}</span>
                       </li>
                     ))}
                   </ul>

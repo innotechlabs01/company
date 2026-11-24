@@ -13,34 +13,46 @@ export function Technologies({ locale }: TechnologiesProps) {
   }>;
 
   return (
-    <section className="px-4 py-24 lg:py-32 border-t border-border/60" id="tecnologias">
+    <section className="py-24 lg:py-28" id="tecnologias">
       <div className="mx-auto container-x">
-        <div className="text-center lg:max-w-2xl mx-auto mb-20">
-          <h2 className="display-lg mb-6 tracking-tight text-foreground">
+        <div className="text-center lg:max-w-2xl mx-auto mb-16">
+          <p className="eyebrow text-primary mb-3">
+            {locale === "en" ? "Tech Stack" : "Stack Tecnológico"}
+          </p>
+          <h2 className="display-lg mb-5 tracking-tight text-foreground">
             {t(dict, "technologies.title", "Tecnologías y capacidades.")}
           </h2>
           <p className="body-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            {t(dict, "technologies.note", "Tecnologías destacadas aplicadas en proyectos reales. Sin listados interminables de logos.")}
+            {t(
+              dict,
+              "technologies.note",
+              "Tecnologías destacadas aplicadas en proyectos reales. Sin listados interminables de logos.",
+            )}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {categories.map((category) => (
+          {categories.map((category, index) => (
             <Card
               key={category.name}
-              className="border border-border p-8 hover:shadow-md transition-colors"
+              className="bg-card border border-border hover:border-primary/40 hover:shadow-md transition-all flex flex-col"
             >
-              <CardHeader className="pb-4">
-                <CardTitle className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-                  {category.name}
-                </CardTitle>
+              <CardHeader className="p-6 pb-4 border-b border-border/60">
+                <div className="flex items-center justify-between gap-2">
+                  <CardTitle className="font-mono text-xs font-semibold uppercase tracking-wider text-foreground">
+                    {category.name}
+                  </CardTitle>
+                  <span className="font-mono text-[11px] text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
               </CardHeader>
-              <CardContent className="pt-0">
+              <CardContent className="p-6 pt-5">
                 <div className="flex flex-wrap gap-2">
                   {category.items.map((item, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1.5 rounded-full border border-border/60 bg-muted text-xs font-medium text-muted-foreground"
+                      className="px-2.5 py-1 rounded-md border border-border/80 bg-muted/60 font-mono text-xs text-foreground/85"
                     >
                       {item}
                     </span>

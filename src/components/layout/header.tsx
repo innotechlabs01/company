@@ -63,8 +63,8 @@ export function Header({ locale }: HeaderProps) {
   return (
     <>
       <header className="sticky top-0 z-40">
-        <div className="border-b border-border/60 bg-background/80 backdrop-blur-md supports-[backdrop-blur]:bg-background/60 transition-colors">
-          <div className="mx-auto container-x flex h-16 items-center justify-between px-4 lg:px-8">
+        <div className="border-b border-border/70 bg-background/85 backdrop-blur-md supports-[backdrop-filter]:bg-background/75 transition-colors">
+          <div className="mx-auto container-x flex h-16 items-center justify-between">
             <Link
               href={`/${locale}`}
               className="flex items-center shrink-0"

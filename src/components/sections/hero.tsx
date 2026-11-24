@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React from "react";
+import { ArrowRight, CheckCircle2, Cpu, GitBranch, Layers, ShieldCheck, Terminal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SectionFade } from "@/components/ui/section-fade";
 import { getDictionary, t } from "@/i18n/dictionary";
+
 type HeroProps = {
   locale: "es" | "en";
 };
@@ -28,112 +29,186 @@ function highlightTitle(dict: Record<string, unknown>) {
 export function Hero({ locale }: HeroProps) {
   const dict = getDictionary(locale);
 
+  const trustPillars =
+    locale === "en"
+      ? [
+          { icon: Layers, label: "Clean Architecture" },
+          { icon: Cpu, label: "Full-Stack & Cloud" },
+          { icon: ShieldCheck, label: "Production SLA" },
+        ]
+      : [
+          { icon: Layers, label: "Arquitectura Limpia" },
+          { icon: Cpu, label: "Full-Stack & Cloud" },
+          { icon: ShieldCheck, label: "Calidad en Producción" },
+        ];
+
+  const modules = [
+    {
+      name: "web-platform",
+      stack: "Next.js · TypeScript",
+      status: "99.98%",
+    },
+    {
+      name: "core-api",
+      stack: "Node.js · PostgreSQL",
+      status: "42ms p95",
+    },
+    {
+      name: "mobile-client",
+      stack: "React Native · Expo",
+      status: "iOS / Android",
+    },
+    {
+      name: "cloud-infra",
+      stack: "Docker · CI/CD",
+      status: "Automated",
+    },
+  ];
+
   return (
-    <SectionFade delay={0}>
-      <section
-        className="relative px-4 pt-12 pb-20 sm:pt-16 sm:pb-24 lg:pt-24 lg:pb-32 overflow-hidden"
-        id="inicio"
-      >
-        {/* Subtle radial glow and architectural grid accent */}
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(22,136,248,0.08),_transparent_60%)]"
-          aria-hidden="true"
-        />
-        <div
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(22,136,248,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(22,136,248,0.03)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]"
-          aria-hidden="true"
-        />
+    <section
+      className="relative pt-14 pb-20 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28 overflow-hidden"
+      id="inicio"
+    >
+      {/* Subtle radial glow and architectural grid accent */}
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(22,136,248,0.08),_transparent_58%)]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.035)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_78%)]"
+        aria-hidden="true"
+      />
 
-        {/* Decoración geométrica sutil inspirada en el monograma (solo escritorio). */}
-        <div className="hidden lg:block absolute top-0 right-0 w-[700px] h-[700px] -mt-20 -mr-20 overflow-hidden pointer-events-none">
-          <div className="relative w-full h-full">
-            <div
-              className="absolute top-1/3 right-1/5 w-32 h-32 rounded-full border border-primary/10"
-            />
-            <div
-              className="absolute bottom-1/4 right-1/6 w-40 h-40 rounded-full border border-primary/10"
-            />
-            <div className="absolute right-1/4 top-1/2 -translate-y-1/2 w-[1px] h-[300px] bg-primary/20" />
+      <div className="mx-auto container-x relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          <div className="lg:col-span-7">
+            <div className="mb-6">
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card/90 px-3.5 py-1.5 shadow-sm backdrop-blur-sm">
+                <span className="relative flex h-2 w-2 shrink-0" aria-hidden="true">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                </span>
+                <span className="eyebrow text-muted-foreground tracking-[0.12em] sm:tracking-[0.14em]">
+                  {t(dict, "hero.eyebrow", "Software development · Digital solutions")}
+                </span>
+              </div>
+            </div>
+
+            <h1 className="display-xl mb-6 tracking-tight text-foreground">
+              {highlightTitle(dict)}
+            </h1>
+
+            <p className="body-lg text-muted-foreground mb-8 max-w-xl leading-relaxed">
+              {t(
+                dict,
+                "hero.subtitle",
+                "Diseño y desarrollo experiencias digitales, plataformas y sistemas a medida para emprendedores y empresas que buscan construir, escalar y transformar sus negocios mediante tecnología.",
+              )}
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center gap-3.5">
+              <Button asChild size="lg" className="w-full sm:w-auto shadow-md shadow-primary/20">
+                <Link href={`/${locale}/contacto`} className="inline-flex items-center gap-2">
+                  {t(dict, "hero.ctaPrimary", "Hablemos de tu proyecto")}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button variant="outline" asChild size="lg" className="w-full sm:w-auto bg-card">
+                <Link href={`/${locale}/#casos-de-estudio`}>
+                  {t(dict, "hero.ctaSecondary", "Explorar proyectos")}
+                </Link>
+              </Button>
+            </div>
+
+            {/* Engineering trust bar */}
+            <div className="mt-10 pt-7 border-t border-border/70 flex flex-wrap items-center gap-x-7 gap-y-3">
+              {trustPillars.map((pillar) => {
+                const Icon = pillar.icon;
+                return (
+                  <div
+                    key={pillar.label}
+                    className="inline-flex items-center gap-2 text-xs font-mono text-muted-foreground"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
+                    <span>{pillar.label}</span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
 
-        <div className="mx-auto container-x relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-            <div className="lg:col-span-7">
-              <div className="mb-6 sm:mb-8">
-                <div className="inline-flex items-center gap-2 rounded-full border border-border/80 bg-muted/60 px-3.5 py-1.5 backdrop-blur-sm">
-                  <span className="h-2 w-2 rounded-full bg-primary shrink-0" aria-hidden="true" />
-                  <span className="eyebrow text-muted-foreground tracking-[0.12em] sm:tracking-[0.16em]">
-                    {t(dict, "hero.eyebrow", "Software development · Digital solutions")}
+          {/* Dark-surface engineering telemetry & architecture panel */}
+          <div className="lg:col-span-5">
+            <div className="relative w-full rounded-2xl border border-slate-800 bg-slate-950 text-slate-100 shadow-2xl overflow-hidden">
+              <div
+                className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-primary/20 blur-3xl"
+                aria-hidden="true"
+              />
+              <div
+                className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:28px_28px]"
+                aria-hidden="true"
+              />
+
+              {/* Window header */}
+              <div className="relative flex items-center justify-between px-5 py-3.5 border-b border-slate-800/80 bg-slate-900/60">
+                <div className="flex items-center gap-2">
+                  <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-slate-700" />
+                  <span className="ml-2 inline-flex items-center gap-1.5 font-mono text-[11px] text-slate-400">
+                    <Terminal className="h-3 w-3 text-primary" aria-hidden="true" />
+                    architecture.spec.ts
                   </span>
                 </div>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 font-mono text-[10px] font-medium text-emerald-400">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  CI/CD Ready
+                </span>
               </div>
 
-              <h1 className="display-xl mb-6 sm:mb-8 tracking-tight text-foreground">
-                {highlightTitle(dict)}
-              </h1>
+              {/* System modules */}
+              <div className="relative p-5 space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  {modules.map((mod) => (
+                    <div
+                      key={mod.name}
+                      className="rounded-xl border border-slate-800/90 bg-slate-900/70 p-3.5 transition-colors hover:border-primary/40"
+                    >
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="font-mono text-xs font-medium text-slate-100 truncate">
+                          {mod.name}
+                        </span>
+                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" aria-hidden="true" />
+                      </div>
+                      <p className="text-[11px] text-slate-400 mb-2">{mod.stack}</p>
+                      <span className="inline-block font-mono text-[10px] text-sky-400 bg-sky-500/10 border border-sky-500/20 rounded px-1.5 py-0.5">
+                        {mod.status}
+                      </span>
+                    </div>
+                  ))}
+                </div>
 
-              <p className="body-lg text-muted-foreground mb-9 sm:mb-12 max-w-xl leading-relaxed">
-                {t(
-                  dict,
-                  "hero.subtitle",
-                  "Diseño y desarrollo experiencias digitales, plataformas y sistemas a medida para emprendedores y empresas que buscan construir, escalar y transformar sus negocios mediante tecnología.",
-                )}
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Button asChild size="lg" className="w-full sm:w-auto shadow-md shadow-primary/20">
-                  <Link href={`/${locale}/contacto`}>
-                    {t(dict, "hero.ctaPrimary", "Hablemos de tu proyecto")}
-                  </Link>
-                </Button>
-                <Button variant="outline" asChild size="lg" className="w-full sm:w-auto">
-                  <Link href={`/${locale}/#proyectos`}>
-                    {t(dict, "hero.ctaSecondary", "Explorar proyectos")}
-                  </Link>
-                </Button>
-              </div>
-            </div>
-
-            {/* Tarjeta arquitectónica del monograma AR (conecta la intro con el landing) */}
-            <div className="hidden lg:flex lg:col-span-5 justify-end">
-              <div className="relative w-full max-w-[380px] rounded-2xl border border-border/80 bg-[#080B12] p-8 text-white shadow-xl overflow-hidden">
-                <div
-                  className="pointer-events-none absolute -top-20 -right-20 h-56 w-56 rounded-full bg-[#1688F8]/20 blur-3xl"
-                  aria-hidden="true"
-                />
-                <div
-                  className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px]"
-                  aria-hidden="true"
-                />
-                <div className="relative flex flex-col items-center text-center py-6">
-                  <svg
-                    width={128}
-                    height={128}
-                    viewBox="0 0 64 64"
-                    fill="none"
-                    aria-hidden="true"
-                    className="mb-6"
-                  >
-                    <path d="M18 58 L26 10 L36 58" stroke="#FFFFFF" strokeWidth="3.5" strokeLinejoin="round" strokeLinecap="round" />
-                    <path d="M22 38 L30 38" stroke="#FFFFFF" strokeWidth="3.5" strokeLinecap="round" />
-                    <path d="M36 58 L36 14" stroke="#299BFF" strokeWidth="3.5" strokeLinecap="round" />
-                    <path d="M36 14 Q44 14 44 26 Q44 36 36 36" stroke="#299BFF" strokeWidth="3.5" strokeLinecap="round" fill="none" />
-                    <path d="M36 36 L46 58" stroke="#299BFF" strokeWidth="3.5" strokeLinecap="round" />
-                  </svg>
-                  <p className="text-xl font-bold tracking-tight text-white">
-                    Anthony Rivera
-                  </p>
-                  <div className="h-px w-12 bg-[#299BFF]/70 my-3" />
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-slate-400 font-medium">
-                    Software Developer &amp; Technology Partner
-                  </p>
+                {/* Delivery pipeline footer */}
+                <div className="rounded-xl border border-slate-800/90 bg-slate-900/80 p-3.5">
+                  <div className="flex items-center justify-between text-[11px] font-mono mb-2">
+                    <span className="inline-flex items-center gap-1.5 text-slate-300">
+                      <GitBranch className="h-3.5 w-3.5 text-primary" aria-hidden="true" />
+                      main → production
+                    </span>
+                    <span className="text-emerald-400">
+                      {locale === "en" ? "100% checks passed" : "100% checks OK"}
+                    </span>
+                  </div>
+                  <div className="h-1.5 w-full rounded-full bg-slate-800 overflow-hidden">
+                    <div className="h-full w-full rounded-full bg-gradient-to-r from-primary via-sky-400 to-emerald-400" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </SectionFade>
+      </div>
+    </section>
   );
 }

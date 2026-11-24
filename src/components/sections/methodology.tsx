@@ -13,10 +13,16 @@ export function Methodology({ locale }: MethodologyProps) {
   }>;
 
   return (
-    <section className="px-4 py-24 lg:py-32" id="metodologia">
+    <section
+      className="py-24 lg:py-28 bg-muted/35 border-y border-border/60"
+      id="metodologia"
+    >
       <div className="mx-auto container-x">
-        <div className="text-center lg:max-w-2xl mx-auto mb-20">
-          <h2 className="display-lg mb-6 tracking-tight text-foreground">
+        <div className="text-center lg:max-w-2xl mx-auto mb-16">
+          <p className="eyebrow text-primary mb-3">
+            {locale === "en" ? "Engineering Process" : "Proceso de Ingeniería"}
+          </p>
+          <h2 className="display-lg mb-5 tracking-tight text-foreground">
             {t(dict, "methodology.title", "De la idea a una solución funcional.")}
           </h2>
           <p className="body-lg text-muted-foreground max-w-xl mx-auto leading-relaxed">
@@ -30,23 +36,35 @@ export function Methodology({ locale }: MethodologyProps) {
           </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-12 bottom-12 w-[1px] bg-border" />
+        <div className="relative max-w-5xl mx-auto">
+          {/* Horizontal connector line on desktop */}
+          <div
+            className="hidden lg:block absolute top-8 left-12 right-12 h-px bg-border"
+            aria-hidden="true"
+          />
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 relative z-10">
-            {steps.map((step) => (
-              <div key={step.number} className="text-center">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground font-bold text-lg mb-6 shrink-0 mx-auto">
-                  {step.number}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+            {steps.map((step, index) => {
+              const formattedNum = String(step.number || index + 1).padStart(2, "0");
+              return (
+                <div
+                  key={step.number}
+                  className="flex flex-col items-center text-center"
+                >
+                  <div className="flex items-center justify-center w-16 h-16 rounded-2xl border border-border bg-card shadow-sm mb-6 shrink-0">
+                    <span className="font-mono text-base font-bold text-primary">
+                      {formattedNum}
+                    </span>
+                  </div>
+                  <h3 className="text-base font-semibold text-foreground mb-2.5 leading-snug">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold text-foreground mb-3 leading-tight">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {step.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
