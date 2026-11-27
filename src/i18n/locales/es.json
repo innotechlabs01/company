@@ -261,7 +261,23 @@
     "title": "Detrás de cada solución, hay una visión.",
     "eyebrow": "Principios de Ingeniería",
     "intro": "Soy Anthony Rivera, desarrollador de software enfocado en transformar necesidades de negocio en soluciones tecnológicas funcionales, escalables y sostenibles.",
-    "body": "Me interesa construir productos que resuelvan problemas reales, combinando arquitectura de software, desarrollo, diseño de experiencias y visión de negocio.\n\nTrabajo con emprendedores y empresas en proyectos de diferentes dimensiones, desde desarrollos puntuales hasta plataformas tecnológicas y productos de largo recorrido."
+    "body": "Me interesa construir productos que resuelvan problemas reales, combinando arquitectura de software, desarrollo, diseño de experiencias y visión de negocio.\n\nTrabajo con emprendedores y empresas en proyectos de diferentes dimensiones, desde desarrollos puntuales hasta plataformas tecnológicas y productos de largo recorrido.",
+    "photoAlt": "Foto de perfil de Anthony Rivera",
+    "available": "Disponible para nuevos proyectos",
+    "principles": {
+      "seniorLed": {
+        "title": "Ejecución Senior Directa",
+        "desc": "Liderazgo técnico directo desde la arquitectura hasta producción, sin intermediarios innecesarios."
+      },
+      "cleanArch": {
+        "title": "Arquitectura Limpia y QA",
+        "desc": "Código mantenible, tipado estricto y pruebas automatizadas pensadas para escalar."
+      },
+      "transparent": {
+        "title": "Sprints Transparentes",
+        "desc": "Entregables claros, demos continuas y foco constante en resultados de negocio."
+      }
+    }
   },
   "cta": {
     "title": "Tu próximo proyecto puede comenzar aquí.",
@@ -284,6 +300,14 @@
   },
   "contact": {
     "title": "Contacto",
+    "writeDirectly": "Escríbeme directamente",
+    "whatToExpect": "Qué puedes esperar",
+    "responseTime": "Respuesta en menos de 24 horas hábiles",
+    "noMiddlemen": "Habla directo conmigo, sin intermediarios ni account managers",
+    "preferTalk": "¿Prefieres hablar por teléfono?",
+    "callDescription": "Agenda una llamada breve para conversar sobre tu proyecto y definir los próximos pasos.",
+    "scheduleCall": "Agendar llamada por WhatsApp",
+    "whatsappLabel": "WhatsApp",
     "whatsappMessage": "Hola Anthony, estoy interesado en conocer más sobre tus servicios. Me gustaría conversar sobre un proyecto.",
     "emailLabel": "Correo electrónico",
     "form": {

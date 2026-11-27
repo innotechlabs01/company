@@ -261,7 +261,23 @@
     "title": "Behind every solution, there is a vision.",
     "eyebrow": "Engineering Principles",
     "intro": "I am Anthony Rivera, a software developer focused on turning business needs into functional, scalable, and sustainable technological solutions.",
-    "body": "I am interested in building products that solve real problems, combining software architecture, development, experience design, and business vision.\n\nI work with entrepreneurs and companies on projects of different sizes, from one-off developments to technology platforms and long-term products."
+    "body": "I am interested in building products that solve real problems, combining software architecture, development, experience design, and business vision.\n\nI work with entrepreneurs and companies on projects of different sizes, from one-off developments to technology platforms and long-term products.",
+    "photoAlt": "Profile photo of Anthony Rivera",
+    "available": "Available for new projects",
+    "principles": {
+      "seniorLed": {
+        "title": "Senior-Led Delivery",
+        "desc": "Direct technical leadership from architecture to production without unnecessary layers."
+      },
+      "cleanArch": {
+        "title": "Clean Architecture & QA",
+        "desc": "Maintainable codebases, strict typing, and automated checks built for long-term scale."
+      },
+      "transparent": {
+        "title": "Transparent Sprints",
+        "desc": "Clear milestones, continuous demos, and measurable business outcomes every week."
+      }
+    }
   },
   "cta": {
     "title": "Your next project can start here.",
@@ -284,6 +300,14 @@
   },
   "contact": {
     "title": "Contact",
+    "writeDirectly": "Write me directly",
+    "whatToExpect": "What to expect",
+    "responseTime": "Reply in less than 24 business hours",
+    "noMiddlemen": "Talk directly with me, no intermediaries or account managers",
+    "preferTalk": "Prefer to talk by phone?",
+    "callDescription": "Schedule a brief call to discuss your project and define next steps.",
+    "scheduleCall": "Schedule a call via WhatsApp",
+    "whatsappLabel": "WhatsApp",
     "whatsappMessage": "Hi Anthony, I'm interested in learning more about your services. I'd like to discuss a project.",
     "emailLabel": "Email",
     "form": {
