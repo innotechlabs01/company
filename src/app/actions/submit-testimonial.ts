@@ -9,6 +9,7 @@ const testimonialSchema = z.object({
   role: z.string().trim().min(2).max(120),
   company: z.string().trim().min(1).max(120),
   project_type: z.enum([
+    "landing_page",
     "web",
     "apps",
     "enterprise",
@@ -16,16 +17,8 @@ const testimonialSchema = z.object({
     "consulting",
     "other",
   ]),
+  rating: z.number().int().min(1).max(5),
   content: z.string().trim().min(20).max(1500),
-  url: z
-    .string()
-    .trim()
-    .optional()
-    .transform((v) => (v && v.length > 0 ? v : undefined))
-    .refine(
-      (v) => !v || /^https?:\/\/.+/i.test(v),
-      "La URL debe comenzar con http:// o https://",
-    ),
   language: z.enum(["es", "en"]),
 });
 
@@ -55,15 +48,24 @@ export async function submitTestimonial(
     };
   }
 
-  const { error } = await supabase.from("testimonials").insert({
+  const basePayload = {
     name: parsed.data.name,
     role: parsed.data.role,
     company: parsed.data.company,
     project_type: parsed.data.project_type,
     content: parsed.data.content,
-    url: parsed.data.url ?? null,
     language: parsed.data.language,
-  });
+  };
+
+  let { error } = await supabase
+    .from("testimonials")
+    .insert({ ...basePayload, rating: parsed.data.rating });
+
+  // Graceful fallback if the `rating` column hasn't been added in Supabase yet
+  if (error && /rating/i.test(error.message)) {
+    const fallback = await supabase.from("testimonials").insert(basePayload);
+    error = fallback.error;
+  }
 
   if (error) {
     console.error("Error inserting testimonial:", error);

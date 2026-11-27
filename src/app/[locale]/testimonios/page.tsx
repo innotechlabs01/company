@@ -115,6 +115,7 @@ export default async function TestimonialsPage({
 
   const filters = [
     { value: "all", label: t(dict, "testimonialsPage.filters.all", "Todos") },
+    { value: "landing_page", label: t(dict, "testimonialsPage.filters.landing_page", "Landing Page") },
     { value: "web", label: t(dict, "testimonialsPage.filters.web", "Desarrollo web") },
     { value: "apps", label: t(dict, "testimonialsPage.filters.apps", "Aplicaciones") },
     { value: "enterprise", label: t(dict, "testimonialsPage.filters.enterprise", "Software empresarial") },

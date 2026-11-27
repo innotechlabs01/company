@@ -29,18 +29,11 @@ function highlightTitle(dict: Record<string, unknown>) {
 export function Hero({ locale }: HeroProps) {
   const dict = getDictionary(locale);
 
-  const trustPillars =
-    locale === "en"
-      ? [
-          { icon: Layers, label: "Clean Architecture" },
-          { icon: Cpu, label: "Full-Stack & Cloud" },
-          { icon: ShieldCheck, label: "Production SLA" },
-        ]
-      : [
-          { icon: Layers, label: "Arquitectura Limpia" },
-          { icon: Cpu, label: "Full-Stack & Cloud" },
-          { icon: ShieldCheck, label: "Calidad en Producción" },
-        ];
+  const trustPillars = [
+    { icon: Layers, labelKey: "hero.trustPillars.0" },
+    { icon: Cpu, labelKey: "hero.trustPillars.1" },
+    { icon: ShieldCheck, labelKey: "hero.trustPillars.2" },
+  ];
 
   const modules = [
     {
@@ -115,7 +108,7 @@ export function Hero({ locale }: HeroProps) {
                 </Link>
               </Button>
               <Button variant="outline" asChild size="lg" className="w-full sm:w-auto bg-card">
-                <Link href={`/${locale}/#casos-de-estudio`}>
+                <Link href={`/${locale}/casos-de-estudio`}>
                   {t(dict, "hero.ctaSecondary", "Explorar proyectos")}
                 </Link>
               </Button>
@@ -127,11 +120,11 @@ export function Hero({ locale }: HeroProps) {
                 const Icon = pillar.icon;
                 return (
                   <div
-                    key={pillar.label}
+                    key={pillar.labelKey}
                     className="inline-flex items-center gap-2 text-xs font-mono text-muted-foreground"
                   >
                     <Icon className="h-3.5 w-3.5 text-primary shrink-0" aria-hidden="true" />
-                    <span>{pillar.label}</span>
+                    <span>{t(dict, pillar.labelKey, pillar.labelKey)}</span>
                   </div>
                 );
               })}
@@ -197,7 +190,7 @@ export function Hero({ locale }: HeroProps) {
                       main → production
                     </span>
                     <span className="text-emerald-400">
-                      {locale === "en" ? "100% checks passed" : "100% checks OK"}
+                      {t(dict, "hero.checks", "100% checks OK")}
                     </span>
                   </div>
                   <div className="h-1.5 w-full rounded-full bg-slate-800 overflow-hidden">

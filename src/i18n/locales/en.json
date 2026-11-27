@@ -11,7 +11,10 @@
     "testimonials": "Testimonials",
     "about": "About me",
     "contact": "Contact",
-    "cta": "Let's talk about your project"
+    "cta": "Let's talk about your project",
+    "menu": "Menu",
+    "menuDescription": "Navigation and contact",
+    "openMenu": "Open menu"
   },
   "localeSwitcher": {
     "label": "Change language",
@@ -24,10 +27,18 @@
     "titleHighlight": "digital solutions",
     "subtitle": "I design and develop digital experiences, platforms, and custom systems for entrepreneurs and companies seeking to build, scale, and transform their businesses through technology.",
     "ctaPrimary": "Let's talk about your project",
-    "ctaSecondary": "Explore my work"
+    "ctaSecondary": "Explore my work",
+    "checks": "100% checks passed",
+    "trustPillars": [
+      "Clean Architecture",
+      "Full-Stack & Cloud",
+      "Production SLA"
+    ]
   },
   "services": {
     "title": "Digital solutions for every stage of your business.",
+    "subtitle": "Solutions designed to support your business growth at every stage.",
+    "eyebrow": "Capabilities",
     "items": [
       {
         "name": "Web Development",
@@ -102,10 +113,13 @@
     "timeline": "Approximate timeline",
     "ctaTitle": "Ready to start?",
     "ctaTitleAlt": "Request a quote",
-    "requestQuote": "Request a quote"
+    "requestQuote": "Request a quote",
+    "breadcrumb": "Services",
+    "offerCatalog": "Services"
   },
   "caseStudies": {
     "title": "Case studies",
+    "eyebrow": "Selected Engineering Work",
     "subtitle": "From a problem to a measurable result.",
     "problem": "Problem",
     "solution": "Solution",
@@ -120,6 +134,8 @@
   },
   "methodology": {
     "title": "From idea to working solution.",
+    "subtitle": "A clear and transparent process from first contact to deployment and beyond.",
+    "eyebrow": "Engineering Process",
     "steps": [
       {
         "number": "01",
@@ -145,6 +161,7 @@
   },
   "collaboration": {
     "title": "Different ways to work with you.",
+    "eyebrow": "Engagement Models",
     "intro": "I adapt to the hiring model that best fits your business.",
     "items": [
       {
@@ -164,6 +181,7 @@
   },
   "technologies": {
     "title": "Technologies and capabilities.",
+    "eyebrow": "Tech Stack",
     "categories": [
       {
         "name": "Frontend",
@@ -229,6 +247,7 @@
   },
   "testimonials": {
     "title": "Experiences speak for themselves.",
+    "eyebrow": "Client Feedback",
     "subtitle": "Real opinions from those who have worked with me and the results of their projects.",
     "seeAll": "See all experiences",
     "ctaTitle": "Let's build something that can also tell its story.",
@@ -240,6 +259,7 @@
   },
   "about": {
     "title": "Behind every solution, there is a vision.",
+    "eyebrow": "Engineering Principles",
     "intro": "I am Anthony Rivera, a software developer focused on turning business needs into functional, scalable, and sustainable technological solutions.",
     "body": "I am interested in building products that solve real problems, combining software architecture, development, experience design, and business vision.\n\nI work with entrepreneurs and companies on projects of different sizes, from one-off developments to technology platforms and long-term products."
   },
@@ -268,6 +288,7 @@
     "emailLabel": "Email",
     "form": {
       "title": "Quotation request",
+      "errorTitle": "There were problems submitting",
       "fullName": "Full name",
       "email": "Email",
       "company": "Company",
@@ -275,6 +296,12 @@
       "budget": "Estimated budget",
       "timeline": "Estimated timeline",
       "description": "Project description",
+      "placeholders": {
+        "fullName": "John Doe",
+        "email": "john@company.com",
+        "company": "My Company Inc. (optional)",
+        "description": "Tell me what you want to build, your goals, and any relevant details."
+      },
       "contactMethod": "Preferred contact method",
       "submit": "Send request",
       "sending": "Sending...",
@@ -319,6 +346,7 @@
     "heroSubtitle": "Every project is an opportunity to create something meaningful. Meet the experiences of those who have worked with me and the results of their projects.",
     "filters": {
       "all": "All",
+      "landing_page": "Landing Page",
       "web": "Web development",
       "apps": "Applications",
       "enterprise": "Enterprise software",

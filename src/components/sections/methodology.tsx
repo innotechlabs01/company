@@ -20,7 +20,7 @@ export function Methodology({ locale }: MethodologyProps) {
       <div className="mx-auto container-x">
         <div className="text-center lg:max-w-2xl mx-auto mb-16">
           <p className="eyebrow text-primary mb-3">
-            {locale === "en" ? "Engineering Process" : "Proceso de Ingeniería"}
+            {t(dict, "methodology.eyebrow", "Proceso de Ingeniería")}
           </p>
           <h2 className="display-lg mb-5 tracking-tight text-foreground">
             {t(dict, "methodology.title", "De la idea a una solución funcional.")}
@@ -29,9 +29,7 @@ export function Methodology({ locale }: MethodologyProps) {
             {t(
               dict,
               "methodology.subtitle",
-              locale === "en"
-                ? "A clear and transparent process from first contact to deployment and beyond."
-                : "Un proceso claro y transparente desde el primer contacto hasta el despliegue y más allá.",
+              "Un proceso claro y transparente desde el primer contacto hasta el despliegue y más allá.",
             )}
           </p>
         </div>

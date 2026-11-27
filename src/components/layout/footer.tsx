@@ -7,7 +7,7 @@ import { Mail, Send, ExternalLink } from "lucide-react";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { cn } from "@/lib/utils";
 import { getDictionary, t } from "@/i18n/dictionary";
-import { site } from "@/config/site";
+import { site, getContactPhone } from "@/config/site";
 
 type FooterProps = {
   locale: "es" | "en";
@@ -15,19 +15,19 @@ type FooterProps = {
 
 const navItems: Array<{ key: string; href: string }> = [
   { key: "home", href: "/" },
-  { key: "services", href: "#servicios" },
-  { key: "projects", href: "#proyectos" },
+  { key: "services", href: "/servicios" },
+  { key: "projects", href: "/casos-de-estudio" },
   { key: "testimonials", href: "/testimonios" },
-  { key: "about", href: "#sobre-mi" },
+  { key: "about", href: "/sobre-mi" },
   { key: "contact", href: "/contacto" },
 ];
 
 const footerServices = [
-  { key: "web", href: "#servicios" },
-  { key: "customSoftware", href: "#servicios" },
-  { key: "mobileApp", href: "#servicios" },
-  { key: "inhouse", href: "#servicios" },
-  { key: "consulting", href: "#servicios" },
+  { key: "web", href: "/servicios/web" },
+  { key: "customSoftware", href: "/servicios/custom-software" },
+  { key: "mobileApp", href: "/servicios/mobile" },
+  { key: "inhouse", href: "/servicios/inhouse" },
+  { key: "consulting", href: "/servicios/consulting" },
 ];
 
 const socialLinks = [
@@ -54,11 +54,8 @@ export function Footer({ locale }: FooterProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const whatsappMessage =
-    locale === "es"
-      ? "Hola Anthony, estoy interesado en conocer más sobre tus servicios. Me gustaría conversar sobre un proyecto."
-      : "Hi Anthony, I'm interested in learning more about your services. I'd like to discuss a project.";
-  const whatsappUrl = `https://wa.me/573128386640?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappMessage = t(dict, "whatsapp.message", "Hola Anthony, estoy interesado en conocer más sobre tus servicios.");
+  const whatsappUrl = `${site.contact.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
 
   const handleLanguageChange = (nextLocale: string) => () => {
     const withoutLocale = pathname.replace(`/${locale}`, "") || "/";
@@ -126,16 +123,16 @@ export function Footer({ locale }: FooterProps) {
                   className="inline-flex items-center gap-2.5 hover:text-foreground transition-colors"
                 >
                   <Send className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  <span>WhatsApp</span>
+                  <span>{t(dict, "whatsapp.button", "WhatsApp")}</span>
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:anthonyrivera51@icloud.com"
+                  href={`mailto:${site.contact.email}`}
                   className="inline-flex items-center gap-2.5 hover:text-foreground transition-colors break-all"
                 >
                   <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-                  <span>anthonyrivera51@icloud.com</span>
+                  <span>{site.contact.email}</span>
                 </a>
               </li>
             </ul>

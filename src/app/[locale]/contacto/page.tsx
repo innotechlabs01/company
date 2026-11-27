@@ -3,6 +3,7 @@ import { Mail, Send } from "lucide-react";
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/dictionary";
 import { getDictionary, t } from "@/i18n/dictionary";
+import { site, getContactPhone } from "@/config/site";
 
 const contactoMeta: Record<Locale, { title: string; description: string }> = {
   es: {
@@ -42,11 +43,12 @@ export default async function ContactPage({
   const { locale } = await params;
   const dict = getDictionary(locale);
 
-  const whatsappMessage =
-    locale === "es"
-      ? "Hola Anthony, estoy interesado en conocer más sobre tus servicios. Me gustaría conversar sobre un proyecto."
-      : "Hi Anthony, I'm interested in learning more about your services. I'd like to discuss a project.";
-  const whatsappUrl = `https://wa.me/573128386640?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappMessage = t(
+    dict,
+    "contact.whatsappMessage",
+    "Hola Anthony, estoy interesado en conocer más sobre tus servicios.",
+  );
+  const whatsappUrl = `${site.contact.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <section className="px-4 py-24 lg:py-32">
@@ -73,7 +75,7 @@ export default async function ContactPage({
                 <div>
                   <p className="font-semibold text-foreground">WhatsApp</p>
                   <a href={whatsappUrl} className="text-primary hover:underline text-sm">
-                    +57 312 8386640
+                    {getContactPhone(locale)}
                   </a>
                 </div>
               </li>

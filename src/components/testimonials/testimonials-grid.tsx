@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Filter } from "lucide-react";
+import { Star } from "lucide-react";
 import { getDictionary, t } from "@/i18n/dictionary";
 
 type Testimonial = {
@@ -16,6 +16,7 @@ type Testimonial = {
   content: string;
   project_type: string;
   created_at: string;
+  rating?: number;
   url?: string;
   avatar_url?: string;
 };
@@ -64,14 +65,11 @@ export function TestimonialsGrid({
                 {featuredSubtitle}
               </p>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">
-                {t(dict, "testimonials.filter", "Filtrar")}
-              </span>
-              <Button variant="outline" size="sm" className="flex items-center gap-2">
-                <Filter className="h-4 w-4" />
-              </Button>
-            </div>
+            <Button asChild variant="outline" size="sm">
+              <Link href={`/${locale}/testimonios/enviar`}>
+                {locale === "en" ? "Leave a testimonial" : "Dejar un testimonio"}
+              </Link>
+            </Button>
           </div>
 
           <div className="flex gap-2 overflow-x-auto pb-4 mb-10 scrollbar-hide">
@@ -79,7 +77,7 @@ export function TestimonialsGrid({
               <button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors border ${
+                className={`px-4 py-2 min-h-[44px] min-w-[44px] rounded-full text-sm font-medium transition-colors border flex items-center justify-center ${
                   activeFilter === filter.value
                     ? "bg-primary border-primary text-primary-foreground"
                     : "border-border text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -101,45 +99,64 @@ export function TestimonialsGrid({
                 </p>
               </div>
             ) : filtered.length > 0 ? (
-              filtered.map((testimonial) => (
-                <Card
-                  key={testimonial.id}
-                  className="p-8 border border-border hover:border-primary/40 transition-colors"
-                >
-                  <div className="flex items-start gap-3 mb-6">
-                    <span className="text-3xl font-serif text-primary/20 leading-none">“</span>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
-                    {testimonial.content}
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden shrink-0">
-                      {testimonial.avatar_url ? (
-                        <Image
-                          src={testimonial.avatar_url}
-                          alt=""
-                          className="w-full h-full object-cover"
-                          fill
-                          sizes="(max-width: 768px) 100vw, 25vw"
-                          priority={false}
-                        />
-                      ) : (
-                        <span className="text-xs font-medium text-muted-foreground">
-                          {testimonial.name.charAt(0)}
-                        </span>
-                      )}
+              filtered.map((testimonial) => {
+                const rating = Math.min(5, Math.max(1, testimonial.rating ?? 5));
+                return (
+                  <Card
+                    key={testimonial.id}
+                    className="p-8 border border-border hover:border-primary/40 transition-colors"
+                  >
+                    <div className="flex items-center justify-between gap-3 mb-6">
+                      <span className="text-3xl font-serif text-primary/20 leading-none">“</span>
+                      <div
+                        className="flex items-center gap-0.5"
+                        aria-label={`${rating} / 5`}
+                      >
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`h-4 w-4 ${
+                              i < rating
+                                ? "fill-amber-400 text-amber-400"
+                                : "text-muted-foreground/30"
+                            }`}
+                            aria-hidden="true"
+                          />
+                        ))}
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-foreground leading-tight">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-xs text-muted-foreground leading-tight">
-                        {testimonial.role}{testimonial.company ? ` · ${testimonial.company}` : ""}
-                      </p>
+                    <p className="text-muted-foreground leading-relaxed mb-6">
+                      {testimonial.content}
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden shrink-0">
+                        {testimonial.avatar_url ? (
+                          <Image
+                            src={testimonial.avatar_url}
+                            alt=""
+                            className="w-full h-full object-cover"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 25vw"
+                            priority={false}
+                          />
+                        ) : (
+                          <span className="text-xs font-medium text-muted-foreground">
+                            {testimonial.name.charAt(0)}
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-foreground leading-tight">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-xs text-muted-foreground leading-tight">
+                          {testimonial.role}{testimonial.company ? ` · ${testimonial.company}` : ""}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              ))
+                  </Card>
+                );
+              })
             ) : (
               <div className="col-span-3 text-center py-16 text-muted-foreground">
                 {t(dict, "testimonials.noTestimonialsForFilter", "No hay testimonios para este filtro.")}

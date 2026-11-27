@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText, Building, RefreshCw, ArrowRight } from "lucide-react";
 import { getDictionary, t } from "@/i18n/dictionary";
-import { cn } from "@/lib/utils";
 
 type CollaborationProps = {
   locale: "es" | "en";
@@ -18,20 +17,9 @@ const collaborationIcons: Record<string, React.ElementType> = {
   "Long-term projects": RefreshCw,
 };
 
-const collaborationIconClasses: Record<string, string> = {
-  "Proyectos por alcance":
-    "bg-[#1688f8]/10 text-[#1688f8] group-hover:bg-[#1688f8] group-hover:text-white",
-  "Scope-based projects":
-    "bg-[#1688f8]/10 text-[#1688f8] group-hover:bg-[#1688f8] group-hover:text-white",
-  "Proyectos In-house":
-    "bg-[#0866c6]/10 text-[#0866c6] group-hover:bg-[#0866c6] group-hover:text-white",
-  "In-house projects":
-    "bg-[#0866c6]/10 text-[#0866c6] group-hover:bg-[#0866c6] group-hover:text-white",
-  "Proyectos de largo plazo":
-    "bg-[#299bff]/10 text-[#299bff] group-hover:bg-[#299bff] group-hover:text-white",
-  "Long-term projects":
-    "bg-[#299bff]/10 text-[#299bff] group-hover:bg-[#299bff] group-hover:text-white",
-};
+// Token-based icon backgrounds that adapt to light/dark mode.
+const collaborationIconBase =
+  "w-10 h-10 rounded-lg flex items-center justify-center transition-colors bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground";
 
 export function Collaboration({ locale }: CollaborationProps) {
   const dict = getDictionary(locale);
@@ -48,7 +36,7 @@ export function Collaboration({ locale }: CollaborationProps) {
       <div className="mx-auto container-x">
         <div className="text-center lg:max-w-2xl mx-auto mb-16">
           <p className="eyebrow text-primary mb-3">
-            {locale === "en" ? "Engagement Models" : "Modelos de Trabajo"}
+            {t(dict, "collaboration.eyebrow", "Modelos de Trabajo")}
           </p>
           <h2 className="display-lg mb-5 tracking-tight text-foreground">
             {t(dict, "collaboration.title", "Diferentes formas de trabajar contigo.")}
@@ -65,9 +53,6 @@ export function Collaboration({ locale }: CollaborationProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {items.map((item, index) => {
             const Icon = collaborationIcons[item.name] || FileText;
-            const iconClass =
-              collaborationIconClasses[item.name] ||
-              "bg-[#1688f8]/10 text-[#1688f8] group-hover:bg-[#1688f8] group-hover:text-white";
             const stepNum = String(index + 1).padStart(2, "0");
 
             return (
@@ -77,12 +62,7 @@ export function Collaboration({ locale }: CollaborationProps) {
               >
                 <CardHeader className="p-6 pb-3">
                   <div className="flex items-center justify-between gap-3 mb-5">
-                    <div
-                      className={cn(
-                        "w-10 h-10 rounded-lg flex items-center justify-center transition-colors",
-                        iconClass,
-                      )}
-                    >
+                    <div className={collaborationIconBase}>
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </div>
                     <span className="font-mono text-xs font-medium text-muted-foreground">

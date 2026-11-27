@@ -80,7 +80,7 @@ export function About({ locale }: AboutProps) {
                       alt="AR"
                     />
                     <span className="font-mono text-xs font-semibold uppercase tracking-wider text-slate-200">
-                      {locale === "en" ? "Engineering Principles" : "Principios de Ingeniería"}
+                      {t(dict, "about.eyebrow", "Principios de Ingeniería")}
                     </span>
                   </div>
                   <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" aria-hidden="true" />

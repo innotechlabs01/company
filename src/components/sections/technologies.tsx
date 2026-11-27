@@ -17,7 +17,7 @@ export function Technologies({ locale }: TechnologiesProps) {
       <div className="mx-auto container-x">
         <div className="text-center lg:max-w-2xl mx-auto mb-16">
           <p className="eyebrow text-primary mb-3">
-            {locale === "en" ? "Tech Stack" : "Stack Tecnológico"}
+            {t(dict, "technologies.eyebrow", "Stack Tecnológico")}
           </p>
           <h2 className="display-lg mb-5 tracking-tight text-foreground">
             {t(dict, "technologies.title", "Tecnologías y capacidades.")}

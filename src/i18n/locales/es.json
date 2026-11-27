@@ -11,7 +11,10 @@
     "testimonials": "Testimonios",
     "about": "Sobre mí",
     "contact": "Contacto",
-    "cta": "Hablemos de tu proyecto"
+    "cta": "Hablemos de tu proyecto",
+    "menu": "Menú",
+    "menuDescription": "Navegación y contacto",
+    "openMenu": "Abrir menú"
   },
   "localeSwitcher": {
     "label": "Cambiar idioma",
@@ -24,10 +27,18 @@
     "titleHighlight": "soluciones digitales",
     "subtitle": "Diseño y desarrollo experiencias digitales, plataformas y sistemas a medida para emprendedores y empresas que buscan construir, escalar y transformar sus negocios mediante tecnología.",
     "ctaPrimary": "Hablemos de tu proyecto",
-    "ctaSecondary": "Explorar mi trabajo"
+    "ctaSecondary": "Explorar mi trabajo",
+    "checks": "100% checks OK",
+    "trustPillars": [
+      "Arquitectura Limpia",
+      "Full-Stack & Cloud",
+      "Calidad en Producción"
+    ]
   },
   "services": {
     "title": "Soluciones digitales para cada etapa de tu negocio.",
+    "subtitle": "Soluciones diseñadas para acompañar el crecimiento de tu negocio en cada etapa.",
+    "eyebrow": "Capacidades",
     "items": [
       {
         "name": "Desarrollo Web",
@@ -102,10 +113,13 @@
     "timeline": "Tiempos aproximados",
     "ctaTitle": "¿Listo para empezar?",
     "ctaTitleAlt": "Solicitar cotización",
-    "requestQuote": "Solicitar cotización"
+    "requestQuote": "Solicitar cotización",
+    "breadcrumb": "Servicios",
+    "offerCatalog": "Servicios"
   },
   "caseStudies": {
     "title": "Casos de estudio",
+    "eyebrow": "Ingeniería Aplicada",
     "subtitle": "De un problema a un resultado medible.",
     "problem": "Problema",
     "solution": "Solución",
@@ -120,6 +134,8 @@
   },
   "methodology": {
     "title": "De la idea a una solución funcional.",
+    "subtitle": "Un proceso claro y transparente desde el primer contacto hasta el despliegue y más allá.",
+    "eyebrow": "Proceso de Ingeniería",
     "steps": [
       {
         "number": "01",
@@ -145,6 +161,7 @@
   },
   "collaboration": {
     "title": "Diferentes formas de trabajar contigo.",
+    "eyebrow": "Modelos de Trabajo",
     "intro": "Me adapto al modelo de contratación que mejor se ajuste a tu negocio.",
     "items": [
       {
@@ -164,6 +181,7 @@
   },
   "technologies": {
     "title": "Tecnologías y capacidades.",
+    "eyebrow": "Stack Tecnológico",
     "categories": [
       {
         "name": "Frontend",
@@ -229,6 +247,7 @@
   },
   "testimonials": {
     "title": "Las experiencias hablan por sí solas.",
+    "eyebrow": "Testimonios",
     "subtitle": "Opiniones reales de quienes han trabajado conmigo y los resultados de sus proyectos.",
     "seeAll": "Conoce todas las experiencias",
     "ctaTitle": "Construyamos algo que también pueda contar su historia.",
@@ -240,6 +259,7 @@
   },
   "about": {
     "title": "Detrás de cada solución, hay una visión.",
+    "eyebrow": "Principios de Ingeniería",
     "intro": "Soy Anthony Rivera, desarrollador de software enfocado en transformar necesidades de negocio en soluciones tecnológicas funcionales, escalables y sostenibles.",
     "body": "Me interesa construir productos que resuelvan problemas reales, combinando arquitectura de software, desarrollo, diseño de experiencias y visión de negocio.\n\nTrabajo con emprendedores y empresas en proyectos de diferentes dimensiones, desde desarrollos puntuales hasta plataformas tecnológicas y productos de largo recorrido."
   },
@@ -268,6 +288,7 @@
     "emailLabel": "Correo electrónico",
     "form": {
       "title": "Solicitud de cotización",
+      "errorTitle": "Hubo problemas al enviar",
       "fullName": "Nombre completo",
       "email": "Correo electrónico",
       "company": "Empresa",
@@ -275,6 +296,12 @@
       "budget": "Presupuesto estimado",
       "timeline": "Tiempo estimado de ejecución",
       "description": "Descripción del proyecto",
+      "placeholders": {
+        "fullName": "Juan Pérez",
+        "email": "juan@empresa.com",
+        "company": "Mi empresa S.A.S. (opcional)",
+        "description": "Cuéntame qué quieres construir, los objetivos y cualquier detalle relevante."
+      },
       "contactMethod": "Medio de contacto preferido",
       "submit": "Enviar solicitud",
       "sending": "Enviando...",
@@ -319,6 +346,7 @@
     "heroSubtitle": "Cada proyecto representa una oportunidad para crear algo significativo. Conoce las experiencias de quienes han trabajado conmigo y los resultados de sus proyectos.",
     "filters": {
       "all": "Todos",
+      "landing_page": "Landing Page",
       "web": "Desarrollo web",
       "apps": "Aplicaciones",
       "enterprise": "Software empresarial",

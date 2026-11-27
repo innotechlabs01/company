@@ -2,7 +2,7 @@
 
 import { useState, useTransition } from "react";
 import Link from "next/link";
-import { CheckCircle2, Loader2, Send } from "lucide-react";
+import { CheckCircle2, Loader2, Send, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,6 +13,7 @@ import type { Locale } from "@/i18n/dictionary";
 
 const PROJECT_TYPES = {
   es: [
+    { value: "landing_page", label: "Landing Page" },
     { value: "web", label: "Desarrollo web" },
     { value: "apps", label: "Aplicaciones" },
     { value: "enterprise", label: "Software empresarial" },
@@ -21,6 +22,7 @@ const PROJECT_TYPES = {
     { value: "other", label: "Otro proyecto" },
   ],
   en: [
+    { value: "landing_page", label: "Landing Page" },
     { value: "web", label: "Web development" },
     { value: "apps", label: "Applications" },
     { value: "enterprise", label: "Enterprise software" },
@@ -29,6 +31,13 @@ const PROJECT_TYPES = {
     { value: "other", label: "Other project" },
   ],
 } as const;
+
+const RATING_LABELS = {
+  es: ["", "Necesita mejorar", "Regular", "Bueno", "Muy bueno", "Excelente"],
+  en: ["", "Needs improvement", "Fair", "Good", "Very good", "Excellent"],
+} as const;
+
+type ProjectType = (typeof PROJECT_TYPES)["es"][number]["value"];
 
 export function TestimonialForm({ locale }: { locale: Locale }) {
   const isEn = locale === "en";
@@ -39,11 +48,12 @@ export function TestimonialForm({ locale }: { locale: Locale }) {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
-  const [projectType, setProjectType] = useState<
-    "web" | "apps" | "enterprise" | "inhouse" | "consulting" | "other"
-  >("web");
-  const [url, setUrl] = useState("");
+  const [projectType, setProjectType] = useState<ProjectType>("landing_page");
+  const [rating, setRating] = useState<number>(5);
+  const [hoveredRating, setHoveredRating] = useState<number | null>(null);
   const [content, setContent] = useState("");
+
+  const activeRating = hoveredRating ?? rating;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,7 +65,7 @@ export function TestimonialForm({ locale }: { locale: Locale }) {
         role,
         company,
         project_type: projectType,
-        url,
+        rating,
         content,
         language: locale,
       });
@@ -158,17 +168,7 @@ export function TestimonialForm({ locale }: { locale: Locale }) {
               <select
                 id="t-type"
                 value={projectType}
-                onChange={(e) =>
-                  setProjectType(
-                    e.target.value as
-                      | "web"
-                      | "apps"
-                      | "enterprise"
-                      | "inhouse"
-                      | "consulting"
-                      | "other",
-                  )
-                }
+                onChange={(e) => setProjectType(e.target.value as ProjectType)}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               >
                 {PROJECT_TYPES[locale].map((opt) => (
@@ -180,17 +180,42 @@ export function TestimonialForm({ locale }: { locale: Locale }) {
             </div>
           </div>
 
+          {/* Star rating */}
           <div className="space-y-2">
-            <Label htmlFor="t-url">
-              {isEn ? "Website or LinkedIn (optional)" : "Sitio web o LinkedIn (opcional)"}
-            </Label>
-            <Input
-              id="t-url"
-              type="url"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              placeholder="https://..."
-            />
+            <Label>{isEn ? "Overall rating *" : "Calificación general *"}</Label>
+            <div
+              className="flex items-center gap-3 rounded-lg border border-input bg-background px-3.5 py-2.5"
+              onMouseLeave={() => setHoveredRating(null)}
+            >
+              <div className="flex items-center gap-1" role="radiogroup" aria-label={isEn ? "Rating" : "Calificación"}>
+                {[1, 2, 3, 4, 5].map((star) => {
+                  const filled = star <= activeRating;
+                  return (
+                    <button
+                      key={star}
+                      type="button"
+                      role="radio"
+                      aria-checked={rating === star}
+                      aria-label={`${star} / 5`}
+                      onClick={() => setRating(star)}
+                      onMouseEnter={() => setHoveredRating(star)}
+                      className="p-0.5 min-h-[44px] min-w-[44px] rounded flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-transform hover:scale-110"
+                    >
+                      <Star
+                        className={`h-6 w-6 transition-colors ${
+                          filled
+                            ? "fill-amber-400 text-amber-400"
+                            : "text-muted-foreground/40"
+                        }`}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+              <span className="font-mono text-xs text-muted-foreground">
+                {activeRating}.0 / 5.0 · {RATING_LABELS[locale][activeRating]}
+              </span>
+            </div>
           </div>
 
           <div className="space-y-2">

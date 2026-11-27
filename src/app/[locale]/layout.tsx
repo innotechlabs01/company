@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/footer";
 import { LangSetter } from "@/components/layout/lang-setter";
 import { site } from "@/config/site";
 import { FloatingWhatsApp } from "@/components/brand/floating-whatsapp";
+import { JsonLd } from "@/components/ui/json-ld";
 
 const SITE_NAME = site.name;
 
@@ -39,7 +40,10 @@ export async function generateMetadata({
     description: m.description,
     alternates: {
       canonical: `${site.url}/${locale}`,
-      languages: alternates,
+      languages: {
+        ...alternates,
+        "x-default": `${site.url}/es`,
+      },
     },
     icons: [{ url: "/favicon.svg" }],
     openGraph: {
@@ -51,7 +55,7 @@ export async function generateMetadata({
       type: "website",
       images: [
         {
-          url: `/images/og-${locale}.jpg`,
+          url: `/images/og-${locale}.svg`,
           width: 1200,
           height: 630,
           alt: SITE_NAME,
@@ -62,12 +66,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: m.title,
       description: m.description,
-      images: [`/images/og-${locale}.jpg`],
-    },
-    other: {
-      "hreflang-es": `${site.url}/es`,
-      "hreflang-en": `${site.url}/en`,
-      "hreflang-x-default": `${site.url}/es`,
+      images: [`/images/og-${locale}.svg`],
     },
   };
 }
@@ -90,12 +89,13 @@ export default async function LocaleLayout({
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:outline-none"
       >
-        Saltar al contenido
+        {locale === "en" ? "Skip to content" : "Saltar al contenido"}
       </a>
       <Header locale={locale} />
       <main id="main-content" className="flex-1">{children}</main>
       <Footer locale={locale} />
-      <FloatingWhatsApp />
+      <FloatingWhatsApp locale={locale} />
+      <JsonLd locale={locale} />
     </div>
   );
 }

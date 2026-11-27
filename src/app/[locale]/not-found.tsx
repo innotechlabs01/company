@@ -43,14 +43,14 @@ export default async function NotFound({
           {t(dict, "notFound.description", "La página que buscas no existe. Vuelve al inicio o contáctame directamente.")}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href={`/${locale}`} className="text-sm font-medium text-primary hover:underline transition-colors">
-            <ArrowLeft className="h-4 w-4 mr-1.5" aria-hidden="true" />
+          <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline transition-colors">
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             {t(dict, "notFound.back", "Volver al inicio")}
           </Link>
           <Button size="sm" asChild className="ml-0 sm:ml-0">
-            <a href={`/${locale}/contacto`}>
+            <Link href={`/${locale}/contacto`}>
               {t(dict, "nav.cta", "Hablemos de tu proyecto")}
-            </a>
+            </Link>
           </Button>
         </div>
       </div>

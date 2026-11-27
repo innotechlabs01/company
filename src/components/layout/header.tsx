@@ -3,14 +3,13 @@
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
-  SheetClose,
   SheetHeader,
   SheetTitle,
   SheetDescription,
@@ -24,10 +23,10 @@ type HeaderProps = {
 
 const navItems: Array<{ key: string; href: string; labelKey: string }> = [
   { key: "home", href: "/", labelKey: "nav.home" },
-  { key: "services", href: "#servicios", labelKey: "nav.services" },
-  { key: "projects", href: "#proyectos", labelKey: "nav.projects" },
+  { key: "services", href: "/servicios", labelKey: "nav.services" },
+  { key: "projects", href: "/casos-de-estudio", labelKey: "nav.projects" },
   { key: "testimonials", href: "/testimonios", labelKey: "nav.testimonials" },
-  { key: "about", href: "#sobre-mi", labelKey: "nav.about" },
+  { key: "about", href: "/sobre-mi", labelKey: "nav.about" },
   { key: "contact", href: "/contacto", labelKey: "nav.contact" },
 ];
 
@@ -108,7 +107,7 @@ export function Header({ locale }: HeaderProps) {
 
             <button
               className="lg:hidden -m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-muted-foreground hover:text-foreground"
-              aria-label={locale === "en" ? "Open menu" : "Abrir menú"}
+              aria-label={t(dict, "nav.openMenu", "Abrir menú")}
               onClick={() => setMobileOpen(true)}
             >
               <Menu className="h-6 w-6" aria-hidden="true" />
@@ -124,10 +123,10 @@ export function Header({ locale }: HeaderProps) {
         <SheetContent side="right" className="w-full sm:w-[340px] p-6">
           <SheetHeader className="mb-6">
             <SheetTitle className="text-lg font-semibold tracking-tight">
-              {locale === "en" ? "Menu" : "Menú"}
+              {t(dict, "nav.menu", "Menú")}
             </SheetTitle>
             <SheetDescription className="text-muted-foreground text-sm">
-              {locale === "en" ? "Navigation and contact" : "Navegación y contacto"}
+              {t(dict, "nav.menuDescription", "Navegación y contacto")}
             </SheetDescription>
           </SheetHeader>
           <div className="space-y-3">

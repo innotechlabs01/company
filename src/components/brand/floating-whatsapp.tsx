@@ -2,11 +2,17 @@
 
 import Link from "next/link";
 import { Send } from "lucide-react";
+import { getDictionary, t } from "@/i18n/dictionary";
+import { site } from "@/config/site";
 
-export function FloatingWhatsApp() {
-  const whatsappMessage =
-    "Hola Anthony, estoy interesado en conocer más sobre tus servicios.";
-  const whatsappUrl = `https://wa.me/573128386640?text=${encodeURIComponent(whatsappMessage)}`;
+export function FloatingWhatsApp({ locale }: { locale: string }) {
+  const dict = getDictionary(locale as "es" | "en");
+  const whatsappMessage = t(
+    dict,
+    "whatsapp.message",
+    "Hola Anthony, estoy interesado en conocer más sobre tus servicios.",
+  );
+  const whatsappUrl = `${site.contact.whatsapp}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <Link

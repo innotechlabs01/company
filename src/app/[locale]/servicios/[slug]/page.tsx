@@ -1,11 +1,11 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getServiceBySlug, Service, services } from "@/data/services";
 import { site } from "@/config/site";
 import { Button } from "@/components/ui/button";
 import { getDictionary, t } from "@/i18n/dictionary";
 import { cn } from "@/lib/utils";
-import { JsonLd } from "@/components/ui/json-ld";
 
 type Locale = "es" | "en";
 
@@ -28,7 +28,7 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(site.url),
-    title: `${service.name[l]} · ${site.name}`,
+    title: service.name[l],
     description: service.description[l],
     alternates: {
       canonical: `${site.url}/${l}/servicios/${slug}`,
@@ -61,7 +61,6 @@ export default async function ServicePage({
 
   return (
     <section className="px-4 py-24 lg:py-32">
-      <JsonLd locale={locale} />
       <div className="mx-auto container-x">
         <nav className="mb-10 text-sm text-muted-foreground">
           <Breadcrumbs locale={locale} service={service} />
@@ -158,23 +157,23 @@ function Breadcrumbs({
   return (
     <ol className="flex items-center gap-2 text-xs text-muted-foreground">
       <li>
-        <a
+        <Link
           href={`/${locale}`}
           className="hover:text-foreground transition-colors"
         >
           {t(dict, "nav.home", "Inicio")}
-        </a>
+        </Link>
       </li>
-      <li>
+      <li className="flex items-center gap-2">
         <span aria-hidden="true">/</span>
-        <a
+        <Link
           href={`/${locale}/servicios`}
           className="hover:text-foreground transition-colors"
         >
-          {isEs ? "Servicios" : "Services"}
-        </a>
+          {t(dict, "nav.services", isEs ? "Servicios" : "Services")}
+        </Link>
       </li>
-      <li>
+      <li className="flex items-center gap-2">
         <span aria-hidden="true">/</span>
         <span>{service.name[locale as "es" | "en"]}</span>
       </li>
@@ -210,7 +209,14 @@ function CardCta({
           ? t(dict, "services.ctaTitle", "¿Listo para empezar?")
           : t(dict, "services.ctaTitleAlt", "Solicitar cotización")}
       </h2>
-      <p className="text-sm text-muted-foreground mb-6 opacity-80">
+      <p
+        className={cn(
+          "text-sm mb-6",
+          variant === "primary"
+            ? "text-primary-foreground/80"
+            : "text-muted-foreground",
+        )}
+      >
         {isEs
           ? "Conversemos sobre tu proyecto y definamos los próximos pasos."
           : "Let's talk about your project and define the next steps."}
@@ -219,7 +225,7 @@ function CardCta({
         asChild
         size="lg"
         className="w-full"
-        variant={variant === "primary" ? "default" : "outline"}
+        variant={variant === "primary" ? "secondary" : "outline"}
       >
         <a
           href={href ?? `mailto:anthonyrivera51@icloud.com`}

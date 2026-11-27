@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -14,6 +15,7 @@ import {
   Headset,
 } from "lucide-react";
 import { getDictionary, t } from "@/i18n/dictionary";
+import { services as serviceData } from "@/data/services";
 
 type ServicesProps = {
   locale: "es" | "en";
@@ -34,6 +36,21 @@ const serviceIcons: Record<string, React.ElementType> = {
   "Technology Consulting": Headset,
 };
 
+const serviceSlugs: Record<string, string> = {
+  "Desarrollo Web": "web",
+  "Web Development": "web",
+  "Desarrollo de Software a Medida": "custom-software",
+  "Custom Software Development": "custom-software",
+  "Aplicaciones Móviles": "mobile",
+  "Mobile Applications": "mobile",
+  "Proyectos In-house": "inhouse",
+  "In-house Projects": "inhouse",
+  "Proyectos de Largo Plazo": "long-term",
+  "Long-term Projects": "long-term",
+  "Consultoría Tecnológica": "consulting",
+  "Technology Consulting": "consulting",
+};
+
 export function Services({ locale }: ServicesProps) {
   const dict = getDictionary(locale);
   const items = t(dict, "services.items", []) as Array<{
@@ -50,7 +67,7 @@ export function Services({ locale }: ServicesProps) {
       <div className="mx-auto container-x">
         <div className="text-center lg:max-w-2xl mx-auto mb-16">
           <p className="eyebrow text-primary mb-3">
-            {locale === "en" ? "Capabilities" : "Capacidades"}
+            {t(dict, "services.eyebrow", "Capacidades")}
           </p>
           <h2 className="display-lg mb-5 tracking-tight text-foreground">
             {t(dict, "services.title", "Soluciones digitales para cada etapa de tu negocio.")}
@@ -69,12 +86,13 @@ export function Services({ locale }: ServicesProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((item, index) => {
             const Icon = serviceIcons[item.name] || Code;
+            const slug = serviceSlugs[item.name] ?? serviceData.find((s) => s.name[locale] === item.name)?.slug;
             const stepNum = String(index + 1).padStart(2, "0");
             return (
-              <Card
-                key={item.name}
-                className="bg-card border border-border hover:border-primary/40 hover:shadow-md transition-all group flex flex-col"
-              >
+              <Link key={item.name} href={`/${locale}/servicios/${slug}`}>
+                <Card
+                  className="bg-card border border-border hover:border-primary/40 hover:shadow-md transition-all group flex flex-col block"
+                >
                 <CardHeader className="p-6 pb-4">
                   <div className="flex items-center justify-between gap-3 mb-5">
                     <div className="w-10 h-10 rounded-lg border border-border/80 bg-muted/70 flex items-center justify-center text-foreground group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground transition-colors">
@@ -105,6 +123,7 @@ export function Services({ locale }: ServicesProps) {
                   </ul>
                 </CardContent>
               </Card>
+            </Link>
             );
           })}
         </div>

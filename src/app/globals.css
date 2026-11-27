@@ -245,6 +245,18 @@ body {
   font-weight: 400;
 }
 
+/* Compensa el header sticky para que los anclas no queden ocultos */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+}
+
 /* Reducido de movimiento */
 @media (prefers-reduced-motion: reduce) {
   *,

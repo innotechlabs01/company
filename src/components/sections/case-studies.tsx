@@ -23,7 +23,7 @@ export function CaseStudies({ locale }: CaseStudiesProps) {
       <div className="mx-auto container-x">
         <div className="text-center lg:max-w-2xl mx-auto mb-16">
           <p className="eyebrow text-primary mb-3">
-            {locale === "en" ? "Selected Engineering Work" : "Ingeniería Aplicada"}
+            {t(dict, "caseStudies.eyebrow", "Ingeniería Aplicada")}
           </p>
           <h2 className="display-lg mb-5 tracking-tight text-foreground">
             {t(dict, "caseStudies.title", "Casos de estudio")}
